@@ -1,0 +1,42 @@
+:root {
+  --primary: #d32f2f;
+  --primary-hover: #b71c1c;
+  --bg: #f4f6f8;
+  --text: #2c3e50;
+  --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
+  --shadow-md: 0 10px 20px rgba(0,0,0,0.1);
+  --radius: 12px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+.hidden { display: none !important; }
+
+/* BOTONES GLOBALES */
+.btn { padding: 12px 24px; border: none; border-radius: var(--radius); background: var(--primary); color: white; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+.btn:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.btn-full { width: 100%; margin-top: 10px; }
+.btn-cancel { background: #95a5a6; }
+.btn-cancel:hover { background: #7f8c8d; }
+.btn-success { background: #27ae60; }
+.btn-success:hover { background: #219653; }
+.btn-circle { width: 35px; height: 35px; border-radius: 50%; border: none; background: #ecf0f1; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.2s; color: var(--text); display: flex; align-items: center; justify-content: center;}
+.btn-circle:hover { background: #bdc3c7; }
+
+/* GRID DE PRODUCTOS */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+.card { background: white; padding: 20px; border-radius: var(--radius); text-align: center; box-shadow: var(--shadow-sm); transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
+.card:hover { transform: translateY(-10px); box-shadow: var(--shadow-md); }
+.card .badge-cat { position:absolute; top:15px; left:15px; background:#f39c12; color:white; padding:5px 12px; border-radius:20px; font-size:12px; font-weight:bold; box-shadow: var(--shadow-sm); z-index: 2;}
+.card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; transition: transform 0.3s; }
+.card:hover img { transform: scale(1.03); }
+.card h3 { font-size: 1.3rem; margin-bottom: 8px; color: #2c3e50; }
+.card .desc { color: #7f8c8d; font-size: 0.9rem; margin-bottom: 15px; line-height: 1.4; flex-grow: 1; }
+.card .precio { color: var(--primary); font-size: 1.5rem; font-weight: 800; margin-bottom: 15px; }
+
+/* TOASTS */
+#toast-container { position: fixed; bottom: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+.toast { min-width: 250px; background: white; color: #333; padding: 15px 20px; border-radius: 8px; box-shadow: var(--shadow-md); display: flex; align-items: center; gap: 10px; font-weight: bold; transform: translateX(120%); animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+.toast.success { border-left: 6px solid #27ae60; }
+.toast.error { border-left: 6px solid var(--primary); }
+@keyframes slideIn { to { transform: translateX(0); } }
+@keyframes fadeOut { to { opacity: 0; transform: translateX(100%); } }

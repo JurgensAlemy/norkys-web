@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Perfil Norkys</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+
+  <div class="nav-perfil">
+    <h1 style="font-size: 20px; margin:0;">🍗 Mi Cuenta</h1>
+    <a href="index.html">← Menú Principal</a>
+  </div>
+
+  <div class="profile-card">
+    <div class="avatar">👤</div>
+    <h2 id="nombre-display" style="color:var(--primary); margin-bottom: 5px;">Usuario</h2>
+    <p style="color: #7f8c8d; font-size:14px;">Cliente Norkys Lover 🌟</p>
+
+    <div style="text-align: right; margin-top: -30px;">
+      <button id="btn-edit-toggle" class="btn btn-outline" style="padding: 5px 10px; font-size:12px;"
+        onclick="toggleEdit()">✏️ Editar Perfil</button>
+    </div>
+
+    <div id="panel-display" class="datos-personales">
+      <p><strong>Correo Electrónico</strong> <span id="txt-correo"></span></p>
+      <p><strong>Distrito</strong> <span id="txt-distrito"></span></p>
+      <p><strong>Dirección de Delivery</strong> <span id="txt-direccion"></span></p>
+    </div>
+
+    <div id="panel-edit" class="datos-personales hidden">
+      <p><strong>Nombre Completo</strong>
+        <input type="text" id="input-nombre" class="edit-input">
+      </p>
+      <p><strong>Correo Electrónico</strong>
+        <input type="email" id="input-correo" class="edit-input">
+      </p>
+      <p><strong>Distrito</strong>
+        <input type="text" id="input-distrito" class="edit-input">
+      </p>
+      <p><strong>Dirección Exacta</strong>
+        <input type="text" id="input-direccion" class="edit-input" placeholder="Ej: Av. Los Pinos 123">
+      </p>
+      <button class="btn btn-full btn-success" onclick="guardarPerfil()">Guardar Cambios</button>
+    </div>
+
+    <button class="btn btn-full" style="background:#333; margin-top:20px;" onclick="logout()">Cerrar sesión</button>
+
+    <div style="display: flex; gap: 10px; margin: 20px 0;">
+      <button class="btn btn-outline" style="flex:1" onclick="verSeccion('datos')">Mis Datos</button>
+      <button class="btn btn-outline" style="flex:1" onclick="verSeccion('pedidos')">Mis Pedidos</button>
+    </div>
+
+    <div id="seccion-pedidos" class="hidden">
+      <h3>Historial de Pedidos</h3>
+      <div id="lista-pedidos" style="margin-top: 15px;">
+      </div>
+    </div>
+
+    <div id="modal-comprobante" class="modal hidden">
+      <div class="modal-content"
+        style="max-width: 500px; text-align: left; font-family: 'Courier New', Courier, monospace;">
+        <div style="text-align: center; border-bottom: 2px dashed #000; padding-bottom: 10px; margin-bottom: 15px;">
+          <h2 style="color:#000; margin:0;">NORKYS S.A.C</h2>
+          <p style="font-size: 12px; margin:0;">Av. Central 456 - Lima, Perú</p>
+          <p style="font-size: 12px; margin:0;">RUC: 20123456789</p>
+          <h3 id="comp-titulo" style="margin: 10px 0; border: 1px solid #000; padding: 5px;">BOLETA DE VENTA</h3>
+          <p id="comp-id" style="font-weight: bold;"></p>
+        </div>
+
+        <div style="font-size: 13px; line-height: 1.6; margin-bottom: 15px;">
+          <p><strong>FECHA:</strong> <span id="comp-fecha"></span></p>
+          <p><strong>CLIENTE:</strong> <span id="comp-cliente"></span></p>
+          <p><strong>DOC:</strong> <span id="comp-doc"></span></p>
+          <p><strong>DIRECCIÓN:</strong> <span id="comp-direc"></span></p>
+        </div>
+
+        <table style="width: 100%; font-size: 13px; border-collapse: collapse;">
+          <thead style="border-bottom: 1px solid #000;">
+            <tr>
+              <th align="left">DESCRIPCIÓN</th>
+              <th align="center">CANT</th>
+              <th align="right">TOTAL</th>
+            </tr>
+          </thead>
+          <tbody id="comp-items-body"></tbody>
+        </table>
+
+        <div style="text-align: right; margin-top: 15px; border-top: 2px dashed #000; padding-top: 10px;">
+          <p>SUBTOTAL: S/ <span id="comp-subtotal"></span></p>
+          <p>DELIVERY: S/ <span id="comp-delivery"></span></p>
+          <h3 style="margin-top:5px;">TOTAL: S/ <span id="comp-total"></span></h3>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px; font-size: 11px;">
+          <p>¡Gracias por su preferencia!</p>
+          <p>Representación impresa de Comprobante Electrónico</p>
+          <button class="btn btn-full btn-cancel" onclick="cerrarComprobante()"
+            style="margin-top:15px; font-family: sans-serif;">Cerrar Comprobante</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/profile.js"></script>
+</body>
+
+</html>

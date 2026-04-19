@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Norkys - El sabor que nos une</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="top-bar">
+      <span>📞 01 555-POLLO | 📱 WhatsApp: 999 888 777</span>
+      <span>🚚 Delivery Gratis por compras mayores a S/40</span>
+    </div>
+
+    <div class="main-header">
+      <div class="logo-container">
+        <img src="imgs/logo.png" alt="Norkys" class="logo-img"
+          onerror="this.src='https://cdn-icons-png.flaticon.com/512/3388/3388655.png'">
+        <h1 class="marca">NORKYS</h1>
+      </div>
+
+      <div class="search-wrapper">
+        <input id="busqueda" placeholder="Buscar pollo, parrillas, bebidas..." oninput="buscarProductos()">
+        <div id="search-results" class="search-dropdown hidden"></div>
+      </div>
+
+      <div style="display:flex; gap:15px;">
+        <button class="btn nav-cart-btn" onclick="toggleCart()">
+          🛒 Carrito <span id="cart-badge" class="badge">0</span>
+        </button>
+        <button id="btn-login-header" class="btn btn-outline" onclick="verificarLogin()">👤 Mi Cuenta</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="carousel">
+    <button class="carousel-btn prev">&#10094;</button>
+    <div class="carousel-inner">
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" alt="Promo 1">
+        <div class="slide-content">
+          <h2>El Sabor de Siempre</h2>
+          <p>Disfruta de nuestro pollo a la brasa con papas peruanitas 100% crocantes.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947" alt="Promo 2">
+        <div class="slide-content">
+          <h2>Nuevas Parrillas</h2>
+          <p>Cortes finos y jugosos directo a tu mesa. ¡Pruébalos hoy!</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-btn next">&#10095;</button>
+    <div class="carousel-dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+    </div>
+  </section>
+
+  <h2 style="text-align:center; color:var(--primary); font-size:2rem; margin-top:20px;">🍽️ Nuestro Menú</h2>
+  <div class="filtros-container">
+    <button class="btn-filtro active" onclick="filtrarMenu('Todos', this)">Todos</button>
+    <button class="btn-filtro" onclick="filtrarMenu('Pollos', this)">Pollos a la Brasa</button>
+    <button class="btn-filtro" onclick="filtrarMenu('Combos', this)">Combos</button>
+    <button class="btn-filtro" onclick="filtrarMenu('Parrillas', this)">Parrillas</button>
+    <button class="btn-filtro" onclick="filtrarMenu('Snacks', this)">Piqueos</button>
+    <button class="btn-filtro" onclick="filtrarMenu('Bebidas', this)">Bebidas</button>
+    <button class="btn-filtro" onclick="filtrarMenu('Postres', this)">Postres</button>
+  </div>
+
+  <div id="productos" class="grid"></div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <img id="modal-img">
+      <h2 id="modal-nombre"></h2>
+      <p id="modal-desc" style="color: #7f8c8d; margin:10px 0;"></p>
+      <h3 id="modal-precio" style="color: var(--primary); font-size:1.8rem;"></h3>
+
+      <div class="control-cantidad">
+        <button class="btn-circle" onclick="cambiarCantidadModal(-1)">-</button>
+        <span id="cantidad">1</span>
+        <button class="btn-circle" onclick="cambiarCantidadModal(1)">+</button>
+      </div>
+
+      <button class="btn btn-full" onclick="agregarDesdeModal()">Añadir al Pedido</button>
+      <button class="btn btn-full btn-cancel" onclick="cerrarModal()">Cerrar</button>
+    </div>
+  </div>
+
+  <div id="cart" class="cart">
+    <div class="cart-header">
+      <h2>🛒 Tu Pedido</h2>
+      <button onclick="cerrarCart()" class="btn-close">✖</button>
+    </div>
+    <div id="cart-items" class="cart-body"></div>
+    <div style="padding: 20px; background:#f8f9fa; border-top:1px solid #eee;">
+      <h3 id="total" style="text-align: right; color: var(--primary); font-size: 1.5rem; margin-bottom: 15px;">Total: S/
+        0.00</h3>
+      <button class="btn btn-full btn-success" onclick="procesarPago()">Pagar Ahora</button>
+      <button class="btn btn-full btn-cancel" style="background:transparent; color:#95a5a6; border:1px solid #ccc;"
+        onclick="vaciarCarrito()">Vaciar Carrito</button>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <footer style="background:#1a1a1a; color:white; text-align:center; padding:30px; margin-top:50px;">
+    <p>© 2026 Norkys - El auténtico sabor peruano.</p>
+  </footer>
+
+  <div id="upsell-modal" class="modal hidden">
+    <div class="modal-content" style="border: 4px solid var(--primary);">
+      <h2 style="color: var(--primary); margin-bottom: 5px;">¡Espera! ¿No te provoca? 🤤</h2>
+      <p style="color: #666; margin-bottom: 15px;">Agrégalo a tu pedido con un solo clic</p>
+      <img id="upsell-img" style="height: 200px; width: 100%; object-fit: cover; border-radius: 12px;">
+      <h3 id="upsell-nombre" style="margin-top: 15px;"></h3>
+      <p id="upsell-precio" style="color: var(--primary); font-size: 1.5rem; font-weight: bold; margin: 10px 0;"></p>
+
+      <div style="display: flex; gap: 10px; margin-top: 20px;">
+        <button class="btn btn-cancel" style="flex: 1;" onclick="rechazarUpsell()">No, gracias</button>
+        <button class="btn btn-success" style="flex: 1;" onclick="aceptarUpsell()">¡Sí, lo quiero!</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="checkout-overlay" class="checkout-overlay hidden">
+    <div class="checkout-container">
+
+      <div class="checkout-resumen">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <h2>📋 Tu Pedido</h2>
+          <button class="btn-cancel-text" onclick="cerrarCheckout()">Volver al menú</button>
+        </div>
+        <div id="checkout-items-list" class="checkout-items-list"></div>
+
+        <div class="checkout-totales">
+          <div class="fila-total">
+            <p>Subtotal</p>
+            <p id="chk-subtotal">S/ 0.00</p>
+          </div>
+          <div class="fila-total">
+            <p>Delivery</p>
+            <p id="chk-delivery">S/ 0.00</p>
+          </div>
+          <hr style="margin: 15px 0; border: 0; border-top: 2px dashed #ddd;">
+          <div class="fila-total total-final">
+            <h3>Total a Pagar</h3>
+            <h3 id="chk-total-final">S/ 0.00</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkout-pago">
+        <h2>💳 Finalizar Compra</h2>
+
+        <div class="checkout-seccion">
+          <h3>📍 Datos de Envío</h3>
+          <input type="text" id="chk-nombre" class="chk-input" placeholder="Nombre de quien recibe">
+          <input type="text" id="chk-direccion" class="chk-input" placeholder="Dirección exacta (Ej: Av. Pinos 123)">
+        </div>
+
+        <div class="checkout-seccion">
+          <h3>💰 Método de Pago</h3>
+
+          <div class="metodo-pago-box">
+            <label class="metodo-label">
+              <input type="radio" name="metodoPago" value="yape" onchange="cambiarMetodoPago()" checked>
+              <span>📱 Yape / Plin</span>
+            </label>
+            <label class="metodo-label">
+              <input type="radio" name="metodoPago" value="tarjeta" onchange="cambiarMetodoPago()">
+              <span>💳 Tarjeta Crédito/Débito</span>
+            </label>
+            <label class="metodo-label">
+              <input type="radio" name="metodoPago" value="efectivo" onchange="cambiarMetodoPago()">
+              <span>💵 Pago Contraentrega</span>
+            </label>
+          </div>
+          
+          <div class="checkout-seccion">
+            <h3>📑 Comprobante de Pago</h3>
+            <div style="display: flex; gap: 15px; margin-bottom: 10px;">
+              <label class="metodo-label" style="flex:1; padding: 10px;">
+                <input type="radio" name="tipoDoc" value="Boleta" checked onchange="cambiarTipoDoc()">
+                <span>Boleta</span>
+              </label>
+              <label class="metodo-label" style="flex:1; padding: 10px;">
+                <input type="radio" name="tipoDoc" value="Factura" onchange="cambiarTipoDoc()">
+                <span>Factura</span>
+              </label>
+            </div>
+            <input type="number" id="chk-documento" class="chk-input" placeholder="Número de DNI">
+          </div>
+
+          <div id="panel-yape" class="panel-pago">
+            <p style="text-align: center; color: #666; font-size: 14px; margin-bottom: 10px;">Escanea el código QR para
+              pagar</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+              alt="QR Yape" style="width: 150px; display: block; margin: 0 auto; border-radius: 10px;">
+          </div>
+
+          <div id="panel-tarjeta" class="panel-pago hidden">
+            <input type="text" class="chk-input" placeholder="Número de Tarjeta (16 dígitos)">
+            <div style="display: flex; gap: 10px;">
+              <input type="text" class="chk-input" placeholder="MM/YY" style="flex: 1;">
+              <input type="text" class="chk-input" placeholder="CVV" style="flex: 1;">
+            </div>
+          </div>
+
+          <div id="panel-efectivo" class="panel-pago hidden">
+            <p style="color: #27ae60; font-weight: bold; text-align: center;">✅ Pagarás al repartidor cuando llegue tu
+              pedido.</p>
+          </div>
+        </div>
+
+        <button class="btn btn-full btn-success" style="font-size: 1.2rem; padding: 15px;"
+          onclick="confirmarPedidoFinal()">¡Confirmar Pedido!</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

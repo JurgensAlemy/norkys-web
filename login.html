@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión - Norkys</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      
+      <div class="auth-img-side" style="background-image: url('https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4');">
+        <div class="auth-img-text">
+          <h2>El sabor<br>que nos une.</h2>
+          <p>Ingresa y disfruta de los mejores combos y promociones exclusivas por delivery.</p>
+        </div>
+      </div>
+
+      <div class="auth-form-side">
+        <div class="logo-header" onclick="window.location='index.html'">
+          <img src="imgs/logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3388/3388655.png'">
+          <h1>NORKYS</h1>
+        </div>
+
+        <h2>¡Hola de nuevo! 👋</h2>
+        <p class="subtitle">Nos alegra verte, ingresa tus datos para pedir.</p>
+
+        <div class="input-group">
+          <input id="user" type="text" placeholder="Usuario o Correo electrónico">
+          <span class="error-msg" id="err-user"></span>
+        </div>
+        
+        <div class="input-group" style="margin-bottom: 5px;">
+          <input id="pass" type="password" placeholder="Contraseña">
+          <span class="error-msg" id="err-pass"></span>
+        </div>
+        
+        <div style="text-align: right; margin-bottom: 25px;">
+          <a href="#" style="color: #d32f2f; font-size: 13px; text-decoration: none; font-weight: 600;">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <button class="btn-auth" onclick="login()">Iniciar Sesión</button>
+
+        <div class="auth-footer">
+          <p>¿Aún no tienes cuenta? <a href="register.html">Regístrate ahora</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="js/auth.js"></script>
+</body>
+</html>
