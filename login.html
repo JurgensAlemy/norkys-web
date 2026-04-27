@@ -1,58 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar Sesión - Norkys</title>
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/login.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión - Norky's</title>
+    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
-<body>
+<body class="login-body">
 
-  <div class="auth-wrapper">
-    <div class="auth-card">
-      
-      <div class="auth-img-side" style="background-image: url('https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4');">
-        <div class="auth-img-text">
-          <h2>El sabor<br>que nos une.</h2>
-          <p>Ingresa y disfruta de los mejores combos y promociones exclusivas por delivery.</p>
-        </div>
-      </div>
+<div class="login-wrapper">
+    <div class="login-card">
 
-      <div class="auth-form-side">
-        <div class="logo-header" onclick="window.location='index.html'">
-          <img src="imgs/logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3388/3388655.png'">
-          <h1>NORKYS</h1>
+        <div class="login-info">
+            <div class="login-logo">
+                <a href="index.html" style="text-decoration: none;">
+                    <h2 style="color: white; font-weight: 900; font-size: 48px; margin: 0; font-style: italic; letter-spacing: -2px; text-transform: uppercase;">NORKY'S</h2>
+                </a>
+            </div>
+
+            <div class="info-content">
+                <span class="admin-badge">BIENVENIDO DE NUEVO</span>
+                <h1>Tu comida favorita a un clic de distancia.</h1>
+                <p>Inicia sesión para pedir más rápido, revisar tu historial de compras y acceder a promociones exclusivas para clientes.</p>
+            </div>
+
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-motorcycle"></i></div>
+                    <span>Rastrea tu delivery en tiempo real</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-heart"></i></div>
+                    <span>Guarda tus platos y combos favoritos</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-ticket"></i></div>
+                    <span>Accede a cupones y ofertas especiales</span>
+                </div>
+            </div>
         </div>
 
-        <h2>¡Hola de nuevo! 👋</h2>
-        <p class="subtitle">Nos alegra verte, ingresa tus datos para pedir.</p>
+        <div class="login-form-container">
+            <div class="form-header">
+                <h2>Bienvenido 👋</h2>
+                <p>Ingresa a tu cuenta para continuar con tu pedido.</p>
+            </div>
 
-        <div class="input-group">
-          <input id="user" type="text" placeholder="Usuario o Correo electrónico">
-          <span class="error-msg" id="err-user"></span>
-        </div>
-        
-        <div class="input-group" style="margin-bottom: 5px;">
-          <input id="pass" type="password" placeholder="Contraseña">
-          <span class="error-msg" id="err-pass"></span>
-        </div>
-        
-        <div style="text-align: right; margin-bottom: 25px;">
-          <a href="#" style="color: #d32f2f; font-size: 13px; text-decoration: none; font-weight: 600;">¿Olvidaste tu contraseña?</a>
-        </div>
+            <form class="login-form" id="loginForm">
+                <div class="input-group">
+                    <label>Correo electrónico</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" id="logCorreo" placeholder="correo@ejemplo.com" required="required" />
+                    </div>
+                </div>
 
-        <button class="btn-auth" onclick="login()">Iniciar Sesión</button>
+                <div class="input-group">
+                    <div class="label-row">
+                        <label>Contraseña</label>
+                        <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="logPassword" placeholder="••••••••••••" required="required" />
+                        <i class="fa-regular fa-eye toggle-password"></i>
+                    </div>
+                </div>
 
-        <div class="auth-footer">
-          <p>¿Aún no tienes cuenta? <a href="register.html">Regístrate ahora</a></p>
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" />
+                        <span class="checkmark"></span>
+                        Recordarme en este dispositivo
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    Iniciar sesión <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <div class="form-footer">
+                    <p>¿Aún no tienes una cuenta? <a href="register.html">Regístrate aquí</a></p>
+                </div>
+            </form>
         </div>
-      </div>
 
     </div>
-  </div>
+</div>
 
-  <div id="toast-container"></div>
-  <script src="js/auth.js"></script>
+<script src="js/db.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
 </body>
 </html>
