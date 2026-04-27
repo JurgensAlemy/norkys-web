@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Norky's Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <h2 style="color: var(--norkys-red); font-weight: 900; font-size: 28px; font-style: italic; margin: 0;">NORKY'S ADMIN</h2>
+        </div>
+        
+        <nav class="sidebar-menu">
+            <span style="font-size: 10px; font-weight: bold; color: #94a3b8; padding-left: 15px; margin-bottom: 5px;">MENU PRINCIPAL</span>
+            <a href="#" class="menu-item active">
+                <i class="fa-solid fa-chart-pie"></i> Dashboard
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-box-open"></i> Productos
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-cart-shopping"></i> Pedidos <span style="background-color: #ef4444; color: white; border-radius: 10px; padding: 2px 6px; font-size: 10px; margin-left: auto;">12</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-users"></i> Clientes
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-chart-line"></i> Reportes
+            </a>
+            
+            <span style="font-size: 10px; font-weight: bold; color: #94a3b8; padding-left: 15px; margin: 15px 0 5px 0;">CONFIGURACIÓN</span>
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-gear"></i> Ajustes
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-shield-halved"></i> Roles y Permisos
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="admin-profile">
+                <div class="admin-avatar">AD</div>
+                <div class="admin-info">
+                    <span>Admin Principal</span>
+                    <small>admin@norkys.pe</small>
+                </div>
+                <i class="fa-solid fa-right-from-bracket" style="margin-left: auto; color: #94a3b8; cursor: pointer;" onclick="logout()"></i>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="greeting">
+                <h1>Hola, Administrador 👋</h1>
+                <p>Aquí tienes el resumen de tu pollería de hoy.</p>
+            </div>
+            
+            <div class="header-actions">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar pedidos, clientes...">
+                </div>
+                <button class="notification-btn">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="badge-dot"></span>
+                </button>
+            </div>
+        </header>
+
+        <div class="dashboard-container">
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-desc">INGRESOS TOTALES</span>
+                        <div class="stat-icon bg-blue-light"><i class="fa-solid fa-dollar-sign"></i></div>
+                    </div>
+                    <div class="stat-value">S/ 24,850</div>
+                    <div class="trend up"><i class="fa-solid fa-arrow-trend-up"></i> +12.5% esta semana</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-desc">PEDIDOS NUEVOS</span>
+                        <div class="stat-icon bg-purple-light"><i class="fa-solid fa-cart-flatbed"></i></div>
+                    </div>
+                    <div class="stat-value">1,482</div>
+                    <div class="trend up"><i class="fa-solid fa-arrow-trend-up"></i> +5.8% esta semana</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-desc">VISITAS DEL SITIO</span>
+                        <div class="stat-icon bg-green-light"><i class="fa-solid fa-users"></i></div>
+                    </div>
+                    <div class="stat-value">8,249</div>
+                    <div class="trend down"><i class="fa-solid fa-arrow-trend-down"></i> -1.2% esta semana</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-desc">TASA DE CONVERSIÓN</span>
+                        <div class="stat-icon bg-yellow-light"><i class="fa-solid fa-bolt"></i></div>
+                    </div>
+                    <div class="stat-value">3.25%</div>
+                    <div class="trend up"><i class="fa-solid fa-arrow-trend-up"></i> +0.8% esta semana</div>
+                </div>
+            </div>
+
+            <div class="middle-grid">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Resumen de Ventas</h3>
+                        <select class="btn-filter">
+                            <option>Esta semana</option>
+                            <option>Este mes</option>
+                            <option>Este año</option>
+                        </select>
+                    </div>
+                    <div class="mock-chart">
+                        <div style="position: absolute; top: 20px; left: 0; right: 0; border-top: 1px dashed #e2e8f0; z-index: 1;"></div>
+                        <div style="position: absolute; top: 90px; left: 0; right: 0; border-top: 1px dashed #e2e8f0; z-index: 1;"></div>
+                        <div style="position: absolute; top: 160px; left: 0; right: 0; border-top: 1px dashed #e2e8f0; z-index: 1;"></div>
+                        
+                        <div class="bar-group" style="z-index: 2;">
+                            <div class="bar" style="height: 40%;"></div>
+                            <span class="bar-label">Lun</span>
+                        </div>
+                        <div class="bar-group" style="z-index: 2;">
+                            <div class="bar" style="height: 60%;"></div>
+                            <span class="bar-label">Mar</span>
+                        </div>
+                        <div class="bar-group" style="z-index: 2;">
+                            <div class="bar" style="height: 50%;"></div>
+                            <span class="bar-label">Mié</span>
+                        </div>
+                        <div class="bar-group" style="z-index: 2;">
+                            <div class="bar active" style="height: 90%;"></div>
+                            <span class="bar-label" style="color: var(--norkys-red);">Jue</span>
+                        </div>
+                        <div class="bar-group" style="z-index: 2;">
+                            <div class="bar" style="height: 70%;"></div>
+                            <span class="bar-label">Vie</span>
+                        </div>
+                        <div class="bar-group" style="z-index: 2;">
+                            <div class="bar" style="height: 30%;"></div>
+                            <span class="bar-label">Sáb</span>
+                        </div>
+                        <div class="bar-group" style="z-index: 2;">
+                            <div class="bar" style="height: 45%;"></div>
+                            <span class="bar-label">Dom</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Más Vendidos</h3>
+                        <button class="btn-filter">Ver todos</button>
+                    </div>
+                    <div class="top-products-list">
+                        <div class="top-product-item">
+                            <div class="product-img">
+                                <img src="imgs/pollo1.jpg" alt="Pollo a la Brasa" style="object-fit: cover; border-radius:8px; width:100%; height:100%;" onerror="this.style.display='none'">
+                            </div>
+                            <div class="product-details">
+                                <h4 class="product-name">1 Pollo a la Brasa</h4>
+                                <span class="product-sales">1,024 ventas</span>
+                            </div>
+                            <div class="product-revenue">S/ 77,721</div>
+                        </div>
+
+                        <div class="top-product-item">
+                            <div class="product-img">
+                                <img src="imgs/combo1.jpg" alt="Mega Combo" style="object-fit: cover; border-radius:8px; width:100%; height:100%;" onerror="this.style.display='none'">
+                            </div>
+                            <div class="product-details">
+                                <h4 class="product-name">Mega Combo Familiar</h4>
+                                <span class="product-sales">898 ventas</span>
+                            </div>
+                            <div class="product-revenue">S/ 80,730</div>
+                        </div>
+
+                        <div class="top-product-item">
+                            <div class="product-img">
+                                <img src="imgs/parrilla1.jpg" alt="Parrilla" style="object-fit: cover; border-radius:8px; width:100%; height:100%;" onerror="this.style.display='none'">
+                            </div>
+                            <div class="product-details">
+                                <h4 class="product-name">Parrilla Mixta</h4>
+                                <span class="product-sales">415 ventas</span>
+                            </div>
+                            <div class="product-revenue">S/ 35,275</div>
+                        </div>
+
+                        <div class="top-product-item">
+                            <div class="product-img">
+                                <img src="imgs/chicha.jpg" alt="Chicha" style="object-fit: cover; border-radius:8px; width:100%; height:100%;" onerror="this.style.display='none'">
+                            </div>
+                            <div class="product-details">
+                                <h4 class="product-name">Jarra Chicha Morada</h4>
+                                <span class="product-sales">1,156 ventas</span>
+                            </div>
+                            <div class="product-revenue">S/ 17,224</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h3 class="panel-title">Pedidos Recientes</h3>
+                    <button class="btn-filter">Exportar CSV</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Nº Pedido</th>
+                                <th>Cliente</th>
+                                <th>Fecha</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <tr>
+                                <td><strong style="color: var(--norkys-red);">#NK-8492</strong></td>
+                                <td>
+                                    <div class="user-cell">
+                                        <img src="https://ui-avatars.com/api/?name=Carlos+Ruiz&background=random" alt="User">
+                                        Carlos Ruiz
+                                    </div>
+                                </td>
+                                <td>Hoy, 10:45 AM</td>
+                                <td><strong>S/ 85.90</strong></td>
+                                <td><span class="status-pill status-completed">Completado</span></td>
+                                <td><button class="btn-action"><i class="fa-solid fa-ellipsis-vertical"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="js/db.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

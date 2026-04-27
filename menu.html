@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La Carta - Norky's</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/menu.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+<header class="header">
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <a href="#"><i class="fa-solid fa-location-dot"></i> Enviar a: <strong>Lima - Chosica</strong></a>
+            <a href="#">Rastrear pedido</a>
+            <a href="#">Locales</a>
+            <a href="#">Servicio al cliente</a>
+        </div>
+        <div class="top-bar-right">
+            <a href="#">Zonas de reparto</a>
+            <a href="#">Descarga la app</a>
+        </div>
+    </div>
+
+    <div class="main-header">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none;">
+                <h2 style="color: var(--norkys-red); font-weight: 900; font-size: 32px; margin: 0; font-style: italic; letter-spacing: -1px; text-transform: uppercase;">NORKY'S</h2>
+            </a>
+        </div>
+
+        <div class="search-container">
+            <select class="search-category">
+                <option>Todo el menú</option>
+                <option>Combos</option>
+                <option>Pollos</option>
+            </select>
+            <input type="text" class="search-input" placeholder="¿Qué te provoca pedir hoy?" />
+            <button class="search-button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="user-actions">
+            <a href="login.html" class="action-item">
+                <i class="fa-regular fa-user"></i>
+                <div class="action-text">
+                    <span>Hola, ingresa</span>
+                    <strong>Mi cuenta <i class="fa-solid fa-chevron-down" style="font-size: 10px"></i></strong>
+                </div>
+            </a>
+
+            <a href="cart.html" class="cart-button">
+                <i class="fa-solid fa-basket-shopping"></i>
+                <strong>S/ 0.00</strong>
+                <span class="cart-badge" style="display:none;">0</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<nav class="sticky-category-nav">
+    <div class="sticky-container">
+        <a href="#pollos" class="category-pill active" onclick="changeNorkysCategory('pollos', this)"><i class="fa-solid fa-drumstick-bite"></i> Pollos a la Brasa</a>
+        <a href="#parrillas" class="category-pill" onclick="changeNorkysCategory('parrillas', this)"><i class="fa-solid fa-fire-burner"></i> Parrillas</a>
+        <a href="#combos" class="category-pill" onclick="changeNorkysCategory('combos', this)"><i class="fa-solid fa-user-group"></i> Combos Especiales</a>
+        <a href="#hamburguesas" class="category-pill" onclick="changeNorkysCategory('hamburguesas', this)"><i class="fa-solid fa-burger"></i> Hamburguesas</a>
+        <a href="#bebidas" class="category-pill" onclick="changeNorkysCategory('bebidas', this)"><i class="fa-solid fa-glass-water"></i> Bebidas</a>
+        <a href="#postres" class="category-pill" onclick="changeNorkysCategory('postres', this)"><i class="fa-solid fa-ice-cream"></i> Postres</a>
+        <a href="#porciones" class="category-pill" onclick="changeNorkysCategory('porciones', this)"><i class="fa-solid fa-french-fries"></i> Porciones Extra</a>
+    </div>
+</nav>
+
+<main class="full-menu-container">
+
+    <section id="pollos" class="menu-section">
+        <div class="section-header">
+            <h2 class="section-title"><i class="fa-solid fa-drumstick-bite"></i> Pollos a la Brasa</h2>
+            <p class="section-subtitle">Nuestro sabor tradicional, doradito por fuera y jugoso por dentro.</p>
+        </div>
+        <div class="top-sellers-grid"></div>
+    </section>
+
+    <section id="parrillas" class="menu-section">
+        <div class="section-header">
+            <h2 class="section-title"><i class="fa-solid fa-fire-burner"></i> Parrillas</h2>
+            <p class="section-subtitle">Carnes en su punto exacto, hechas al momento.</p>
+        </div>
+        <div class="top-sellers-grid"></div>
+    </section>
+
+    <section id="combos" class="menu-section">
+        <div class="section-header">
+            <h2 class="section-title"><i class="fa-solid fa-user-group"></i> Combos Especiales</h2>
+            <p class="section-subtitle">Ahorra con nuestros combos armados para calmar cualquier hambre.</p>
+        </div>
+        <div class="top-sellers-grid"></div>
+    </section>
+
+    <section id="hamburguesas" class="menu-section">
+        <div class="section-header">
+            <h2 class="section-title"><i class="fa-solid fa-burger"></i> Hamburguesas</h2>
+            <p class="section-subtitle">Hechas con carne seleccionada y acompañadas de papas fritas.</p>
+        </div>
+        <div class="top-sellers-grid"></div>
+    </section>
+
+    <section id="bebidas" class="menu-section">
+        <div class="section-header">
+            <h2 class="section-title"><i class="fa-solid fa-glass-water"></i> Bebidas</h2>
+            <p class="section-subtitle">Para brindar y refrescar el paladar.</p>
+        </div>
+        <div class="top-sellers-grid"></div>
+    </section>
+
+    <section id="postres" class="menu-section">
+        <div class="section-header">
+            <h2 class="section-title"><i class="fa-solid fa-ice-cream"></i> Postres Dulces</h2>
+            <p class="section-subtitle">El toque final perfecto para tu comida.</p>
+        </div>
+        <div class="top-sellers-grid"></div>
+    </section>
+
+    <section id="porciones" class="menu-section">
+        <div class="section-header">
+            <h2 class="section-title"><i class="fa-solid fa-french-fries"></i> Porciones y Extras</h2>
+            <p class="section-subtitle">¿Te quedaste con hambre? Agrega más papas o ensalada.</p>
+        </div>
+        <div class="top-sellers-grid"></div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="trust-bar-container">
+            <div class="trust-bar">
+                <div class="trust-item">
+                    <div class="trust-icon bg-lblue"><i class="fa-solid fa-motorcycle"></i></div>
+                    <div class="trust-text">
+                        <strong>Delivery Rápido</strong>
+                        <span>Tu comida caliente en minutos</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon bg-lgreen"><i class="fa-solid fa-shield"></i></div>
+                    <div class="trust-text">
+                        <strong>Calidad Garantizada</strong>
+                        <span>Ingredientes frescos siempre</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon bg-lyellow"><i class="fa-solid fa-credit-card"></i></div>
+                    <div class="trust-text">
+                        <strong>Pago Seguro</strong>
+                        <span>Efectivo, Yape, Plin o Tarjeta</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon bg-lpurple"><i class="fa-solid fa-headset"></i></div>
+                    <div class="trust-text">
+                        <strong>Soporte al Cliente</strong>
+                        <span>Te ayudamos con tu pedido</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-links-section">
+            <div class="footer-info">
+                <div class="footer-logo" style="margin-bottom: 10px; display: flex; justify-content: flex-start;">
+                    <a href="index.html" style="text-decoration: none;">
+                        <h2 style="color: var(--norkys-red); font-weight: 900; font-size: 28px; margin: 0; font-style: italic; letter-spacing: -1px; text-transform: uppercase;">NORKY'S</h2>
+                    </a>
+                </div>
+                <p>El verdadero sabor peruano. Disfruta del mejor pollo a la brasa y nuestras deliciosas parrilladas sin salir de casa.</p>
+                <div class="contact-info">
+                    <p><i class="fa-solid fa-phone"></i> (01) 612-6000</p>
+                    <p><i class="fa-solid fa-envelope"></i> atencion@norkys.pe</p>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>MI CUENTA</h3>
+                <ul>
+                    <li><a href="login.html">Ingresar / Registrarse</a></li>
+                    <li><a href="profile.html">Mis pedidos</a></li>
+                    <li><a href="profile.html">Mis direcciones</a></li>
+                    <li><a href="profile.html">Mis favoritos</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>NUESTRA CARTA</h3>
+                <ul>
+                    <li><a href="#pollos">Pollo a la Brasa</a></li>
+                    <li><a href="#parrillas">Parrillas</a></li>
+                    <li><a href="#combos">Combos Especiales</a></li>
+                    <li><a href="#bebidas">Bebidas y Postres</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>NORKY'S</h3>
+                <ul>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Locales</a></li>
+                    <li><a href="#">Trabaja con nosotros</a></li>
+                    <li><a href="#">Zonas de reparto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>SÍGUENOS</h3>
+                <div class="social-links">
+                    <a href="#" class="social-fb"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="social-ig"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-tt"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+                <p class="newsletter-text" style="font-size: 13px; color: var(--text-muted); margin-top: 15px;">
+                    ¡Entérate de nuestras promociones antes que nadie!
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <span class="bottom-label">MÉTODOS DE PAGO</span>
+                <div class="payment-grid">
+                    <div class="pay-card">VISA</div>
+                    <div class="pay-card">MasterCard</div>
+                    <div class="pay-card">Efectivo</div>
+                    <div class="pay-card">Yape</div>
+                    <div class="pay-card">Plin</div>
+                </div>
+            </div>
+            <div class="certificates">
+                <span class="bottom-label">Compra 100% segura</span>
+                <div class="cert-grid">
+                    <div class="cert-item"><i class="fa-solid fa-shield-halved"></i> SSL</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copy">
+            <p>© 2026 Inversiones Norky's S.A.C. · Todos los derechos reservados</p>
+            <div class="copy-links">
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Políticas de privacidad</a>
+                <a href="#">Libro de reclamaciones</a>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<div id="productModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-body">
+            <div class="modal-image-container">
+                <i id="modalIconFallback" class="fa-solid fa-image fallback-icon"></i>
+                <img id="modalImg" src="" alt="Producto" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" />
+            </div>
+            <div class="modal-details">
+                <h2 id="modalTitle">Nombre del Producto</h2>
+                <p id="modalDesc">Descripción detallada del producto aquí.</p>
+                <div class="modal-price-box">
+                    <span>Precio total:</span>
+                    <strong id="modalPrice">S/ 0.00</strong>
+                </div>
+
+                <div class="modal-actions">
+                    <div class="quantity-control">
+                        <button type="button" class="qty-btn" id="btnMinus"><i class="fa-solid fa-minus"></i></button>
+                        <input type="number" id="qtyInput" value="1" min="1" readonly="readonly" />
+                        <button type="button" class="qty-btn" id="btnPlus"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <button class="btn-add-cart">
+                        <i class="fa-solid fa-basket-shopping"></i> Agregar al pedido
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/main.js"></script>
+<script src="js/menu.js"></script>
+</body>
+</html>

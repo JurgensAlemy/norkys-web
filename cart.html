@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Pedido - Norky's</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/cart.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="cart-body">
+
+<header class="header">
+    <div class="main-header">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none;">
+                <h2 style="color: var(--norkys-red); font-weight: 900; font-size: 32px; margin: 0; font-style: italic; letter-spacing: -1px; text-transform: uppercase;">NORKY'S</h2>
+            </a>
+        </div>
+        
+        <div class="nav-bar" style="border:none; padding:0; flex: 1; justify-content: center;">
+            <nav class="nav-links" style="display: flex; gap: 15px;">
+                <a href="index.html" class="action-item" style="background: var(--bg-main); padding: 10px 20px; border-radius: 20px; font-weight: 700; border: 1px solid var(--border-color); text-decoration: none;">
+                    <i class="fa-solid fa-house" style="color: var(--norkys-red);"></i> Inicio
+                </a>
+                <a href="menu.html" class="action-item" style="background: var(--bg-main); padding: 10px 20px; border-radius: 20px; font-weight: 700; border: 1px solid var(--border-color); text-decoration: none;">
+                    <i class="fa-solid fa-book-open" style="color: var(--norkys-red);"></i> La Carta
+                </a>
+            </nav>
+        </div>
+
+        <div class="user-actions">
+            <a href="profile.html" class="action-item">
+                <i class="fa-regular fa-user"></i>
+                <div class="action-text">
+                    <span>Mi cuenta</span>
+                    <strong>Ingresar</strong>
+                </div>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="cart-container">
+    <div class="cart-header">
+        <h2><i class="fa-solid fa-basket-shopping"></i> Tu Pedido</h2>
+        <a href="menu.html" class="continue-shopping"><i class="fa-solid fa-arrow-left"></i> Seguir pidiendo</a>
+    </div>
+
+    <div class="cart-layout">
+
+        <div class="cart-items-section">
+            </div>
+
+        <div class="cart-summary-section">
+            <div class="summary-card delivery-card">
+                <h3><i class="fa-solid fa-motorcycle"></i> Entrega en:</h3>
+                <div class="address-selector">
+                    <div class="selected-address" id="current-delivery-address">
+                        <strong>Cargando...</strong>
+                        <p>Buscando direcciones...</p>
+                    </div>
+                    <button id="btnChangeAddress" class="btn-text-only" style="background:none; border:none; color:var(--norkys-red); font-weight:bold; cursor:pointer;">Cambiar</button>
+                </div>
+            </div>
+
+            <div class="summary-card total-card">
+                <h3>Resumen del Pedido</h3>
+
+                <div class="summary-row">
+                    <span>Subtotal de productos</span>
+                    <span id="summary-subtotal">S/ 0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Costo de envío</span>
+                    <span id="summary-shipping">S/ 5.00</span>
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-row total-row">
+                    <span>Total a pagar</span>
+                    <strong id="summary-total">S/ 5.00</strong>
+                </div>
+
+                <div class="promo-code">
+                    <i class="fa-solid fa-ticket"></i>
+                    <input type="text" placeholder="Código de descuento" />
+                    <button>Aplicar</button>
+                </div>
+
+                <button class="btn-checkout">Continuar al Pago <i class="fa-solid fa-chevron-right"></i></button>
+
+                <div class="secure-payment">
+                    <i class="fa-solid fa-lock"></i> Pago 100% seguro garantizado
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer class="main-footer" style="margin-top: auto; border-top: 1px solid var(--border-color);">
+    <div class="footer-copy" style="background-color: var(--bg-main); padding: 20px 40px; display: flex; justify-content: center; font-size: 13px; color: var(--text-muted);">
+        <p>© 2026 Inversiones Norky's S.A.C. · Todos los derechos reservados</p>
+    </div>
+</footer>
+
+<div id="addressSelectionModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 450px; padding: 30px;">
+        <button class="close-modal" id="closeAddressSelModal"><i class="fa-solid fa-xmark"></i></button>
+        <h2 style="font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 20px;">Elige tu dirección</h2>
+        <div id="user-addresses-list" style="display:flex; flex-direction:column; gap:10px;">
+            </div>
+        <button onclick="window.location.href='profile.html'" style="margin-top: 20px; width:100%; background:white; color:var(--norkys-red); border:2px dashed var(--norkys-red); padding:10px; border-radius:8px; font-weight:bold; cursor:pointer;">
+            + Agregar nueva en mi perfil
+        </button>
+    </div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>
