@@ -1,111 +1,144 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Mi Perfil Norkys</title>
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/profile.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Perfil - Norky's</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/profile.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
+<body class="profile-page">
 
-<body>
-
-  <div class="nav-perfil">
-    <h1 style="font-size: 20px; margin:0;">🍗 Mi Cuenta</h1>
-    <a href="index.html">← Menú Principal</a>
-  </div>
-
-  <div class="profile-card">
-    <div class="avatar">👤</div>
-    <h2 id="nombre-display" style="color:var(--primary); margin-bottom: 5px;">Usuario</h2>
-    <p style="color: #7f8c8d; font-size:14px;">Cliente Norkys Lover 🌟</p>
-
-    <div style="text-align: right; margin-top: -30px;">
-      <button id="btn-edit-toggle" class="btn btn-outline" style="padding: 5px 10px; font-size:12px;"
-        onclick="toggleEdit()">✏️ Editar Perfil</button>
-    </div>
-
-    <div id="panel-display" class="datos-personales">
-      <p><strong>Correo Electrónico</strong> <span id="txt-correo"></span></p>
-      <p><strong>Distrito</strong> <span id="txt-distrito"></span></p>
-      <p><strong>Dirección de Delivery</strong> <span id="txt-direccion"></span></p>
-    </div>
-
-    <div id="panel-edit" class="datos-personales hidden">
-      <p><strong>Nombre Completo</strong>
-        <input type="text" id="input-nombre" class="edit-input">
-      </p>
-      <p><strong>Correo Electrónico</strong>
-        <input type="email" id="input-correo" class="edit-input">
-      </p>
-      <p><strong>Distrito</strong>
-        <input type="text" id="input-distrito" class="edit-input">
-      </p>
-      <p><strong>Dirección Exacta</strong>
-        <input type="text" id="input-direccion" class="edit-input" placeholder="Ej: Av. Los Pinos 123">
-      </p>
-      <button class="btn btn-full btn-success" onclick="guardarPerfil()">Guardar Cambios</button>
-    </div>
-
-    <button class="btn btn-full" style="background:#333; margin-top:20px;" onclick="logout()">Cerrar sesión</button>
-
-    <div style="display: flex; gap: 10px; margin: 20px 0;">
-      <button class="btn btn-outline" style="flex:1" onclick="verSeccion('datos')">Mis Datos</button>
-      <button class="btn btn-outline" style="flex:1" onclick="verSeccion('pedidos')">Mis Pedidos</button>
-    </div>
-
-    <div id="seccion-pedidos" class="hidden">
-      <h3>Historial de Pedidos</h3>
-      <div id="lista-pedidos" style="margin-top: 15px;">
-      </div>
-    </div>
-
-    <div id="modal-comprobante" class="modal hidden">
-      <div class="modal-content"
-        style="max-width: 500px; text-align: left; font-family: 'Courier New', Courier, monospace;">
-        <div style="text-align: center; border-bottom: 2px dashed #000; padding-bottom: 10px; margin-bottom: 15px;">
-          <h2 style="color:#000; margin:0;">NORKYS S.A.C</h2>
-          <p style="font-size: 12px; margin:0;">Av. Central 456 - Lima, Perú</p>
-          <p style="font-size: 12px; margin:0;">RUC: 20123456789</p>
-          <h3 id="comp-titulo" style="margin: 10px 0; border: 1px solid #000; padding: 5px;">BOLETA DE VENTA</h3>
-          <p id="comp-id" style="font-weight: bold;"></p>
+<header class="header">
+    <div class="main-header">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none;">
+                <h2 style="color: var(--norkys-red); font-weight: 900; font-size: 32px; margin: 0; font-style: italic; letter-spacing: -1px; text-transform: uppercase;">NORKY'S</h2>
+            </a>
+        </div>
+        
+        <div class="nav-bar" style="border:none; padding:0; flex: 1; justify-content: center;">
+            <nav class="nav-links" style="display: flex; gap: 15px;">
+                <a href="index.html" class="action-item" style="background: var(--bg-main); padding: 10px 20px; border-radius: 20px; font-weight: 700; border: 1px solid var(--border-color); text-decoration: none;">
+                    <i class="fa-solid fa-house" style="color: var(--norkys-red);"></i> Inicio
+                </a>
+                <a href="menu.html" class="action-item" style="background: var(--bg-main); padding: 10px 20px; border-radius: 20px; font-weight: 700; border: 1px solid var(--border-color); text-decoration: none;">
+                    <i class="fa-solid fa-book-open" style="color: var(--norkys-red);"></i> La Carta
+                </a>
+            </nav>
         </div>
 
-        <div style="font-size: 13px; line-height: 1.6; margin-bottom: 15px;">
-          <p><strong>FECHA:</strong> <span id="comp-fecha"></span></p>
-          <p><strong>CLIENTE:</strong> <span id="comp-cliente"></span></p>
-          <p><strong>DOC:</strong> <span id="comp-doc"></span></p>
-          <p><strong>DIRECCIÓN:</strong> <span id="comp-direc"></span></p>
+        <div class="user-actions">
+            <a href="cart.html" class="cart-button">
+                <i class="fa-solid fa-basket-shopping"></i><strong>S/ 0.00</strong><span class="cart-badge" style="display:none;">0</span>
+            </a>
         </div>
-
-        <table style="width: 100%; font-size: 13px; border-collapse: collapse;">
-          <thead style="border-bottom: 1px solid #000;">
-            <tr>
-              <th align="left">DESCRIPCIÓN</th>
-              <th align="center">CANT</th>
-              <th align="right">TOTAL</th>
-            </tr>
-          </thead>
-          <tbody id="comp-items-body"></tbody>
-        </table>
-
-        <div style="text-align: right; margin-top: 15px; border-top: 2px dashed #000; padding-top: 10px;">
-          <p>SUBTOTAL: S/ <span id="comp-subtotal"></span></p>
-          <p>DELIVERY: S/ <span id="comp-delivery"></span></p>
-          <h3 style="margin-top:5px;">TOTAL: S/ <span id="comp-total"></span></h3>
-        </div>
-
-        <div style="text-align: center; margin-top: 20px; font-size: 11px;">
-          <p>¡Gracias por su preferencia!</p>
-          <p>Representación impresa de Comprobante Electrónico</p>
-          <button class="btn btn-full btn-cancel" onclick="cerrarComprobante()"
-            style="margin-top:15px; font-family: sans-serif;">Cerrar Comprobante</button>
-        </div>
-      </div>
     </div>
-  </div>
+</header>
 
-  <script src="js/profile.js"></script>
+<main class="profile-container">
+    <aside class="profile-sidebar">
+        <div class="user-cover"></div> 
+        <div class="user-summary">
+            <div class="avatar"><i class="fa-solid fa-user"></i></div>
+            <h3>Usuario</h3>
+            <p><i class="fa-solid fa-star" style="color: var(--norkys-yellow);"></i> Cliente Frecuente</p>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="active"><i class="fa-regular fa-id-badge"></i> Mis Datos</a>
+            <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> Historial de Pedidos</a>
+            <a href="#"><i class="fa-solid fa-location-dot"></i> Mis Direcciones</a>
+            <a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</a>
+        </nav>
+    </aside>
+
+    <section class="profile-content">
+        <div class="content-header">
+            <h2>Panel de Control</h2>
+            <p>Gestiona tu información y revisa tu actividad reciente.</p>
+        </div>
+
+        <div class="profile-cards-grid">
+            <div class="profile-card recent-order-card">
+                <div class="card-header-flex">
+                    <h3><i class="fa-solid fa-motorcycle" style="color: var(--norkys-red);"></i> Tu último pedido</h3>
+                </div>
+                <div class="order-details">
+                    <div class="order-info"></div>
+                    <button class="btn-reorder" onclick="window.location.href='menu.html'"><i class="fa-solid fa-rotate-right"></i> Volver a pedir</button>
+                </div>
+            </div>
+
+            <div class="profile-card data-card">
+                <h3><i class="fa-regular fa-address-book" style="color: var(--norkys-red);"></i> Mis Datos Personales</h3>
+                <form class="profile-form">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>Nombres</label>
+                            <div class="input-wrapper"><i class="fa-regular fa-user"></i><input type="text" id="profNombres" readonly /></div>
+                        </div>
+                        <div class="input-group">
+                            <label>Apellidos</label>
+                            <div class="input-wrapper"><i class="fa-regular fa-address-card"></i><input type="text" id="profApellidos" readonly /></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>Correo Electrónico</label>
+                            <div class="input-wrapper"><i class="fa-regular fa-envelope"></i><input type="email" id="profCorreo" readonly /></div>
+                        </div>
+                        <div class="input-group">
+                            <label>Celular</label>
+                            <div class="input-wrapper"><i class="fa-solid fa-mobile-screen"></i><input type="tel" id="profCelular" readonly /></div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-edit"><i class="fa-solid fa-pen"></i> Editar Datos</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="profile-card address-card">
+                <div class="card-header-flex">
+                    <h3><i class="fa-solid fa-map-location-dot" style="color: var(--norkys-red);"></i> Mis Direcciones</h3>
+                    <button class="btn-text-only" id="btnOpenAddressModal">+ Agregar nueva</button>
+                </div>
+                <div class="address-list"></div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div id="addressModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 450px; padding: 40px;">
+        <button class="close-modal" id="closeAddressModal"><i class="fa-solid fa-xmark"></i></button>
+        <h2 style="font-size: 24px; font-weight: 800; color: var(--text-main); margin-bottom: 25px; letter-spacing: -0.5px;">Nueva Dirección</h2>
+        
+        <div class="input-group" style="margin-bottom: 20px;">
+            <label style="display:block; font-size:13px; font-weight:700; color:var(--text-muted); margin-bottom:8px;">Alias (Ej. Casa, Trabajo)</label>
+            <div class="input-wrapper" style="position: relative;">
+                <i class="fa-solid fa-tag" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 14px;"></i>
+                <input type="text" id="newAddressAlias" placeholder="Mi Casa" style="width:100%; padding:12px 15px 12px 42px; border-radius:10px; border:1px solid var(--border-color); outline:none; font-weight: 600;" />
+            </div>
+        </div>
+
+        <div class="input-group" style="margin-bottom: 30px;">
+            <label style="display:block; font-size:13px; font-weight:700; color:var(--text-muted); margin-bottom:8px;">Dirección Completa</label>
+            <div class="input-wrapper" style="position: relative;">
+                <i class="fa-solid fa-location-dot" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 14px;"></i>
+                <input type="text" id="newAddressDetail" placeholder="Av. Lima Sur 123..." style="width:100%; padding:12px 15px 12px 42px; border-radius:10px; border:1px solid var(--border-color); outline:none; font-weight: 600;" />
+            </div>
+        </div>
+
+        <button id="btnSaveAddress" style="width:100%; background-color: var(--norkys-red); color: white; border: none; padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; transition: all 0.3s; display: flex; justify-content: center; gap: 10px; align-items: center;">
+            Guardar Dirección <i class="fa-solid fa-floppy-disk"></i>
+        </button>
+    </div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/main.js"></script>
+<script src="js/profile.js"></script>
 </body>
-
 </html>
