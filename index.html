@@ -1,232 +1,327 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Norkys - El sabor que nos une</title>
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/home.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Norky's - Delivery Online</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
-
 <body>
-
-  <header class="header">
+<header class="header">
     <div class="top-bar">
-      <span>📞 01 555-POLLO | 📱 WhatsApp: 999 888 777</span>
-      <span>🚚 Delivery Gratis por compras mayores a S/40</span>
+        <div class="top-bar-left">
+            <a href="#"><i class="fa-solid fa-location-dot"></i> Enviar a: <strong>Lima - Chosica</strong></a>
+            <a href="#">Rastrear pedido</a>
+            <a href="#">Locales</a>
+            <a href="#">Servicio al cliente</a>
+        </div>
+        <div class="top-bar-right">
+            <a href="#">Zonas de reparto</a>
+            <a href="#">Descarga la app</a>
+        </div>
     </div>
 
     <div class="main-header">
-      <div class="logo-container">
-        <img src="imgs/logo.png" alt="Norkys" class="logo-img"
-          onerror="this.src='https://cdn-icons-png.flaticon.com/512/3388/3388655.png'">
-        <h1 class="marca">NORKYS</h1>
-      </div>
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none;">
+                <h2 style="color: var(--norkys-red); font-weight: 900; font-size: 32px; margin: 0; font-style: italic; letter-spacing: -1px; text-transform: uppercase;">NORKY'S</h2>
+            </a>
+        </div>
 
-      <div class="search-wrapper">
-        <input id="busqueda" placeholder="Buscar pollo, parrillas, bebidas..." oninput="buscarProductos()">
-        <div id="search-results" class="search-dropdown hidden"></div>
-      </div>
+        <div class="search-container">
+            <select class="search-category">
+                <option>Todo el menú</option>
+                <option>Combos</option>
+                <option>Pollos</option>
+            </select>
+            <input type="text" class="search-input" placeholder="¿Qué te provoca pedir hoy?" />
+            <button class="search-button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
 
-      <div style="display:flex; gap:15px;">
-        <button class="btn nav-cart-btn" onclick="toggleCart()">
-          🛒 Carrito <span id="cart-badge" class="badge">0</span>
+        <div class="user-actions">
+            <a href="login.html" class="action-item">
+                <i class="fa-regular fa-user"></i>
+                <div class="action-text">
+                    <span>Hola, ingresa</span>
+                    <strong>Mi cuenta <i class="fa-solid fa-chevron-down" style="font-size: 10px"></i></strong>
+                </div>
+            </a>
+
+            <a href="cart.html" class="cart-button">
+                <i class="fa-solid fa-basket-shopping"></i>
+                <strong>S/ 0.00</strong>
+                <span class="cart-badge">0</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="nav-bar">
+        <button class="btn-categories" onclick="window.location.href='menu.html'">
+            <i class="fa-solid fa-bars"></i> Menú
         </button>
-        <button id="btn-login-header" class="btn btn-outline" onclick="verificarLogin()">👤 Mi Cuenta</button>
-      </div>
-    </div>
-  </header>
 
-  <section class="carousel">
-    <button class="carousel-btn prev">&#10094;</button>
-    <div class="carousel-inner">
-      <div class="slide">
-        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" alt="Promo 1">
-        <div class="slide-content">
-          <h2>El Sabor de Siempre</h2>
-          <p>Disfruta de nuestro pollo a la brasa con papas peruanitas 100% crocantes.</p>
+        <nav class="nav-links pill-nav">
+            <a href="menu.html#pollos" class="category-pill"><i class="fa-solid fa-drumstick-bite"></i> Pollos a la Brasa</a>
+            <a href="menu.html#parrillas" class="category-pill"><i class="fa-solid fa-fire-burner"></i> Parrillas</a>
+            <a href="menu.html#combos" class="category-pill"><i class="fa-solid fa-user-group"></i> Combos Especiales</a>
+            <a href="menu.html#hamburguesas" class="category-pill"><i class="fa-solid fa-burger"></i> Hamburguesas</a>
+            <a href="menu.html#bebidas" class="category-pill"><i class="fa-solid fa-glass-water"></i> Bebidas</a>
+            <a href="menu.html#postres" class="category-pill"><i class="fa-solid fa-ice-cream"></i> Postres</a>
+            <a href="menu.html#porciones" class="category-pill"><i class="fa-solid fa-french-fries"></i> Porciones</a>
+        </nav>
+
+        <div class="flash-offers">
+            <i class="fa-solid fa-fire"></i>
+            HORA DEL ALMUERZO - termina en <strong>02:30:00</strong>
         </div>
-      </div>
-      <div class="slide">
-        <img src="https://images.unsplash.com/photo-1544025162-d76694265947" alt="Promo 2">
-        <div class="slide-content">
-          <h2>Nuevas Parrillas</h2>
-          <p>Cortes finos y jugosos directo a tu mesa. ¡Pruébalos hoy!</p>
+    </div>
+</header>
+
+<main class="hero-section">
+    <div class="hero-grid">
+        <div class="main-banner">
+            <div class="slide active">
+                <div class="main-banner-content">
+                    <span class="badge badge-warning">SOLO POR DELIVERY</span>
+                    <h2 class="banner-title">Mega Combo</h2>
+                    <h1 class="discount-text">Familiar</h1>
+                    <p class="banner-desc">1 Pollo a la Brasa + Porción de Papas + Ensalada + Gaseosa 1.5L</p>
+                    <a href="menu.html#combos" class="btn-yellow">Pedir ahora <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="main-banner-image">
+                    <div class="img-placeholder">
+                        <i class="fa-solid fa-drumstick-bite" style="font-size: 40px; color: white;"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div class="side-banners">
+            <div class="side-banner banner-pink">
+                <span class="badge-text pink-text">NUEVO</span>
+                <h3>Salchipapa<br />Extrema</h3>
+                <a href="menu.html#porciones" class="link-arrow pink-text">Ver antojo <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="side-banner banner-green">
+                <span class="badge-text green-text">REFRESCANTE</span>
+                <h3>Chicha Morada<br />de la casa</h3>
+                <a href="menu.html#bebidas" class="link-arrow green-text">Agregar <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
     </div>
-    <button class="carousel-btn next">&#10095;</button>
-    <div class="carousel-dots">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-    </div>
-  </section>
 
-  <h2 style="text-align:center; color:var(--primary); font-size:2rem; margin-top:20px;">🍽️ Nuestro Menú</h2>
-  <div class="filtros-container">
-    <button class="btn-filtro active" onclick="filtrarMenu('Todos', this)">Todos</button>
-    <button class="btn-filtro" onclick="filtrarMenu('Pollos', this)">Pollos a la Brasa</button>
-    <button class="btn-filtro" onclick="filtrarMenu('Combos', this)">Combos</button>
-    <button class="btn-filtro" onclick="filtrarMenu('Parrillas', this)">Parrillas</button>
-    <button class="btn-filtro" onclick="filtrarMenu('Snacks', this)">Piqueos</button>
-    <button class="btn-filtro" onclick="filtrarMenu('Bebidas', this)">Bebidas</button>
-    <button class="btn-filtro" onclick="filtrarMenu('Postres', this)">Postres</button>
-  </div>
+    <section class="top-sellers-section" style="margin-top: 40px;">
+        <div class="sellers-container">
+            <div class="sellers-header">
+                <div>
+                    <span class="sellers-tag">LOS FAVORITOS</span>
+                    <h2 class="sellers-title">Lo más pedido en Norky's</h2>
+                </div>
+                <div class="filter-menu">
+                    <button class="filter-btn active" data-filter="todos">Todos</button>
+                    <button class="filter-btn" data-filter="pollos">Pollos</button>
+                    <button class="filter-btn" data-filter="parrillas">Parrillas</button>
+                    <button class="filter-btn" data-filter="combos">Combos</button>
+                    <button class="filter-btn" data-filter="bebidas">Bebidas</button>
+                </div>
+            </div>
 
-  <div id="productos" class="grid"></div>
+            <div class="top-sellers-grid" id="index-favorites-grid">
+            </div>
 
-  <div id="modal" class="modal hidden">
+        </div>
+    </section>
+
+    <section class="categories-section">
+        <div class="categories-container">
+            <a href="menu.html#pollos" class="category-item">
+                <div class="category-icon bg-red"><i class="fa-solid fa-drumstick-bite"></i></div>
+                <span class="category-name">Pollo a la Brasa</span>
+            </a>
+            <a href="menu.html#parrillas" class="category-item">
+                <div class="category-icon bg-orange"><i class="fa-solid fa-fire-burner"></i></div>
+                <span class="category-name">Parrillas</span>
+            </a>
+            <a href="menu.html#combos" class="category-item">
+                <div class="category-icon bg-blue"><i class="fa-solid fa-users"></i></div>
+                <span class="category-name">Combos Especiales</span>
+            </a>
+            <a href="menu.html#bebidas" class="category-item">
+                <div class="category-icon bg-yellow"><i class="fa-solid fa-glass-water"></i></div>
+                <span class="category-name">Bebidas</span>
+            </a>
+            <a href="menu.html#hamburguesas" class="category-item">
+                <div class="category-icon bg-purple"><i class="fa-solid fa-burger"></i></div>
+                <span class="category-name">Hamburguesas</span>
+            </a>
+            <a href="menu.html#porciones" class="category-item">
+                <div class="category-icon bg-gray"><i class="fa-solid fa-french-fries"></i></div>
+                <span class="category-name">Porciones</span>
+            </a>
+            <a href="menu.html#postres" class="category-item">
+                <div class="category-icon bg-teal"><i class="fa-solid fa-ice-cream"></i></div>
+                <span class="category-name">Postres</span>
+            </a>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="trust-bar-container">
+            <div class="trust-bar">
+                <div class="trust-item">
+                    <div class="trust-icon bg-lblue"><i class="fa-solid fa-motorcycle"></i></div>
+                    <div class="trust-text">
+                        <strong>Delivery Rápido</strong>
+                        <span>Tu comida caliente en minutos</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon bg-lgreen"><i class="fa-solid fa-shield"></i></div>
+                    <div class="trust-text">
+                        <strong>Calidad Garantizada</strong>
+                        <span>Ingredientes frescos siempre</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon bg-lyellow"><i class="fa-solid fa-credit-card"></i></div>
+                    <div class="trust-text">
+                        <strong>Pago Seguro</strong>
+                        <span>Efectivo, Yape, Plin o Tarjeta</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon bg-lpurple"><i class="fa-solid fa-headset"></i></div>
+                    <div class="trust-text">
+                        <strong>Soporte al Cliente</strong>
+                        <span>Te ayudamos con tu pedido</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-links-section">
+            <div class="footer-info">
+                <div class="footer-logo" style="margin-bottom: 10px; display: flex; justify-content: flex-start;">
+                    <a href="index.html" style="text-decoration: none;">
+                        <h2 style="color: var(--norkys-red); font-weight: 900; font-size: 28px; margin: 0; font-style: italic; letter-spacing: -1px; text-transform: uppercase;">NORKY'S</h2>
+                    </a>
+                </div>
+                <p>El verdadero sabor peruano. Disfruta del mejor pollo a la brasa y nuestras deliciosas parrilladas sin salir de casa.</p>
+                <div class="contact-info">
+                    <p><i class="fa-solid fa-phone"></i> (01) 612-6000</p>
+                    <p><i class="fa-solid fa-envelope"></i> atencion@norkys.pe</p>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>MI CUENTA</h3>
+                <ul>
+                    <li><a href="login.html">Ingresar / Registrarse</a></li>
+                    <li><a href="profile.html">Mis pedidos</a></li>
+                    <li><a href="profile.html">Mis direcciones</a></li>
+                    <li><a href="profile.html">Mis favoritos</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>NUESTRA CARTA</h3>
+                <ul>
+                    <li><a href="menu.html#pollos">Pollo a la Brasa</a></li>
+                    <li><a href="menu.html#parrillas">Parrillas</a></li>
+                    <li><a href="menu.html#combos">Combos Especiales</a></li>
+                    <li><a href="menu.html#bebidas">Bebidas y Postres</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>NORKY'S</h3>
+                <ul>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Locales</a></li>
+                    <li><a href="#">Trabaja con nosotros</a></li>
+                    <li><a href="#">Zonas de reparto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>SÍGUENOS</h3>
+                <div class="social-links">
+                    <a href="#" class="social-fb"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="social-ig"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-tt"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+                <p class="newsletter-text" style="font-size: 13px; color: var(--text-muted); margin-top: 15px;">
+                    ¡Entérate de nuestras promociones antes que nadie!
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <span class="bottom-label">MÉTODOS DE PAGO</span>
+                <div class="payment-grid">
+                    <div class="pay-card">VISA</div>
+                    <div class="pay-card">MasterCard</div>
+                    <div class="pay-card">Efectivo</div>
+                    <div class="pay-card">Yape</div>
+                    <div class="pay-card">Plin</div>
+                </div>
+            </div>
+            <div class="certificates">
+                <span class="bottom-label">Compra 100% segura</span>
+                <div class="cert-grid">
+                    <div class="cert-item"><i class="fa-solid fa-shield-halved"></i> SSL</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copy">
+            <p>© 2026 Inversiones Norky's S.A.C. · Todos los derechos reservados</p>
+            <div class="copy-links">
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Políticas de privacidad</a>
+                <a href="#">Libro de reclamaciones</a>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<div id="productModal" class="modal-overlay">
     <div class="modal-content">
-      <img id="modal-img">
-      <h2 id="modal-nombre"></h2>
-      <p id="modal-desc" style="color: #7f8c8d; margin:10px 0;"></p>
-      <h3 id="modal-precio" style="color: var(--primary); font-size:1.8rem;"></h3>
-
-      <div class="control-cantidad">
-        <button class="btn-circle" onclick="cambiarCantidadModal(-1)">-</button>
-        <span id="cantidad">1</span>
-        <button class="btn-circle" onclick="cambiarCantidadModal(1)">+</button>
-      </div>
-
-      <button class="btn btn-full" onclick="agregarDesdeModal()">Añadir al Pedido</button>
-      <button class="btn btn-full btn-cancel" onclick="cerrarModal()">Cerrar</button>
-    </div>
-  </div>
-
-  <div id="cart" class="cart">
-    <div class="cart-header">
-      <h2>🛒 Tu Pedido</h2>
-      <button onclick="cerrarCart()" class="btn-close">✖</button>
-    </div>
-    <div id="cart-items" class="cart-body"></div>
-    <div style="padding: 20px; background:#f8f9fa; border-top:1px solid #eee;">
-      <h3 id="total" style="text-align: right; color: var(--primary); font-size: 1.5rem; margin-bottom: 15px;">Total: S/
-        0.00</h3>
-      <button class="btn btn-full btn-success" onclick="procesarPago()">Pagar Ahora</button>
-      <button class="btn btn-full btn-cancel" style="background:transparent; color:#95a5a6; border:1px solid #ccc;"
-        onclick="vaciarCarrito()">Vaciar Carrito</button>
-    </div>
-  </div>
-
-  <div id="toast-container"></div>
-
-  <footer style="background:#1a1a1a; color:white; text-align:center; padding:30px; margin-top:50px;">
-    <p>© 2026 Norkys - El auténtico sabor peruano.</p>
-  </footer>
-
-  <div id="upsell-modal" class="modal hidden">
-    <div class="modal-content" style="border: 4px solid var(--primary);">
-      <h2 style="color: var(--primary); margin-bottom: 5px;">¡Espera! ¿No te provoca? 🤤</h2>
-      <p style="color: #666; margin-bottom: 15px;">Agrégalo a tu pedido con un solo clic</p>
-      <img id="upsell-img" style="height: 200px; width: 100%; object-fit: cover; border-radius: 12px;">
-      <h3 id="upsell-nombre" style="margin-top: 15px;"></h3>
-      <p id="upsell-precio" style="color: var(--primary); font-size: 1.5rem; font-weight: bold; margin: 10px 0;"></p>
-
-      <div style="display: flex; gap: 10px; margin-top: 20px;">
-        <button class="btn btn-cancel" style="flex: 1;" onclick="rechazarUpsell()">No, gracias</button>
-        <button class="btn btn-success" style="flex: 1;" onclick="aceptarUpsell()">¡Sí, lo quiero!</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="checkout-overlay" class="checkout-overlay hidden">
-    <div class="checkout-container">
-
-      <div class="checkout-resumen">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-          <h2>📋 Tu Pedido</h2>
-          <button class="btn-cancel-text" onclick="cerrarCheckout()">Volver al menú</button>
-        </div>
-        <div id="checkout-items-list" class="checkout-items-list"></div>
-
-        <div class="checkout-totales">
-          <div class="fila-total">
-            <p>Subtotal</p>
-            <p id="chk-subtotal">S/ 0.00</p>
-          </div>
-          <div class="fila-total">
-            <p>Delivery</p>
-            <p id="chk-delivery">S/ 0.00</p>
-          </div>
-          <hr style="margin: 15px 0; border: 0; border-top: 2px dashed #ddd;">
-          <div class="fila-total total-final">
-            <h3>Total a Pagar</h3>
-            <h3 id="chk-total-final">S/ 0.00</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="checkout-pago">
-        <h2>💳 Finalizar Compra</h2>
-
-        <div class="checkout-seccion">
-          <h3>📍 Datos de Envío</h3>
-          <input type="text" id="chk-nombre" class="chk-input" placeholder="Nombre de quien recibe">
-          <input type="text" id="chk-direccion" class="chk-input" placeholder="Dirección exacta (Ej: Av. Pinos 123)">
-        </div>
-
-        <div class="checkout-seccion">
-          <h3>💰 Método de Pago</h3>
-
-          <div class="metodo-pago-box">
-            <label class="metodo-label">
-              <input type="radio" name="metodoPago" value="yape" onchange="cambiarMetodoPago()" checked>
-              <span>📱 Yape / Plin</span>
-            </label>
-            <label class="metodo-label">
-              <input type="radio" name="metodoPago" value="tarjeta" onchange="cambiarMetodoPago()">
-              <span>💳 Tarjeta Crédito/Débito</span>
-            </label>
-            <label class="metodo-label">
-              <input type="radio" name="metodoPago" value="efectivo" onchange="cambiarMetodoPago()">
-              <span>💵 Pago Contraentrega</span>
-            </label>
-          </div>
-          
-          <div class="checkout-seccion">
-            <h3>📑 Comprobante de Pago</h3>
-            <div style="display: flex; gap: 15px; margin-bottom: 10px;">
-              <label class="metodo-label" style="flex:1; padding: 10px;">
-                <input type="radio" name="tipoDoc" value="Boleta" checked onchange="cambiarTipoDoc()">
-                <span>Boleta</span>
-              </label>
-              <label class="metodo-label" style="flex:1; padding: 10px;">
-                <input type="radio" name="tipoDoc" value="Factura" onchange="cambiarTipoDoc()">
-                <span>Factura</span>
-              </label>
+        <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-body">
+            <div class="modal-image-container">
+                <i id="modalIconFallback" class="fa-solid fa-image fallback-icon"></i>
+                <img id="modalImg" src="" alt="Producto" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" />
             </div>
-            <input type="number" id="chk-documento" class="chk-input" placeholder="Número de DNI">
-          </div>
+            <div class="modal-details">
+                <h2 id="modalTitle">Nombre del Producto</h2>
+                <p id="modalDesc">Descripción detallada del producto aquí.</p>
+                <div class="modal-price-box">
+                    <span>Precio total:</span>
+                    <strong id="modalPrice">S/ 0.00</strong>
+                </div>
 
-          <div id="panel-yape" class="panel-pago">
-            <p style="text-align: center; color: #666; font-size: 14px; margin-bottom: 10px;">Escanea el código QR para
-              pagar</p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
-              alt="QR Yape" style="width: 150px; display: block; margin: 0 auto; border-radius: 10px;">
-          </div>
-
-          <div id="panel-tarjeta" class="panel-pago hidden">
-            <input type="text" class="chk-input" placeholder="Número de Tarjeta (16 dígitos)">
-            <div style="display: flex; gap: 10px;">
-              <input type="text" class="chk-input" placeholder="MM/YY" style="flex: 1;">
-              <input type="text" class="chk-input" placeholder="CVV" style="flex: 1;">
+                <div class="modal-actions">
+                    <div class="quantity-control">
+                        <button type="button" class="qty-btn" id="btnMinus"><i class="fa-solid fa-minus"></i></button>
+                        <input type="number" id="qtyInput" value="1" min="1" readonly="readonly" />
+                        <button type="button" class="qty-btn" id="btnPlus"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <button class="btn-add-cart">
+                        <i class="fa-solid fa-basket-shopping"></i> Agregar al pedido
+                    </button>
+                </div>
             </div>
-          </div>
-
-          <div id="panel-efectivo" class="panel-pago hidden">
-            <p style="color: #27ae60; font-weight: bold; text-align: center;">✅ Pagarás al repartidor cuando llegue tu
-              pedido.</p>
-          </div>
         </div>
-
-        <button class="btn btn-full btn-success" style="font-size: 1.2rem; padding: 15px;"
-          onclick="confirmarPedidoFinal()">¡Confirmar Pedido!</button>
-      </div>
     </div>
-  </div>
+</div>
 
-  <script src="js/main.js"></script>
+<script src="js/db.js"></script>
+<script src="js/main.js"></script>
 </body>
-
 </html>
