@@ -1,59 +1,113 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crear Cuenta - Norkys</title>
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/login.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regístrate - Norky's</title>
+    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
-<body>
+<body class="auth-body">
 
-  <div class="auth-wrapper">
+<div class="auth-wrapper">
     <div class="auth-card">
-      
-      <div class="auth-img-side" style="background-image: url('https://images.unsplash.com/photo-1610057099443-fde8c4d50f91');">
-        <div class="auth-img-text">
-          <h2>Únete a la familia.</h2>
-          <p>Crea tu cuenta hoy y obtén delivery gratis en tu primer pedido mayor a S/40.</p>
-        </div>
-      </div>
-
-      <div class="auth-form-side">
-        <div class="logo-header" onclick="window.location='index.html'">
-          <img src="imgs/logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3388/3388655.png'">
-          <h1>NORKYS</h1>
-        </div>
-
-        <h2>Crear Cuenta 🚀</h2>
-        <p class="subtitle">Completa tus datos y empieza a disfrutar.</p>
-
-        <div class="input-group">
-          <input id="rname" type="text" placeholder="Nombre completo">
-          <span class="error-msg" id="err-rname"></span>
+        <div class="auth-info">
+            <div class="auth-logo">
+                <a href="index.html" style="text-decoration: none;">
+                    <h2 style="color: white; font-weight: 900; font-size: 48px; margin: 0; font-style: italic; letter-spacing: -2px; text-transform: uppercase;">NORKY'S</h2>
+                </a>
+            </div>
+            <div class="info-content">
+                <span class="brand-badge" style="background-color: var(--norkys-yellow); color: var(--text-main); padding: 5px 12px; border-radius: 20px; font-size: 10px; font-weight: 800; letter-spacing: 1px; display: inline-block; margin-bottom: 20px;">ÚNETE A LA FAMILIA</span>
+                <h1>El mejor sabor, directo a tu mesa.</h1>
+                <p>Crea tu cuenta para guardar tus direcciones, acceder a promociones exclusivas y hacer tus pedidos mucho más rápido.</p>
+            </div>
+            <div class="features-list">
+                <div class="feature-item"><div class="feature-icon"><i class="fa-solid fa-tags"></i></div><span>Ofertas exclusivas para miembros</span></div>
+                <div class="feature-item"><div class="feature-icon"><i class="fa-solid fa-clock-rotate-left"></i></div><span>Historial de pedidos para repetir tus favoritos</span></div>
+            </div>
         </div>
 
-        <div class="input-group">
-          <input id="ruser" type="email" placeholder="Correo electrónico">
-          <span class="error-msg" id="err-ruser"></span>
-        </div>
-        
-        <div class="input-group">
-          <input id="rpass" type="password" placeholder="Crea una contraseña (Mín. 6 letras)">
-          <span class="error-msg" id="err-rpass"></span>
-        </div>
+        <div class="auth-form-container">
+            <div class="form-header">
+                <h2>Crear cuenta 🚀</h2>
+                <p>Completa tus datos para empezar a pedir.</p>
+            </div>
+            <form class="auth-form" id="registerForm">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Nombres</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-user"></i>
+                            <input type="text" id="regNombres" placeholder="Tus nombres" required="required" />
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Apellidos</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-address-card"></i>
+                            <input type="text" id="regApellidos" placeholder="Tus apellidos" required="required" />
+                        </div>
+                    </div>
+                </div>
 
-        <button class="btn-auth" onclick="register()" style="margin-top: 10px;">Completar Registro</button>
+                <div class="input-group">
+                    <label>Correo electrónico</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" id="regCorreo" placeholder="correo@ejemplo.com" required="required" />
+                    </div>
+                </div>
 
-        <div class="auth-footer">
-          <p>¿Ya eres parte de la familia? <a href="login.html">Inicia sesión</a></p>
+                <div class="input-group">
+                    <label>Celular</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        <input type="tel" id="regCelular" placeholder="999 888 777" required="required" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Contraseña</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="regPassword" placeholder="••••••••" required="required" />
+                            <i class="fa-regular fa-eye toggle-password"></i>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Confirmar Contraseña</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-check-double"></i>
+                            <input type="password" id="regConfirm" placeholder="••••••••" required="required" />
+                            <i class="fa-regular fa-eye toggle-password"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="regTerms" required="required" />
+                        <span class="checkmark"></span>
+                        Acepto los <a href="#" style="color: var(--norkys-red); margin-left: 4px;">Términos y Condiciones</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-auth">
+                    Registrarme <i class="fa-solid fa-user-plus"></i>
+                </button>
+
+                <div class="form-footer">
+                    <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+                </div>
+            </form>
         </div>
-      </div>
-
     </div>
-  </div>
+</div>
 
-  <div id="toast-container"></div>
-  <script src="js/auth.js"></script>
+<script src="js/db.js"></script>
+<script src="js/main.js"></script>
+<script src="js/register.js"></script>
 </body>
 </html>
