@@ -1,145 +1,168 @@
-document.addEventListener("DOMContentLoaded", () => {
-  cargarDatosPerfil();
+document.addEventListener('DOMContentLoaded', () => {
+    const user = getCurrentUser();
+    if (!user) return window.location.href = 'login.html';
+
+    // 1. Rellenar Datos Personales
+    const inputs = {
+        nombres: document.getElementById('profNombres'),
+        apellidos: document.getElementById('profApellidos'),
+        correo: document.getElementById('profCorreo'),
+        celular: document.getElementById('profCelular')
+    };
+
+    inputs.nombres.value = user.nombres;
+    inputs.apellidos.value = user.apellidos || "";
+    inputs.correo.value = user.correo;
+    inputs.celular.value = user.celular || "";
+    
+    document.querySelector('.user-summary h3').textContent = user.nombres;
+
+    // 2. Lógica Editar Perfil
+    const btnEdit = document.querySelector('.btn-edit');
+    let isEditing = false;
+
+    btnEdit.addEventListener('click', () => {
+        isEditing = !isEditing;
+        Object.values(inputs).forEach(input => {
+            if(input.id !== 'profCorreo') { // El correo no se cambia
+                input.readOnly = !isEditing;
+                if(isEditing) input.style.border = "1px solid var(--norkys-red)";
+                else input.style.border = "";
+            }
+        });
+
+        if (isEditing) {
+            btnEdit.innerHTML = '<i class="fa-solid fa-save"></i> Guardar Cambios';
+            btnEdit.style.backgroundColor = 'var(--norkys-yellow)';
+            btnEdit.style.color = '#000';
+        } else {
+            const users = JSON.parse(localStorage.getItem('norkys_users'));
+            const userIndex = users.findIndex(u => u.correo === user.correo);
+            
+            users[userIndex].nombres = inputs.nombres.value;
+            users[userIndex].apellidos = inputs.apellidos.value;
+            users[userIndex].celular = inputs.celular.value;
+            
+            localStorage.setItem('norkys_users', JSON.stringify(users));
+            localStorage.setItem('norkys_currentUser', JSON.stringify(users[userIndex]));
+            
+            btnEdit.innerHTML = '<i class="fa-solid fa-pen"></i> Editar Datos';
+            btnEdit.style.backgroundColor = 'var(--norkys-green-bright)';
+            btnEdit.style.color = '#fff';
+            
+            if (typeof showNorkysToast === 'function') showNorkysToast("Datos actualizados correctamente", "success");
+            updateHeaderAndCart(); 
+        }
+    });
+
+    // 3. Renderizar Último Pedido y Direcciones
+    const renderData = () => {
+        // Pedidos
+        const orders = JSON.parse(localStorage.getItem('norkys_orders')) || [];
+        const userOrders = orders.filter(o => o.cliente === `${user.nombres} ${user.apellidos}`);
+        const orderInfo = document.querySelector('.order-info');
+        
+        if (userOrders.length > 0) {
+            const lastOrder = userOrders[userOrders.length - 1];
+            orderInfo.innerHTML = `
+                <strong>Pedido ${lastOrder.id}</strong>
+                <p>${lastOrder.fecha} • S/ ${lastOrder.total.toFixed(2)}</p>
+                <p style="font-size:12px; margin-top:5px; color:var(--norkys-red); font-weight:bold;">Estado: ${lastOrder.estado}</p>
+            `;
+        } else {
+            orderInfo.innerHTML = `<p>Aún no tienes pedidos.</p>`;
+            document.querySelector('.btn-reorder').style.display = 'none';
+        }
+
+        // Direcciones
+        const updatedUser = getCurrentUser(); 
+        const addressList = document.querySelector('.address-list');
+        addressList.innerHTML = '';
+
+        if (updatedUser.direcciones && updatedUser.direcciones.length > 0) {
+            updatedUser.direcciones.forEach((dir, index) => {
+                const box = document.createElement('div');
+                box.className = `address-box ${index === 0 ? 'active-address' : ''}`;
+                box.innerHTML = `
+                    <div class="address-icon"><i class="fa-solid ${index===0 ? 'fa-house' : 'fa-building'}"></i></div>
+                    <div class="address-text">
+                        <strong>${dir.alias} ${index === 0 ? '<span class="tag-principal">Principal</span>' : ''}</strong>
+                        <p>${dir.detalle}</p>
+                    </div>
+                    <div class="address-actions">
+                        <button class="delete" onclick="deleteAddress(${index})"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `;
+                addressList.appendChild(box);
+            });
+        } else {
+            addressList.innerHTML = '<p style="color:#666; font-size:14px; padding:20px;">No tienes direcciones guardadas.</p>';
+        }
+    };
+
+    // 4. Funciones globales de Dirección
+    window.deleteAddress = (index) => {
+        const users = JSON.parse(localStorage.getItem('norkys_users'));
+        const activeUser = getCurrentUser();
+        const userIndex = users.findIndex(u => u.correo === activeUser.correo);
+        
+        users[userIndex].direcciones.splice(index, 1);
+        
+        localStorage.setItem('norkys_users', JSON.stringify(users));
+        localStorage.setItem('norkys_currentUser', JSON.stringify(users[userIndex]));
+        renderData();
+        if (typeof showNorkysToast === 'function') showNorkysToast("Dirección eliminada", "success");
+    };
+
+    // Lógica del Nuevo Modal de Dirección
+    const addressModal = document.getElementById('addressModal');
+    const btnOpenAddressModal = document.getElementById('btnOpenAddressModal');
+    const closeAddressModal = document.getElementById('closeAddressModal');
+    const btnSaveAddress = document.getElementById('btnSaveAddress');
+
+    // Abrir modal
+    btnOpenAddressModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('newAddressAlias').value = '';
+        document.getElementById('newAddressDetail').value = '';
+        addressModal.classList.add('active');
+    });
+
+    // Cerrar modal
+    closeAddressModal.addEventListener('click', () => {
+        addressModal.classList.remove('active');
+    });
+
+    // Guardar desde el modal
+    btnSaveAddress.addEventListener('click', () => {
+        const alias = document.getElementById('newAddressAlias').value.trim();
+        const detalle = document.getElementById('newAddressDetail').value.trim();
+
+        if(!alias || !detalle) {
+            if (typeof showNorkysToast === 'function') showNorkysToast("Completa todos los campos", "error");
+            return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('norkys_users'));
+        const activeUser = getCurrentUser();
+        const userIndex = users.findIndex(u => u.correo === activeUser.correo);
+        
+        if(!users[userIndex].direcciones) users[userIndex].direcciones = [];
+        users[userIndex].direcciones.push({ id: Date.now(), alias, detalle });
+        
+        localStorage.setItem('norkys_users', JSON.stringify(users));
+        localStorage.setItem('norkys_currentUser', JSON.stringify(users[userIndex]));
+        
+        renderData();
+        addressModal.classList.remove('active');
+        if (typeof showNorkysToast === 'function') showNorkysToast("Dirección agregada", "success");
+    });
+
+    renderData();
+
+    // 5. Logout
+    document.querySelector('.logout-link').addEventListener('click', (e) => {
+        e.preventDefault();
+        logNorkysOut();
+    });
 });
-
-function cargarDatosPerfil() {
-  // Datos base
-  let usuario = localStorage.getItem("usuarioNorkys") || "Usuario Invitado";
-  let correo = localStorage.getItem("correoNorkys") || "correo@ejemplo.com";
-  let distrito = localStorage.getItem("distritoNorkys") || "Lurigancho-Chosica";
-  let direccion = localStorage.getItem("direccionNorkys") || "No especificada";
-
-  // Mostrar en UI
-  document.getElementById("nombre-display").innerText = usuario;
-  document.getElementById("txt-correo").innerText = correo;
-  document.getElementById("txt-distrito").innerText = distrito;
-  document.getElementById("txt-direccion").innerText = direccion;
-
-  // Llenar inputs ocultos por si editan
-  document.getElementById("input-nombre").value = usuario;
-  document.getElementById("input-correo").value = correo;
-  document.getElementById("input-distrito").value = distrito;
-  document.getElementById("input-direccion").value = direccion;
-}
-
-function toggleEdit() {
-  const displayPanel = document.getElementById("panel-display");
-  const editPanel = document.getElementById("panel-edit");
-  const btnEdit = document.getElementById("btn-edit-toggle");
-
-  if (displayPanel.classList.contains("hidden")) {
-    // Cancelar / Cerrar edición
-    displayPanel.classList.remove("hidden");
-    editPanel.classList.add("hidden");
-    btnEdit.innerText = "✏️ Editar Perfil";
-    cargarDatosPerfil(); // Restaurar valores originales
-  } else {
-    // Abrir edición
-    displayPanel.classList.add("hidden");
-    editPanel.classList.remove("hidden");
-    btnEdit.innerText = "❌ Cancelar Edición";
-  }
-}
-
-function guardarPerfil() {
-  let nuevoNombre = document.getElementById("input-nombre").value.trim();
-  let nuevoCorreo = document.getElementById("input-correo").value.trim();
-  let nuevoDistrito = document.getElementById("input-distrito").value.trim();
-  let nuevaDireccion = document.getElementById("input-direccion").value.trim();
-
-  if(!nuevoNombre || !nuevoCorreo) {
-    alert("El nombre y correo son obligatorios.");
-    return;
-  }
-
-  localStorage.setItem("usuarioNorkys", nuevoNombre);
-  localStorage.setItem("correoNorkys", nuevoCorreo);
-  localStorage.setItem("distritoNorkys", nuevoDistrito);
-  localStorage.setItem("direccionNorkys", nuevaDireccion);
-
-  toggleEdit(); // Cierra el form
-  cargarDatosPerfil(); // Actualiza los textos
-  
-  // Pequeña notificación nativa (puedes usar el Toast aquí si lo linkeas)
-  alert("¡Perfil actualizado con éxito!");
-}
-
-function logout() {
-  localStorage.removeItem("usuarioNorkys");
-  window.location.href = "login.html";
-}
-
-function verSeccion(seccion) {
-  document.getElementById("panel-display").classList.add("hidden");
-  document.getElementById("panel-edit").classList.add("hidden");
-  document.getElementById("seccion-pedidos").classList.add("hidden");
-
-  if(seccion === 'datos') document.getElementById("panel-display").classList.remove("hidden");
-  if(seccion === 'pedidos') {
-    document.getElementById("seccion-pedidos").classList.remove("hidden");
-    cargarHistorialPedidos();
-  }
-}
-
-function cargarHistorialPedidos() {
-  const listaCont = document.getElementById("lista-pedidos");
-  const correoUsuario = localStorage.getItem("correoNorkys");
-  const historial = JSON.parse(localStorage.getItem("norkys_historial_pedidos")) || [];
-
-  // Filtrar pedidos por el correo del usuario logueado
-  const misPedidos = historial.filter(p => p.correo === correoUsuario).reverse();
-
-  if(misPedidos.length === 0) {
-    listaCont.innerHTML = `<p style="color:#999; text-align:center; padding:20px;">Aún no has realizado pedidos.</p>`;
-    return;
-  }
-
-  listaCont.innerHTML = "";
-  misPedidos.forEach(p => {
-    listaCont.innerHTML += `
-      <div style="background:#f9f9f9; border:1px solid #eee; border-radius:10px; padding:15px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
-        <div style="text-align:left;">
-          <strong style="color:var(--primary);">${p.id}</strong><br>
-          <small>${p.fecha}</small><br>
-          <span style="font-weight:bold;">Total: S/ ${p.total.toFixed(2)}</span>
-        </div>
-        <button class="btn" style="padding:5px 10px; font-size:12px;" onclick='verComprobante(${JSON.stringify(p)})'>Ver Recibo</button>
-      </div>
-    `;
-  });
-}
-
-function verComprobante(p) {
-  document.getElementById("comp-titulo").innerText = p.tipoComprobante === "Boleta" ? "BOLETA DE VENTA ELECTRÓNICA" : "FACTURA ELECTRÓNICA";
-  document.getElementById("comp-id").innerText = p.id;
-  document.getElementById("comp-fecha").innerText = p.fecha;
-  document.getElementById("comp-cliente").innerText = p.cliente.toUpperCase();
-  document.getElementById("comp-doc").innerText = p.documento;
-  document.getElementById("comp-direc").innerText = p.direccion.toUpperCase();
-
-  const body = document.getElementById("comp-items-body");
-  body.innerHTML = "";
-  p.items.forEach(item => {
-    body.innerHTML += `
-      <tr>
-        <td>${item.nombre}</td>
-        <td align="center">${item.cant}</td>
-        <td align="right">${(item.precio * item.cant).toFixed(2)}</td>
-      </tr>
-    `;
-  });
-
-  document.getElementById("comp-subtotal").innerText = p.subtotal.toFixed(2);
-  document.getElementById("comp-delivery").innerText = p.delivery.toFixed(2);
-  document.getElementById("comp-total").innerText = p.total.toFixed(2);
-
-  const modal = document.getElementById("modal-comprobante");
-  modal.classList.remove("hidden");
-  setTimeout(() => modal.classList.add("show"), 10);
-}
-
-function cerrarComprobante() {
-  const modal = document.getElementById("modal-comprobante");
-  modal.classList.remove("show");
-  setTimeout(() => modal.classList.add("hidden"), 300);
-}
