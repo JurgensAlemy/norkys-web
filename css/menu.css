@@ -1,0 +1,68 @@
+:root {
+  --norkys-red: #da291c;
+  --bg-main: #f8f9fa;
+  --bg-card: #ffffff;
+  --border-color: #e9ecef;
+  --text-main: #212121;
+  --text-muted: #6c757d;
+}
+
+/* ================= BARRA PEGAJOSA DE CATEGORÍAS ================= */
+.sticky-category-nav {
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-card);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+  border-bottom: 2px solid var(--norkys-red);
+}
+
+.sticky-container {
+  display: flex;
+  gap: 10px;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 12px 40px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sticky-container::-webkit-scrollbar { display: none; }
+
+.sticky-container .category-pill {
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 8px 16px;
+}
+.sticky-container .category-pill i { color: #555; }
+
+.sticky-container .category-pill:hover {
+  background-color: #fff0ed;
+  color: var(--norkys-red);
+}
+
+.sticky-container .category-pill.active {
+  background-color: var(--norkys-red);
+  color: #ffffff;
+  border-radius: 25px;
+}
+.sticky-container .category-pill.active i { color: #ffffff; }
+
+/* ================= CONTENEDOR DEL MENÚ ================= */
+.full-menu-container { padding: 20px 40px 60px 40px; max-width: 1600px; margin: 0 auto; }
+
+/* ================= SECCIONES ================= */
+.menu-section { scroll-margin-top: 80px; margin-top: 40px; margin-bottom: 40px; }
+.menu-section:first-of-type { margin-top: 10px; }
+
+.section-header { margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
+.section-title { font-size: 28px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 12px; letter-spacing: -1px; margin-bottom: 5px; }
+.section-title i { color: var(--norkys-red); font-size: 24px; }
+.section-subtitle { font-size: 14px; color: var(--text-muted); }
+
+@media (max-width: 768px) {
+  .sticky-container { padding: 10px 20px; }
+  .full-menu-container { padding: 10px 20px 40px 20px; }
+  .section-title { font-size: 22px; }
+}
