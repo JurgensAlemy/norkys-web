@@ -278,11 +278,11 @@ const setupIndexFilters = () => {
         <div class="card-image-wrapper">
           <img src="${prod.img}" alt="${prod.nombre}">
         </div>
-
+        <br>
         <div class="card-info">
           <h3>${prod.nombre}</h3>
           <p>S/ ${prod.precio.toFixed(2)}</p>
-
+          <br>
           <button class="btn-ver-detalle"
             onclick="window.location.href='menu.html#${prod.categoria}'">
             Ver en la carta
