@@ -1,68 +1,181 @@
+/* ======================================================
+   VARIABLES GLOBALES
+   Colores base reutilizables
+====================================================== */
 :root {
-  --norkys-red: #da291c;
-  --bg-main: #f8f9fa;
-  --bg-card: #ffffff;
-  --border-color: #e9ecef;
-  --text-main: #212121;
-  --text-muted: #6c757d;
+  --norkys-red: #da291c;       /* Rojo principal corporativo */
+
+  --bg-main: #f8f9fa;          /* Fondo general */
+  --bg-card: #ffffff;          /* Fondo de tarjetas */
+
+  --border-color: #e9ecef;     /* Bordes suaves */
+
+  --text-main: #212121;        /* Texto principal */
+  --text-muted: #6c757d;       /* Texto secundario */
 }
 
-/* ================= BARRA PEGAJOSA DE CATEGORÍAS ================= */
+/* ======================================================
+   BARRA DE CATEGORÍAS FIJA
+   Se mantiene visible al hacer scroll
+====================================================== */
 .sticky-category-nav {
   position: sticky;
   top: 0;
+
   background-color: var(--bg-card);
+
+  /* Sombra para separación visual */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
   z-index: 100;
+
+  /* Línea roja inferior */
   border-bottom: 2px solid var(--norkys-red);
 }
 
+/* ======================================================
+   CONTENEDOR INTERNO
+====================================================== */
 .sticky-container {
   display: flex;
   gap: 10px;
+
   max-width: 1600px;
   margin: 0 auto;
+
   padding: 12px 40px;
+
+  /* Scroll horizontal */
   overflow-x: auto;
+
+  /* Oculta scrollbar en Firefox */
   scrollbar-width: none;
 }
-.sticky-container::-webkit-scrollbar { display: none; }
 
+/* Oculta scrollbar en Chrome */
+.sticky-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* ======================================================
+   BOTONES DE CATEGORÍA
+====================================================== */
 .sticky-container .category-pill {
   background-color: transparent;
   border: 1px solid transparent;
+
   color: var(--text-muted);
+
   font-weight: 600;
+
   padding: 8px 16px;
 }
-.sticky-container .category-pill i { color: #555; }
 
+/* Iconos */
+.sticky-container .category-pill i {
+  color: #555;
+}
+
+/* Hover */
 .sticky-container .category-pill:hover {
   background-color: #fff0ed;
   color: var(--norkys-red);
 }
 
+/* Estado activo */
 .sticky-container .category-pill.active {
   background-color: var(--norkys-red);
   color: #ffffff;
+
   border-radius: 25px;
 }
-.sticky-container .category-pill.active i { color: #ffffff; }
 
-/* ================= CONTENEDOR DEL MENÚ ================= */
-.full-menu-container { padding: 20px 40px 60px 40px; max-width: 1600px; margin: 0 auto; }
+/* Icono activo */
+.sticky-container .category-pill.active i {
+  color: #ffffff;
+}
 
-/* ================= SECCIONES ================= */
-.menu-section { scroll-margin-top: 80px; margin-top: 40px; margin-bottom: 40px; }
-.menu-section:first-of-type { margin-top: 10px; }
+/* ======================================================
+   CONTENEDOR PRINCIPAL DEL MENÚ
+====================================================== */
+.full-menu-container {
+  padding: 20px 40px 60px 40px;
 
-.section-header { margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
-.section-title { font-size: 28px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 12px; letter-spacing: -1px; margin-bottom: 5px; }
-.section-title i { color: var(--norkys-red); font-size: 24px; }
-.section-subtitle { font-size: 14px; color: var(--text-muted); }
+  max-width: 1600px;
+  margin: 0 auto;
+}
 
+/* ======================================================
+   SECCIONES DEL MENÚ
+====================================================== */
+.menu-section {
+
+  /* Evita que el sticky tape el título al navegar */
+  scroll-margin-top: 80px;
+
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+/* Primera sección */
+.menu-section:first-of-type {
+  margin-top: 10px;
+}
+
+/* ======================================================
+   ENCABEZADO DE SECCIÓN
+====================================================== */
+.section-header {
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Título */
+.section-title {
+  font-size: 28px;
+  font-weight: 800;
+
+  color: var(--text-main);
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  letter-spacing: -1px;
+
+  margin-bottom: 5px;
+}
+
+/* Icono del título */
+.section-title i {
+  color: var(--norkys-red);
+  font-size: 24px;
+}
+
+/* Subtítulo */
+.section-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
 @media (max-width: 768px) {
-  .sticky-container { padding: 10px 20px; }
-  .full-menu-container { padding: 10px 20px 40px 20px; }
-  .section-title { font-size: 22px; }
+
+  /* Reduce padding lateral */
+  .sticky-container {
+    padding: 10px 20px;
+  }
+
+  .full-menu-container {
+    padding: 10px 20px 40px 20px;
+  }
+
+  /* Reduce tamaño del título */
+  .section-title {
+    font-size: 22px;
+  }
 }
