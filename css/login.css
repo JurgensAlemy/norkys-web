@@ -1,3 +1,7 @@
+/* ============================
+   VARIABLES GLOBALES
+   Define colores principales
+   ============================ */
 :root {
   --norkys-red: #da291c;
   --norkys-red-dark: #b52015;
@@ -10,18 +14,34 @@
   --text-muted: #6c757d;
 }
 
+/* ============================
+   RESET GENERAL
+   Elimina márgenes y paddings
+   ============================ */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
+/* ============================
+   CUERPO PRINCIPAL
+   Centrado vertical y horizontal
+   ============================ */
 .login-body, .auth-body { background-color: var(--bg-main); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; color: var(--text-main); }
+/* Contenedor general */
 .login-wrapper, .auth-wrapper { width: 100%; max-width: 1000px; }
+/* Tarjeta principal */
 .login-card, .auth-card { background-color: var(--bg-card); border-radius: 24px; display: flex; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); min-height: 550px; }
 
-/* LADO IZQUIERDO - Gradiente Rojo Norky's */
+/* ============================
+   LADO IZQUIERDO
+   Panel informativo
+   ============================ */
 .login-info, .auth-info { flex: 1; background: linear-gradient(135deg, var(--norkys-red) 0%, var(--norkys-red-dark) 100%); padding: 50px; display: flex; flex-direction: column; color: white; }
+/* Logo */
 .login-logo, .auth-logo { margin-bottom: 40px; }
-
+/* Etiquetas decorativas */
 .admin-badge, .brand-badge { background-color: var(--norkys-yellow); color: var(--text-main); padding: 5px 12px; border-radius: 20px; font-size: 10px; font-weight: 800; letter-spacing: 1px; display: inline-block; margin-bottom: 20px; text-transform: uppercase; }
+/* Título principal */
 .info-content h1 { font-size: 36px; font-weight: 900; margin-bottom: 20px; line-height: 1.1; letter-spacing: -1.5px; }
+/* Texto descriptivo */
 .info-content p { color: #fff0ed; font-size: 15px; line-height: 1.6; margin-bottom: 40px; opacity: 0.9; }
 
 .features-list { display: flex; flex-direction: column; gap: 15px; margin-top: auto; }
@@ -34,6 +54,10 @@
 .form-header h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: var(--text-main); letter-spacing: -1px; }
 .form-header p { color: var(--text-muted); margin-bottom: 35px; font-size: 14px; }
 
+/* ==========================================================================
+   RESET Y ESTILOS GLOBALES
+   ========================================================================== */
+* {
 .input-group { margin-bottom: 20px; }
 .form-row { display: flex; gap: 15px; }
 .form-row .input-group { flex: 1; }
