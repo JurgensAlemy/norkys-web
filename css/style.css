@@ -278,11 +278,22 @@ a { text-decoration: none; color: inherit; }
 .filter-btn:hover { color: var(--norkys-red); background-color: #fff0ed; }
 .filter-btn.active { background-color: var(--norkys-red); color: white; box-shadow: 0 2px 5px rgba(218, 41, 28, 0.3); }
 
-.top-sellers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.top-sellers-grid {
+  display: flex;              /* 🔥 clave */
+  gap: 20px;
+  overflow-x: auto;           /* 🔥 permite deslizar */
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+/* Oculta la barra fea */
+.top-sellers-grid::-webkit-scrollbar {
+  display: none;
+}
 
 .product-card {
   border: 1px solid var(--border-color); border-radius: 16px; padding: 15px; background-color: var(--bg-card);
-  display: flex; flex-direction: column; transition: all 0.3s ease;
+  display: flex; flex-direction: column; transition: all 0.3s ease; min-width: 280px;
 }
 .product-card:hover {
   box-shadow: 0 10px 25px rgba(218, 41, 28, 0.1); transform: translateY(-3px); border-color: #fff0ed;
