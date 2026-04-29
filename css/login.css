@@ -1,65 +1,443 @@
+/* ======================================================
+   VARIABLES GLOBALES
+   Colores corporativos y configuración reutilizable
+====================================================== */
 :root {
-  --norkys-red: #da291c;
-  --norkys-red-dark: #b52015;
-  --norkys-yellow: #ffc72c;
-  --norkys-green-bright: #00c853; /* Verde para botón Iniciar Sesión */
-  --bg-main: #f8f9fa;
-  --bg-card: #ffffff;
-  --border-color: #e9ecef;
-  --text-main: #212121;
-  --text-muted: #6c757d;
+  --norkys-red: #da291c;             /* Rojo principal */
+  --norkys-red-dark: #b52015;        /* Rojo oscuro */
+  --norkys-yellow: #ffc72c;          /* Amarillo corporativo */
+
+  --norkys-green-bright: #00c853;    /* Verde botón principal */
+
+  --bg-main: #f8f9fa;                /* Fondo general */
+  --bg-card: #ffffff;                /* Fondo tarjetas */
+
+  --border-color: #e9ecef;           /* Bordes */
+
+  --text-main: #212121;              /* Texto principal */
+  --text-muted: #6c757d;             /* Texto secundario */
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+/* ======================================================
+   RESET GENERAL
+====================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
 
-.login-body, .auth-body { background-color: var(--bg-main); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; color: var(--text-main); }
-.login-wrapper, .auth-wrapper { width: 100%; max-width: 1000px; }
-.login-card, .auth-card { background-color: var(--bg-card); border-radius: 24px; display: flex; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); min-height: 550px; }
+/* ======================================================
+   ESTRUCTURA BASE
+====================================================== */
 
-/* LADO IZQUIERDO - Gradiente Rojo Norky's */
-.login-info, .auth-info { flex: 1; background: linear-gradient(135deg, var(--norkys-red) 0%, var(--norkys-red-dark) 100%); padding: 50px; display: flex; flex-direction: column; color: white; }
-.login-logo, .auth-logo { margin-bottom: 40px; }
+/* Fondo principal */
+.login-body,
+.auth-body {
+  background-color: var(--bg-main);
+  min-height: 100vh;
 
-.admin-badge, .brand-badge { background-color: var(--norkys-yellow); color: var(--text-main); padding: 5px 12px; border-radius: 20px; font-size: 10px; font-weight: 800; letter-spacing: 1px; display: inline-block; margin-bottom: 20px; text-transform: uppercase; }
-.info-content h1 { font-size: 36px; font-weight: 900; margin-bottom: 20px; line-height: 1.1; letter-spacing: -1.5px; }
-.info-content p { color: #fff0ed; font-size: 15px; line-height: 1.6; margin-bottom: 40px; opacity: 0.9; }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-.features-list { display: flex; flex-direction: column; gap: 15px; margin-top: auto; }
-.feature-item { display: flex; align-items: center; gap: 12px; }
-.feature-icon { width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); border-radius: 8px; display: flex; justify-content: center; align-items: center; color: white; font-size: 16px; flex-shrink: 0; }
-.feature-item span { font-size: 13px; font-weight: 600; }
+  padding: 20px;
+  color: var(--text-main);
+}
 
-/* LADO DERECHO - Formulario Claro */
-.login-form-container, .auth-form-container { flex: 1.2; padding: 60px; display: flex; flex-direction: column; justify-content: center; background-color: var(--bg-card); }
-.form-header h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: var(--text-main); letter-spacing: -1px; }
-.form-header p { color: var(--text-muted); margin-bottom: 35px; font-size: 14px; }
+/* Contenedor externo */
+.login-wrapper,
+.auth-wrapper {
+  width: 100%;
+  max-width: 1000px;
+}
 
-.input-group { margin-bottom: 20px; }
-.form-row { display: flex; gap: 15px; }
-.form-row .input-group { flex: 1; }
+/* Tarjeta principal */
+.login-card,
+.auth-card {
+  background-color: var(--bg-card);
+  border-radius: 24px;
 
-.label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-.input-group label { font-weight: 600; font-size: 13px; color: var(--text-main); display: block; margin-bottom: 8px; }
+  display: flex;
+  overflow: hidden;
 
-.input-wrapper { position: relative; }
-.input-wrapper i:first-child { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #6c757d; font-size: 14px; }
-.input-wrapper input { width: 100%; padding: 12px 14px 12px 40px; border-radius: 10px; border: 1px solid var(--border-color); outline: none; transition: all 0.3s; font-size: 14px; background-color: var(--bg-main); color: var(--text-main); }
-.input-wrapper input:focus { border-color: var(--norkys-red); background-color: #ffffff; }
+  min-height: 550px;
 
-.toggle-password { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #6c757d; font-size: 14px; }
-.toggle-password:hover { color: var(--text-main); }
-.forgot-link { font-size: 12px; color: var(--norkys-red); font-weight: 600; }
-.forgot-link:hover { text-decoration: underline; }
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
 
-.form-options { margin-bottom: 25px; }
-.checkbox-container { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); cursor: pointer; font-weight: 500; }
+/* ======================================================
+   PANEL IZQUIERDO
+   Información visual / branding
+====================================================== */
+.login-info,
+.auth-info {
+  flex: 1;
 
-/* BOTÓN VERDE DE ACCIÓN */
-.btn-login, .btn-auth { width: 100%; background-color: var(--norkys-green-bright); color: white; border: none; padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 800; display: flex; justify-content: center; align-items: center; gap: 10px; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px; }
-.btn-login:hover, .btn-auth:hover { background-color: #00b34a; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 200, 83, 0.3); }
+  background: linear-gradient(
+    135deg,
+    var(--norkys-red) 0%,
+    var(--norkys-red-dark) 100%
+  );
 
-.form-footer { text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 25px; }
-.form-footer a { color: var(--norkys-red); font-weight: 700; text-decoration: none; }
-.form-footer a:hover { text-decoration: underline; }
+  padding: 50px;
 
-@media (max-width: 900px) { .login-card, .auth-card { flex-direction: column; min-height: auto; } .login-info, .login-form-container, .auth-info, .auth-form-container { padding: 30px; } .info-content h1 { font-size: 28px; } .form-row { flex-direction: column; gap: 0; } }
+  display: flex;
+  flex-direction: column;
+
+  color: white;
+}
+
+/* Logo */
+.login-logo,
+.auth-logo {
+  margin-bottom: 40px;
+}
+
+/* Etiquetas superiores */
+.admin-badge,
+.brand-badge {
+  background-color: var(--norkys-yellow);
+  color: var(--text-main);
+
+  padding: 5px 12px;
+  border-radius: 20px;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+/* Título */
+.info-content h1 {
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1.1;
+
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+
+/* Descripción */
+.info-content p {
+  color: #fff0ed;
+  font-size: 15px;
+  line-height: 1.6;
+
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+/* ======================================================
+   LISTA DE BENEFICIOS
+====================================================== */
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  margin-top: auto;
+}
+
+/* Item */
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Icono */
+.feature-icon {
+  width: 36px;
+  height: 36px;
+
+  background-color: rgba(255, 255, 255, 0.2);
+
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  font-size: 16px;
+
+  flex-shrink: 0;
+}
+
+/* Texto */
+.feature-item span {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ======================================================
+   PANEL DERECHO
+   Formulario
+====================================================== */
+.login-form-container,
+.auth-form-container {
+  flex: 1.2;
+
+  padding: 60px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background-color: var(--bg-card);
+}
+
+/* Encabezado */
+.form-header h2 {
+  font-size: 28px;
+  font-weight: 800;
+
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+.form-header p {
+  color: var(--text-muted);
+  font-size: 14px;
+
+  margin-bottom: 35px;
+}
+
+/* ======================================================
+   INPUTS
+====================================================== */
+
+/* Grupo */
+.input-group {
+  margin-bottom: 20px;
+}
+
+/* Fila de inputs */
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row .input-group {
+  flex: 1;
+}
+
+/* Label + link */
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 8px;
+}
+
+/* Labels */
+.input-group label {
+  display: block;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  margin-bottom: 8px;
+}
+
+/* Contenedor input */
+.input-wrapper {
+  position: relative;
+}
+
+/* Icono izquierdo */
+.input-wrapper i:first-child {
+  position: absolute;
+
+  left: 14px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #6c757d;
+  font-size: 14px;
+}
+
+/* Campo input */
+.input-wrapper input {
+  width: 100%;
+
+  padding: 12px 14px 12px 40px;
+
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+
+  outline: none;
+
+  font-size: 14px;
+
+  background-color: var(--bg-main);
+  color: var(--text-main);
+
+  transition: all 0.3s;
+}
+
+/* Focus */
+.input-wrapper input:focus {
+  border-color: var(--norkys-red);
+  background-color: #ffffff;
+}
+
+/* ======================================================
+   TOGGLE PASSWORD
+====================================================== */
+.toggle-password {
+  position: absolute;
+
+  right: 14px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  cursor: pointer;
+  color: #6c757d;
+
+  font-size: 14px;
+}
+
+.toggle-password:hover {
+  color: var(--text-main);
+}
+
+/* ======================================================
+   LINKS
+====================================================== */
+
+/* Olvidé contraseña */
+.forgot-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--norkys-red);
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+/* ======================================================
+   CHECKBOX
+====================================================== */
+.form-options {
+  margin-bottom: 25px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  color: var(--text-muted);
+
+  cursor: pointer;
+}
+
+/* ======================================================
+   BOTÓN PRINCIPAL
+====================================================== */
+.btn-login,
+.btn-auth {
+  width: 100%;
+
+  background-color: var(--norkys-green-bright);
+  color: white;
+
+  border: none;
+  border-radius: 10px;
+
+  padding: 14px;
+
+  font-size: 15px;
+  font-weight: 800;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  transition: all 0.3s;
+}
+
+/* Hover */
+.btn-login:hover,
+.btn-auth:hover {
+  background-color: #00b34a;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 5px 15px rgba(0, 200, 83, 0.3);
+}
+
+/* ======================================================
+   FOOTER
+====================================================== */
+.form-footer {
+  text-align: center;
+
+  font-size: 13px;
+  color: var(--text-muted);
+
+  margin-top: 25px;
+}
+
+.form-footer a {
+  color: var(--norkys-red);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.form-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+@media (max-width: 900px) {
+
+  /* Apila las columnas */
+  .login-card,
+  .auth-card {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  /* Reduce padding */
+  .login-info,
+  .login-form-container,
+  .auth-info,
+  .auth-form-container {
+    padding: 30px;
+  }
+
+  /* Reduce título */
+  .info-content h1 {
+    font-size: 28px;
+  }
+
+  /* Inputs uno debajo del otro */
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
