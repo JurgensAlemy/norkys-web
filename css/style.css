@@ -286,9 +286,30 @@ a { text-decoration: none; color: inherit; }
   padding-bottom: 10px;
 }
 
-/* Oculta la barra fea */
+/* Scroll horizontal elegante */
 .top-sellers-grid::-webkit-scrollbar {
-  display: none;
+  height: 8px; /* grosor */
+}
+
+.top-sellers-grid::-webkit-scrollbar-track {
+  background: #f1f5f9; /* fondo */
+  border-radius: 10px;
+}
+
+.top-sellers-grid::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #da291c, #ffc72c);
+  border-radius: 10px;
+  border: 2px solid #f8f9fa; /* efecto flotante */
+}
+
+/* Hover del scroll */
+.top-sellers-grid::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #b52015, #e6b800);
+}
+
+.top-sellers-grid {
+  scrollbar-color: #da291c #f1f5f9;
+  scrollbar-width: thin;
 }
 
 .product-card {
