@@ -1,22 +1,32 @@
 /* ======================================================
    VARIABLES GLOBALES
-   Colores base reutilizables
+   Paleta oficial Norky's
 ====================================================== */
 :root {
-  --norkys-red: #da291c;       /* Rojo principal corporativo */
 
-  --bg-main: #f8f9fa;          /* Fondo general */
-  --bg-card: #ffffff;          /* Fondo de tarjetas */
+  /* Colores corporativos */
+  --norkys-red: #e25a12;
+  --norkys-red-dark: #c94d0c;
 
-  --border-color: #e9ecef;     /* Bordes suaves */
+  --norkys-yellow: #f4d000;
 
-  --text-main: #212121;        /* Texto principal */
-  --text-muted: #6c757d;       /* Texto secundario */
+  --norkys-green: #0b9b4b;
+  --norkys-green-bright: #19c15f;
+
+  /* Fondos */
+  --bg-main: #fff8f2;
+  --bg-card: #ffffff;
+
+  /* Bordes */
+  --border-color: #f1dccd;
+
+  /* Textos */
+  --text-main: #222222;
+  --text-muted: #6b7280;
 }
 
 /* ======================================================
    BARRA DE CATEGORÍAS FIJA
-   Se mantiene visible al hacer scroll
 ====================================================== */
 .sticky-category-nav {
   position: sticky;
@@ -24,12 +34,10 @@
 
   background-color: var(--bg-card);
 
-  /* Sombra para separación visual */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 
   z-index: 100;
 
-  /* Línea roja inferior */
   border-bottom: 2px solid var(--norkys-red);
 }
 
@@ -45,14 +53,12 @@
 
   padding: 12px 40px;
 
-  /* Scroll horizontal */
   overflow-x: auto;
 
-  /* Oculta scrollbar en Firefox */
   scrollbar-width: none;
 }
 
-/* Oculta scrollbar en Chrome */
+/* Scroll oculto Chrome */
 .sticky-container::-webkit-scrollbar {
   display: none;
 }
@@ -69,30 +75,46 @@
   font-weight: 600;
 
   padding: 8px 16px;
+
+  transition: all 0.3s ease;
 }
 
 /* Iconos */
 .sticky-container .category-pill i {
-  color: #555;
+  color: var(--norkys-green);
 }
 
 /* Hover */
 .sticky-container .category-pill:hover {
-  background-color: #fff0ed;
+  background-color: #fff0e6;
+  color: var(--norkys-red);
+
+  border-radius: 25px;
+}
+
+/* Hover icon */
+.sticky-container .category-pill:hover i {
   color: var(--norkys-red);
 }
 
 /* Estado activo */
 .sticky-container .category-pill.active {
-  background-color: var(--norkys-red);
+  background: linear-gradient(
+    135deg,
+    var(--norkys-red),
+    var(--norkys-red-dark)
+  );
+
   color: #ffffff;
 
   border-radius: 25px;
+
+  box-shadow: 0 4px 12px rgba(226, 90, 18, 0.3);
 }
 
 /* Icono activo */
 .sticky-container .category-pill.active i {
-  color: #ffffff;
+  color: var(--norkys-yellow);
 }
 
 /* ======================================================
@@ -110,7 +132,6 @@
 ====================================================== */
 .menu-section {
 
-  /* Evita que el sticky tape el título al navegar */
   scroll-margin-top: 80px;
 
   margin-top: 40px;
@@ -165,7 +186,6 @@
 ====================================================== */
 @media (max-width: 768px) {
 
-  /* Reduce padding lateral */
   .sticky-container {
     padding: 10px 20px;
   }
@@ -174,7 +194,6 @@
     padding: 10px 20px 40px 20px;
   }
 
-  /* Reduce tamaño del título */
   .section-title {
     font-size: 22px;
   }

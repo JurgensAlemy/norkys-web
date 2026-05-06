@@ -1,19 +1,29 @@
-/* ================= VARIABLES Y RESET ================= */
 :root {
-  /* Paleta Oficial Norky's - Light Mode */
-  --norkys-red: #da291c;
-  --norkys-red-dark: #b52015;
-  --norkys-yellow: #ffc72c;
-  --norkys-green: #009a44; /* Verde corporativo Norky's */
-  --norkys-green-bright: #00c853; /* Verde para botones de acción */
+  /* ================= COLORES OFICIALES NORKY'S ================= */
 
-  --bg-main: #f8f9fa; /* Fondo claro */
-  --bg-card: #ffffff; /* Fondo blanco para tarjetas */
-  --border-color: #e9ecef;
+  /* Rojo/Naranja principal del fondo */
+  --norkys-red: #e25a12;
+  --norkys-red-dark: #c94d0c;
 
-  /* Colores de Texto */
-  --text-main: #212121; /* Texto principal oscuro */
-  --text-muted: #6c757d; /* Texto secundario gris */
+  /* Amarillo del borde del logo */
+  --norkys-yellow: #f4d000;
+
+  /* Verde principal del texto */
+  --norkys-green: #0b9b4b;
+
+  /* Verde brillante */
+  --norkys-green-bright: #19c15f;
+
+  /* ================= FONDOS ================= */
+
+  --bg-main: #fff8f2;
+  --bg-card: #ffffff;
+  --border-color: #f1dccd;
+
+  /* ================= TEXTOS ================= */
+
+  --text-main: #222222;
+  --text-muted: #6b7280;
 }
 
 * {
@@ -128,7 +138,14 @@ a { text-decoration: none; color: inherit; }
 }
 .search-result-info { flex: 1; }
 .search-result-name { font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 2px;}
-.search-result-price { font-size: 13px; color: var(--norkys-red); font-weight: 900; }
+/* ================= PRECIOS ================= */
+
+.search-result-price {
+  font-size: 13px;
+  color: var(--norkys-red-dark);
+  font-weight: 900;
+}
+
 .search-button:hover { background-color: var(--norkys-red-dark); }
 
 .user-actions { display: flex; align-items: center; gap: 25px; }
@@ -276,7 +293,13 @@ a { text-decoration: none; color: inherit; }
   font-size: 14px; font-weight: 700; color: var(--text-muted); cursor: pointer; transition: all 0.3s;
 }
 .filter-btn:hover { color: var(--norkys-red); background-color: #fff0ed; }
-.filter-btn.active { background-color: var(--norkys-red); color: white; box-shadow: 0 2px 5px rgba(218, 41, 28, 0.3); }
+/* ================= FILTROS ================= */
+
+.filter-btn.active {
+  background-color: var(--norkys-red);
+  color: white;
+  box-shadow: 0 2px 5px rgba(226, 90, 18, 0.35);
+}
 
 .top-sellers-grid {
   display: flex;              /* 🔥 clave */
@@ -291,24 +314,36 @@ a { text-decoration: none; color: inherit; }
   height: 8px; /* grosor */
 }
 
+/* ================= SCROLL HORIZONTAL ================= */
+
 .top-sellers-grid::-webkit-scrollbar-track {
-  background: #f1f5f9; /* fondo */
+  background: #ffe8dc;
   border-radius: 10px;
 }
 
 .top-sellers-grid::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #da291c, #ffc72c);
+  background: linear-gradient(
+    90deg,
+    var(--norkys-red),
+    var(--norkys-yellow)
+  );
+
   border-radius: 10px;
-  border: 2px solid #f8f9fa; /* efecto flotante */
+  border: 2px solid #fff8f2;
 }
 
 /* Hover del scroll */
 .top-sellers-grid::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(90deg, #b52015, #e6b800);
+  background: linear-gradient(
+    90deg,
+    var(--norkys-red-dark),
+    #e6b800
+  );
 }
 
+/* Firefox */
 .top-sellers-grid {
-  scrollbar-color: #da291c #f1f5f9;
+  scrollbar-color: var(--norkys-red) #ffe8dc;
   scrollbar-width: thin;
 }
 
@@ -316,8 +351,12 @@ a { text-decoration: none; color: inherit; }
   border: 1px solid var(--border-color); border-radius: 16px; padding: 15px; background-color: var(--bg-card);
   display: flex; flex-direction: column; transition: all 0.3s ease; min-width: 280px;
 }
+/* ================= PRODUCT CARD HOVER ================= */
+
 .product-card:hover {
-  box-shadow: 0 10px 25px rgba(218, 41, 28, 0.1); transform: translateY(-3px); border-color: #fff0ed;
+  box-shadow: 0 10px 25px rgba(226, 90, 18, 0.15);
+  transform: translateY(-3px);
+  border-color: #ffd8c2;
 }
 
 .card-image-wrapper {
@@ -387,13 +426,34 @@ a { text-decoration: none; color: inherit; }
 .modal-details h2 { font-size: 26px; font-weight: 800; color: var(--text-main); margin-bottom: 10px; letter-spacing: -1px; line-height: 1.2; }
 .modal-details p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 25px; flex: 1;}
 
+/* ================= MODAL ================= */
+
 .modal-price-box {
-  background-color: #fff0ed; padding: 15px 20px; border-radius: 12px;
-  display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;
-  border: 1px solid rgba(218, 41, 28, 0.1);
+  background-color: #fff1e7;
+  padding: 15px 20px;
+  border-radius: 12px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 25px;
+
+  border: 1px solid rgba(226, 90, 18, 0.15);
 }
-.modal-price-box span { font-size: 13px; font-weight: 700; color: var(--norkys-red); text-transform: uppercase; }
-.modal-price-box strong { font-size: 28px; font-weight: 900; color: var(--norkys-red-dark); }
+
+.modal-price-box span {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--norkys-red);
+  text-transform: uppercase;
+}
+
+.modal-price-box strong {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--norkys-red-dark);
+}
 
 .modal-actions { display: flex; gap: 15px; }
 
@@ -432,17 +492,56 @@ a { text-decoration: none; color: inherit; }
 .category-item:hover .category-icon { box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
 .category-name { font-size: 13px; font-weight: 700; color: var(--text-main); text-align: center; line-height: 1.2; }
 
-/* Colores pastel originales */
-.bg-red { background-color: #fee2e2; color: #dc2626; }
-.bg-orange { background-color: #ffedd5; color: #ea580c; }
-.bg-yellow { background-color: #fef9c3; color: #ca8a04; }
-.bg-pink { background-color: #fce7f3; color: #db2777; }
-.bg-blue { background-color: #e0f2fe; color: #0284c7; }
-.bg-green { background-color: #dcfce7; color: #16a34a; }
-.bg-cyan { background-color: #cffafe; color: #0891b2; }
-.bg-purple { background-color: #f3e8ff; color: #9333ea; }
-.bg-gray { background-color: #f1f5f9; color: #475569; }
-.bg-teal { background-color: #ccfbf1; color: #0d9488; }
+/* Colores pastel estilo Norky's */
+.bg-red {
+  background-color: #ffe4d6;
+  color: #e25a12;
+}
+
+.bg-orange {
+  background-color: #fff0db;
+  color: #ff7a00;
+}
+
+.bg-yellow {
+  background-color: #fff7cc;
+  color: #d4a100;
+}
+
+.bg-pink {
+  background-color: #ffe8dc;
+  color: #e25a12;
+}
+
+.bg-blue {
+  background-color: #e6f7ff;
+  color: #0091cc;
+}
+
+.bg-green {
+  background-color: #ddffe9;
+  color: #0b9b4b;
+}
+
+.bg-cyan {
+  background-color: #dffcff;
+  color: #0aa2b5;
+}
+
+.bg-purple {
+  background-color: #f1e5ff;
+  color: #8b3dff;
+}
+
+.bg-gray {
+  background-color: #f5f5f5;
+  color: #5f5f5f;
+}
+
+.bg-teal {
+  background-color: #d9fff4;
+  color: #009b7a;
+}
 
 /* ================= FOOTER ================= */
 .main-footer { background-color: #eef2f7; padding-top: 50px; }
