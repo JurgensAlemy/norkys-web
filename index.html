@@ -1,447 +1,415 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Norky's - Delivery Online</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-  </head>
-  <body>
-    <header class="header">
-      <div class="top-bar">
-        <div class="top-bar-left">
-          <a href="#"
-            ><i class="fa-solid fa-location-dot"></i> Enviar a:
-            <strong>Lima - Chosica</strong></a
-          >
-          <a href="#">Rastrear pedido</a>
-          <a href="#">Locales</a>
-          <a href="#">Servicio al cliente</a>
-        </div>
-        <div class="top-bar-right">
-          <a href="#">Zonas de reparto</a>
-          <a href="#">Descarga la app</a>
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Norky's - Delivery Online</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <a href="#"><i class="fa-solid fa-location-dot"></i> Enviar a:
+          <strong>Lima - Chosica</strong></a>
+        <a href="#">Rastrear pedido</a>
+        <a href="#">Locales</a>
+        <a href="#">Servicio al cliente</a>
+      </div>
+      <div class="top-bar-right">
+        <a href="#">Zonas de reparto</a>
+        <a href="#">Descarga la app</a>
+      </div>
+    </div>
+
+    <div class="main-header">
+      <div class="logo">
+        <a href="index.html" class="logo-link">
+          <img src="imgs/logoNorkys.png" alt="Norky's Logo" class="logo-img" />
+        </a>
       </div>
 
-      <div class="main-header">
-        <div class="logo">
-          <a href="index.html" class="logo-link">
-            <img
-              src="imgs/logoNorkys.png"
-              alt="Norky's Logo"
-              class="logo-img"
-            />
-          </a>
-        </div>
-
-        <div class="search-container">
-          <select class="search-category">
-            <option>Todo el menú</option>
-            <option>Combos</option>
-            <option>Pollos</option>
-          </select>
-          <input
-            type="text"
-            class="search-input"
-            placeholder="¿Qué te provoca pedir hoy?"
-          />
-          <button class="search-button">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </div>
-
-        <div class="user-actions">
-          <a href="login.html" class="action-item">
-            <i class="fa-regular fa-user"></i>
-            <div class="action-text">
-              <span>Hola, ingresa</span>
-              <strong
-                >Mi cuenta
-                <i class="fa-solid fa-chevron-down" style="font-size: 10px"></i
-              ></strong>
-            </div>
-          </a>
-
-          <a href="cart.html" class="cart-button">
-            <i class="fa-solid fa-basket-shopping"></i>
-            <strong>S/ 0.00</strong>
-            <span class="cart-badge">0</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="nav-bar">
-        <button
-          class="btn-categories"
-          onclick="window.location.href = 'menu.html'"
-        >
-          <i class="fa-solid fa-bars"></i> Menú
+      <div class="search-container">
+        <select class="search-category">
+          <option>Todo el menú</option>
+          <option>Combos</option>
+          <option>Pollos</option>
+        </select>
+        <input type="text" class="search-input" placeholder="¿Qué te provoca pedir hoy?" />
+        <button class="search-button">
+          <i class="fa-solid fa-magnifying-glass"></i>
         </button>
-
-        <nav class="nav-links pill-nav">
-          <a href="menu.html#pollos" class="category-pill"
-            ><i class="fa-solid fa-drumstick-bite"></i> Pollos a la Brasa</a
-          >
-          <a href="menu.html#parrillas" class="category-pill"
-            ><i class="fa-solid fa-fire-burner"></i> Parrillas</a
-          >
-          <a href="menu.html#combos" class="category-pill"
-            ><i class="fa-solid fa-user-group"></i> Combos Especiales</a
-          >
-          <a href="menu.html#hamburguesas" class="category-pill"
-            ><i class="fa-solid fa-burger"></i> Hamburguesas</a
-          >
-          <a href="menu.html#bebidas" class="category-pill"
-            ><i class="fa-solid fa-glass-water"></i> Bebidas</a
-          >
-          <a href="menu.html#postres" class="category-pill"
-            ><i class="fa-solid fa-ice-cream"></i> Postres</a
-          >
-          <a href="menu.html#porciones" class="category-pill"
-            ><i class="fa-solid fa-utensils"></i> Porciones</a
-          >
-        </nav>
-
-        <div class="flash-offers">
-          <i class="fa-solid fa-fire"></i>
-          HORA DEL ALMUERZO - termina en <strong>02:30:00</strong>
-        </div>
       </div>
-    </header>
 
-    <main class="hero-section">
-      <div class="hero-grid">
-        <div class="main-banner">
-          <div class="slide active">
-            <div class="main-banner-content">
-              <span class="badge badge-warning">SOLO POR DELIVERY</span>
+      <div class="user-actions">
+        <a href="login.html" class="action-item">
+          <i class="fa-regular fa-user"></i>
+          <div class="action-text">
+            <span>Hola, ingresa</span>
+            <strong>Mi cuenta
+              <i class="fa-solid fa-chevron-down" style="font-size: 10px"></i></strong>
+          </div>
+        </a>
+
+        <a href="cart.html" class="cart-button">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <strong>S/ 0.00</strong>
+          <span class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="nav-bar">
+      <button class="btn-categories" onclick="window.location.href = 'menu.html'">
+        <i class="fa-solid fa-bars"></i> Menú
+      </button>
+
+      <nav class="nav-links pill-nav">
+        <a href="menu.html#pollos" class="category-pill"><i class="fa-solid fa-drumstick-bite"></i> Pollos a la Brasa</a>
+        <a href="menu.html#parrillas" class="category-pill"><i class="fa-solid fa-fire-burner"></i> Parrillas</a>
+        <a href="menu.html#combos" class="category-pill"><i class="fa-solid fa-user-group"></i> Combos Especiales</a>
+        <a href="menu.html#hamburguesas" class="category-pill"><i class="fa-solid fa-burger"></i> Hamburguesas</a>
+        <a href="menu.html#bebidas" class="category-pill"><i class="fa-solid fa-glass-water"></i> Bebidas</a>
+        <a href="menu.html#postres" class="category-pill"><i class="fa-solid fa-ice-cream"></i> Postres</a>
+        <a href="menu.html#porciones" class="category-pill"><i class="fa-solid fa-utensils"></i> Porciones</a>
+      </nav>
+
+      <div class="flash-offers">
+        <i class="fa-solid fa-fire"></i>
+        HORA DEL ALMUERZO - termina en <strong>02:30:00</strong>
+      </div>
+    </div>
+  </header>
+
+  <main class="hero-section">
+    <div class="hero-grid">
+
+      <!-- BANNER PRINCIPAL -->
+      <div class="main-banner">
+        <!-- Decoración de fondo -->
+        <div class="banner-decoration">
+          <div class="deco-circle deco-circle-1"></div>
+          <div class="deco-circle deco-circle-2"></div>
+          <div class="deco-circle deco-circle-3"></div>
+        </div>
+
+        <div class="slide active">
+          <div class="main-banner-content">
+            <span class="badge badge-warning">
+              <i class="fa-solid fa-motorcycle" style="font-size:10px"></i>
+              SOLO POR DELIVERY
+            </span>
+            <div class="banner-titles">
               <h2 class="banner-title">Mega Combo</h2>
               <h1 class="discount-text">Familiar</h1>
-              <p class="banner-desc">
-                1 Pollo a la Brasa + Porción de Papas + Ensalada + Gaseosa 1.5L
-              </p>
-              <a href="menu.html#combos" class="btn-yellow"
-                >Pedir ahora <i class="fa-solid fa-arrow-right"></i
-              ></a>
             </div>
-            <div class="main-banner-image">
-              <div class="img-placeholder">
-                <i
-                  class="fa-solid fa-drumstick-bite"
-                  style="font-size: 40px; color: white"
-                ></i>
+            <p class="banner-desc">
+              1 Pollo a la Brasa + Porción de Papas + Ensalada + Gaseosa 1.5L
+            </p>
+            <div class="banner-bottom">
+              <a href="menu.html#combos" class="btn-yellow">
+                Pedir ahora <i class="fa-solid fa-arrow-right"></i>
+              </a>
+              <div class="banner-rating">
+                <div class="stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>
+                <span>+2,400 pedidos hoy</span>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="side-banners">
-          <div class="side-banner banner-pink">
-            <span class="badge-text pink-text">NUEVO</span>
-
-            <h3>Causa<br />Rellena</h3>
-            <img src="imgs\img_sideBanner2.png" alt="" />
-            <a href="menu.html#porciones" class="link-arrow pink-text"
-              >Ver antojo <i class="fa-solid fa-arrow-right"></i
-            ></a>
-          </div>
-
-          <div class="side-banner banner-green">
-            <span class="badge-text green-text">REFRESCANTE</span>
-            <h3>Chicha Morada<br />de la casa</h3>
-            <a href="menu.html#bebidas" class="link-arrow green-text"
-              >Agregar <i class="fa-solid fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        </div>
-
-      <section class="top-sellers-section" style="margin-top: 40px">
-        <div class="sellers-container">
-          <div class="sellers-header">
-            <div>
-              <span class="sellers-tag">LOS FAVORITOS</span>
-              <h2 class="sellers-title">Lo más pedido en Norky's</h2>
-            </div>
-            <div class="filter-menu">
-              <button class="filter-btn active" data-filter="todos">
-                Todos
-              </button>
-              <button class="filter-btn" data-filter="pollos">Pollos</button>
-              <button class="filter-btn" data-filter="parrillas">
-                Parrillas
-              </button>
-              <button class="filter-btn" data-filter="combos">Combos</button>
-              <button class="filter-btn" data-filter="bebidas">Bebidas</button>
-            </div>
-          </div>
-
-          <div class="top-sellers-grid" id="index-favorites-grid"></div>
-        </div>
-      </section>
-
-      <section class="categories-section">
-        <div class="categories-container">
-          <a href="menu.html#pollos" class="category-item">
-            <div class="category-icon bg-red">
-              <i class="fa-solid fa-drumstick-bite"></i>
-            </div>
-            <span class="category-name">Pollo a la Brasa</span>
-          </a>
-          <a href="menu.html#parrillas" class="category-item">
-            <div class="category-icon bg-orange">
-              <i class="fa-solid fa-fire-burner"></i>
-            </div>
-            <span class="category-name">Parrillas</span>
-          </a>
-          <a href="menu.html#combos" class="category-item">
-            <div class="category-icon bg-blue">
-              <i class="fa-solid fa-users"></i>
-            </div>
-            <span class="category-name">Combos Especiales</span>
-          </a>
-          <a href="menu.html#bebidas" class="category-item">
-            <div class="category-icon bg-yellow">
-              <i class="fa-solid fa-glass-water"></i>
-            </div>
-            <span class="category-name">Bebidas</span>
-          </a>
-          <a href="menu.html#hamburguesas" class="category-item">
-            <div class="category-icon bg-purple">
-              <i class="fa-solid fa-burger"></i>
-            </div>
-            <span class="category-name">Hamburguesas</span>
-          </a>
-          <a href="menu.html#porciones" class="category-item">
-            <div class="category-icon bg-gray">
-              <i class="fa-solid fa-utensils"></i>
-            </div>
-            <span class="category-name">Porciones</span>
-          </a>
-          <a href="menu.html#postres" class="category-item">
-            <div class="category-icon bg-teal">
-              <i class="fa-solid fa-ice-cream"></i>
-            </div>
-            <span class="category-name">Postres</span>
-          </a>
-        </div>
-      </section>
-
-      <footer class="main-footer">
-        <div class="trust-bar-container">
-          <div class="trust-bar">
-            <div class="trust-item">
-              <div class="trust-icon bg-lblue">
-                <i class="fa-solid fa-motorcycle"></i>
-              </div>
-              <div class="trust-text">
-                <strong>Delivery Rápido</strong>
-                <span>Tu comida caliente en minutos</span>
-              </div>
-            </div>
-            <div class="trust-item">
-              <div class="trust-icon bg-lgreen">
-                <i class="fa-solid fa-shield"></i>
-              </div>
-              <div class="trust-text">
-                <strong>Calidad Garantizada</strong>
-                <span>Ingredientes frescos siempre</span>
-              </div>
-            </div>
-            <div class="trust-item">
-              <div class="trust-icon bg-lyellow">
-                <i class="fa-solid fa-credit-card"></i>
-              </div>
-              <div class="trust-text">
-                <strong>Pago Seguro</strong>
-                <span>Efectivo, Yape, Plin o Tarjeta</span>
-              </div>
-            </div>
-            <div class="trust-item">
-              <div class="trust-icon bg-lpurple">
-                <i class="fa-solid fa-headset"></i>
-              </div>
-              <div class="trust-text">
-                <strong>Soporte al Cliente</strong>
-                <span>Te ayudamos con tu pedido</span>
-              </div>
+          <div class="main-banner-image">
+            <div class="img-frame">
+              <img
+                src="imgs/MegaComboFamiliar.webp"
+                alt="Mega Combo Familiar Norky's"
+              />
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="footer-links-section">
-          <div class="footer-info">
-            <div class="footer-logo">
-              <a href="index.html" class="logo-link">
-                <img
-                  src="imgs/logoNorkys.png"
-                  alt="Norky's Logo"
-                  class="footer-logo-img"
-                />
+      <!-- SIDE BANNERS -->
+      <div class="side-banners">
+
+        <div class="side-banner banner-pink">
+          <div class="side-banner-inner">
+            <div class="side-banner-text">
+              <span class="badge-text pink-text">✦ NUEVO</span>
+              <h3>Causa<br />Rellena</h3>
+              <a href="menu.html#porciones" class="link-arrow pink-text">
+                Ver antojo <i class="fa-solid fa-arrow-right"></i>
               </a>
             </div>
-            <p>
-              El verdadero sabor peruano. Disfruta del mejor pollo a la brasa y
-              nuestras deliciosas parrilladas sin salir de casa.
-            </p>
-            <div class="contact-info">
-              <p><i class="fa-solid fa-phone"></i> (01) 612-6000</p>
-              <p><i class="fa-solid fa-envelope"></i> atencion@norkys.pe</p>
-            </div>
-          </div>
-
-          <div class="footer-column">
-            <h3>MI CUENTA</h3>
-            <ul>
-              <li><a href="login.html">Ingresar / Registrarse</a></li>
-              <li><a href="profile.html">Mis pedidos</a></li>
-              <li><a href="profile.html">Mis direcciones</a></li>
-              <li><a href="profile.html">Mis favoritos</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h3>NUESTRA CARTA</h3>
-            <ul>
-              <li><a href="menu.html#pollos">Pollo a la Brasa</a></li>
-              <li><a href="menu.html#parrillas">Parrillas</a></li>
-              <li><a href="menu.html#combos">Combos Especiales</a></li>
-              <li><a href="menu.html#bebidas">Bebidas y Postres</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h3>NORKY'S</h3>
-            <ul>
-              <li><a href="#">Nosotros</a></li>
-              <li><a href="#">Locales</a></li>
-              <li><a href="#">Trabaja con nosotros</a></li>
-              <li><a href="#">Zonas de reparto</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h3>SÍGUENOS</h3>
-            <div class="social-links">
-              <a href="#" class="social-fb"
-                ><i class="fa-brands fa-facebook-f"></i
-              ></a>
-              <a href="#" class="social-ig"
-                ><i class="fa-brands fa-instagram"></i
-              ></a>
-              <a href="#" class="social-tt"
-                ><i class="fa-brands fa-tiktok"></i
-              ></a>
-            </div>
-            <p
-              class="newsletter-text"
-              style="
-                font-size: 13px;
-                color: var(--text-muted);
-                margin-top: 15px;
-              "
-            >
-              ¡Entérate de nuestras promociones antes que nadie!
-            </p>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <div class="payment-methods">
-            <span class="bottom-label">MÉTODOS DE PAGO</span>
-            <div class="payment-grid">
-              <div class="pay-card">VISA</div>
-              <div class="pay-card">MasterCard</div>
-              <div class="pay-card">Efectivo</div>
-              <div class="pay-card">Yape</div>
-              <div class="pay-card">Plin</div>
-            </div>
-          </div>
-          <div class="certificates">
-            <span class="bottom-label">Compra 100% segura</span>
-            <div class="cert-grid">
-              <div class="cert-item">
-                <i class="fa-solid fa-shield-halved"></i> SSL
-              </div>
+            <div class="side-banner-img-wrap">
+              <img src="imgs/img_sideBanner2.png" alt="Causa Rellena" class="side-banner-img" />
             </div>
           </div>
         </div>
 
-        <div class="footer-copy">
-          <p>
-            © 2026 Inversiones Norky's S.A.C. · Todos los derechos reservados
+        <div class="side-banner banner-green">
+          <div class="side-banner-inner">
+            <div class="side-banner-text">
+              <span class="badge-text green-text">✦ REFRESCANTE</span>
+              <h3>Chicha Morada<br />de la casa</h3>
+              <a href="menu.html#bebidas" class="link-arrow green-text">
+                Agregar <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="side-banner-img-wrap">
+              <img src="imgs/Jarra de Chicha Morada 1L.webp" alt="Chicha Morada" class="side-banner-img" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECCIÓN LO MÁS PEDIDO -->
+    <section class="top-sellers-section">
+      <div class="sellers-container">
+        <div class="sellers-header">
+          <div>
+            <span class="sellers-tag">⭐ LOS FAVORITOS</span>
+            <h2 class="sellers-title">Lo más pedido en Norky's</h2>
+          </div>
+          <div class="filter-menu">
+            <button class="filter-btn active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="pollos">Pollos</button>
+            <button class="filter-btn" data-filter="parrillas">Parrillas</button>
+            <button class="filter-btn" data-filter="combos">Combos</button>
+            <button class="filter-btn" data-filter="bebidas">Bebidas</button>
+          </div>
+        </div>
+
+        <div class="top-sellers-grid" id="index-favorites-grid"></div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍAS -->
+    <section class="categories-section">
+      <div class="categories-container">
+        <a href="menu.html#pollos" class="category-item">
+          <div class="category-icon bg-red">
+            <i class="fa-solid fa-drumstick-bite"></i>
+          </div>
+          <span class="category-name">Pollo a la Brasa</span>
+        </a>
+        <a href="menu.html#parrillas" class="category-item">
+          <div class="category-icon bg-orange">
+            <i class="fa-solid fa-fire-burner"></i>
+          </div>
+          <span class="category-name">Parrillas</span>
+        </a>
+        <a href="menu.html#combos" class="category-item">
+          <div class="category-icon bg-blue">
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <span class="category-name">Combos Especiales</span>
+        </a>
+        <a href="menu.html#bebidas" class="category-item">
+          <div class="category-icon bg-yellow">
+            <i class="fa-solid fa-glass-water"></i>
+          </div>
+          <span class="category-name">Bebidas</span>
+        </a>
+        <a href="menu.html#hamburguesas" class="category-item">
+          <div class="category-icon bg-purple">
+            <i class="fa-solid fa-burger"></i>
+          </div>
+          <span class="category-name">Hamburguesas</span>
+        </a>
+        <a href="menu.html#porciones" class="category-item">
+          <div class="category-icon bg-gray">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <span class="category-name">Porciones</span>
+        </a>
+        <a href="menu.html#postres" class="category-item">
+          <div class="category-icon bg-teal">
+            <i class="fa-solid fa-ice-cream"></i>
+          </div>
+          <span class="category-name">Postres</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="main-footer">
+      <div class="trust-bar-container">
+        <div class="trust-bar">
+          <div class="trust-item">
+            <div class="trust-icon bg-lblue">
+              <i class="fa-solid fa-motorcycle"></i>
+            </div>
+            <div class="trust-text">
+              <strong>Delivery Rápido</strong>
+              <span>Tu comida caliente en minutos</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon bg-lgreen">
+              <i class="fa-solid fa-shield"></i>
+            </div>
+            <div class="trust-text">
+              <strong>Calidad Garantizada</strong>
+              <span>Ingredientes frescos siempre</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon bg-lyellow">
+              <i class="fa-solid fa-credit-card"></i>
+            </div>
+            <div class="trust-text">
+              <strong>Pago Seguro</strong>
+              <span>Efectivo, Yape, Plin o Tarjeta</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon bg-lpurple">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+            <div class="trust-text">
+              <strong>Soporte al Cliente</strong>
+              <span>Te ayudamos con tu pedido</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-links-section">
+        <div class="footer-info">
+          <div class="footer-logo">
+            <a href="index.html" class="logo-link">
+              <img src="imgs/logoNorkys.png" alt="Norky's Logo" class="footer-logo-img" />
+            </a>
+          </div>
+          <p>El verdadero sabor peruano. Disfruta del mejor pollo a la brasa y nuestras deliciosas parrilladas sin salir de casa.</p>
+          <div class="contact-info">
+            <p><i class="fa-solid fa-phone"></i> (01) 612-6000</p>
+            <p><i class="fa-solid fa-envelope"></i> atencion@norkys.pe</p>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>MI CUENTA</h3>
+          <ul>
+            <li><a href="login.html">Ingresar / Registrarse</a></li>
+            <li><a href="profile.html">Mis pedidos</a></li>
+            <li><a href="profile.html">Mis direcciones</a></li>
+            <li><a href="profile.html">Mis favoritos</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>NUESTRA CARTA</h3>
+          <ul>
+            <li><a href="menu.html#pollos">Pollo a la Brasa</a></li>
+            <li><a href="menu.html#parrillas">Parrillas</a></li>
+            <li><a href="menu.html#combos">Combos Especiales</a></li>
+            <li><a href="menu.html#bebidas">Bebidas y Postres</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>NORKY'S</h3>
+          <ul>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">Locales</a></li>
+            <li><a href="#">Trabaja con nosotros</a></li>
+            <li><a href="#">Zonas de reparto</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>SÍGUENOS</h3>
+          <div class="social-links">
+            <a href="#" class="social-fb"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-ig"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-tt"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+          <p class="newsletter-text" style="font-size: 13px; color: var(--text-muted); margin-top: 15px;">
+            ¡Entérate de nuestras promociones antes que nadie!
           </p>
-          <div class="copy-links">
-            <a href="#">Términos y condiciones</a>
-            <a href="#">Políticas de privacidad</a>
-            <a href="#">Libro de reclamaciones</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="payment-methods">
+          <span class="bottom-label">MÉTODOS DE PAGO</span>
+          <div class="payment-grid">
+            <div class="pay-card">VISA</div>
+            <div class="pay-card">MasterCard</div>
+            <div class="pay-card">Efectivo</div>
+            <div class="pay-card">Yape</div>
+            <div class="pay-card">Plin</div>
           </div>
         </div>
-      </footer>
-    </main>
-
-    <div id="productModal" class="modal-overlay">
-      <div class="modal-content">
-        <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
-        <div class="modal-body">
-          <div class="modal-image-container">
-            <i
-              id="modalIconFallback"
-              class="fa-solid fa-image fallback-icon"
-            ></i>
-            <img
-              id="modalImg"
-              src=""
-              alt="Producto"
-              style="
-                display: none;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 12px;
-              "
-            />
-          </div>
-          <div class="modal-details">
-            <h2 id="modalTitle">Nombre del Producto</h2>
-            <p id="modalDesc">Descripción detallada del producto aquí.</p>
-            <div class="modal-price-box">
-              <span>Precio total:</span>
-              <strong id="modalPrice">S/ 0.00</strong>
+        <div class="certificates">
+          <span class="bottom-label">Compra 100% segura</span>
+          <div class="cert-grid">
+            <div class="cert-item">
+              <i class="fa-solid fa-shield-halved"></i> SSL
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div class="modal-actions">
-              <div class="quantity-control">
-                <button type="button" class="qty-btn" id="btnMinus">
-                  <i class="fa-solid fa-minus"></i>
-                </button>
-                <input
-                  type="number"
-                  id="qtyInput"
-                  value="1"
-                  min="1"
-                  readonly="readonly"
-                />
-                <button type="button" class="qty-btn" id="btnPlus">
-                  <i class="fa-solid fa-plus"></i>
-                </button>
-              </div>
-              <button class="btn-add-cart">
-                <i class="fa-solid fa-basket-shopping"></i> Agregar al pedido
+      <div class="footer-copy">
+        <p>© 2026 Inversiones Norky's S.A.C. · Todos los derechos reservados</p>
+        <div class="copy-links">
+          <a href="#">Términos y condiciones</a>
+          <a href="#">Políticas de privacidad</a>
+          <a href="#">Libro de reclamaciones</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- MODAL -->
+  <div id="productModal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-body">
+        <div class="modal-image-container">
+          <i id="modalIconFallback" class="fa-solid fa-image fallback-icon"></i>
+          <img id="modalImg" src="" alt="Producto" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" />
+        </div>
+        <div class="modal-details">
+          <h2 id="modalTitle">Nombre del Producto</h2>
+          <p id="modalDesc">Descripción detallada del producto aquí.</p>
+          <div class="modal-price-box">
+            <span>Precio total:</span>
+            <strong id="modalPrice">S/ 0.00</strong>
+          </div>
+          <div class="modal-actions">
+            <div class="quantity-control">
+              <button type="button" class="qty-btn" id="btnMinus">
+                <i class="fa-solid fa-minus"></i>
+              </button>
+              <input type="number" id="qtyInput" value="1" min="1" readonly="readonly" />
+              <button type="button" class="qty-btn" id="btnPlus">
+                <i class="fa-solid fa-plus"></i>
               </button>
             </div>
+            <button class="btn-add-cart">
+              <i class="fa-solid fa-basket-shopping"></i> Agregar al pedido
+            </button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <script src="js/db.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+  <script src="js/db.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
 </html>
