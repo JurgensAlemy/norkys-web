@@ -641,6 +641,11 @@ a {
   gap: 20px;
 }
 
+.sellers-header.centered {
+  justify-content: center;
+  text-align: center;
+}
+
 .sellers-tag {
   font-size: 12px;
   color: var(--norkys-red);
@@ -1317,4 +1322,9 @@ a {
   .modal-actions { flex-direction: column; }
   .quantity-control { width: 100%; justify-content: center; }
   .banner-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+.sellers-header {
+  justify-content: center;
+  text-align: center;
 }

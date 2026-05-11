@@ -570,3 +570,69 @@ body.cart-body {
     padding-top: 10px;
   }
 }
+
+/* ================= LOGO NORKY'S ================= */
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.logo-img:hover {
+  transform: scale(1.04);
+}
+
+.cart-header-custom{
+  background-color: var(--bg-card);
+
+  padding: 12px 40px;
+
+  border-bottom: 1px solid var(--border-color);
+
+  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.nav-pill{
+  background-color: white;
+
+  padding: 10px 18px;
+
+  border-radius: 30px;
+
+  border: 1px solid var(--border-color);
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: var(--text-main);
+
+  transition: all 0.25s ease;
+}
+
+.nav-pill i{
+  color: var(--norkys-red);
+}
+
+.nav-pill:hover{
+  background-color: #fff0ed;
+
+  border-color: var(--norkys-red);
+
+  color: var(--norkys-red);
+
+  transform: translateY(-2px);
+}

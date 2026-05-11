@@ -231,80 +231,67 @@ const setupFunctionalSearch = () => {
 
 // ==========================================================
 // VITRINA DE FAVORITOS DEL INDEX
-// Filtra productos destacados
+// Muestra solo 1 producto por categoría
 // ==========================================================
 const setupIndexFilters = () => {
 
-  const filterBtns = document.querySelectorAll('.filter-btn');
   const favoritesGrid = document.getElementById('index-favorites-grid');
 
-  if (!filterBtns.length || !favoritesGrid) return;
+  if (!favoritesGrid) return;
 
   const products = getNorkysProducts() || [];
 
-  const renderFavorites = (category) => {
+  favoritesGrid.innerHTML = '';
 
-    favoritesGrid.innerHTML = '';
-    let filteredProducts = [];
+  // Categorías ya renderizadas
+  const categoriasMostradas = new Set();
 
-    // Mostrar favoritos principales
-    if (category === 'todos') {
-      filteredProducts = [
-        products.find(p => p.id === 1),
-        products.find(p => p.id === 4),
-        products.find(p => p.id === 3),
-        products.find(p => p.id === 5)
-      ].filter(Boolean);
+  // Obtener solo 1 producto por categoría
+  const productosUnicos = products.filter(prod => {
 
-    } else {
-      // Mostrar máximo 4 por categoría
-      filteredProducts = products
-        .filter(p => p.categoria === category)
-        .slice(0, 4);
+    if (categoriasMostradas.has(prod.categoria)) {
+      return false;
     }
 
-    if (filteredProducts.length === 0) {
-      favoritesGrid.innerHTML = '<p>Próximamente más productos.</p>';
-      return;
-    }
-
-    // Pintar tarjetas
-    filteredProducts.forEach(prod => {
-
-      const article = document.createElement('article');
-      article.className = 'product-card seller-card';
-
-      article.innerHTML = `
-        <div class="card-image-wrapper">
-          <img src="${prod.img}" alt="${prod.nombre}">
-        </div>
-        <br>
-        <div class="card-info">
-          <h3>${prod.nombre}</h3>
-          <p>S/ ${prod.precio.toFixed(2)}</p>
-          <br>
-          <button class="btn-ver-detalle"
-            onclick="window.location.href='menu.html#${prod.categoria}'">
-            Ver en la carta
-          </button>
-        </div>
-      `;
-
-      favoritesGrid.appendChild(article);
-    });
-  };
-
-  // Activar filtros
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      renderFavorites(btn.getAttribute('data-filter'));
-    });
+    categoriasMostradas.add(prod.categoria);
+    return true;
   });
 
-  renderFavorites('todos');
+  // Limitar cantidad visual (opcional)
+  const productosFinales = productosUnicos.slice(0, 5);
+
+  // Renderizar tarjetas
+  productosFinales.forEach(prod => {
+
+    const article = document.createElement('article');
+    article.className = 'product-card seller-card';
+
+    article.innerHTML = `
+      <div class="card-image-wrapper">
+        <img src="${prod.img}" alt="${prod.nombre}">
+      </div>
+
+      <div class="card-info">
+        <h3 class="product-name">${prod.nombre}</h3>
+
+        <p style="
+          font-size: 24px;
+          font-weight: 900;
+          color: var(--norkys-red-dark);
+          margin-bottom: 18px;
+        ">
+          S/ ${prod.precio.toFixed(2)}
+        </p>
+
+        <button class="btn-ver-detalle"
+          onclick="window.location.href='menu.html#${prod.categoria}'">
+          Ver en la carta
+        </button>
+      </div>
+    `;
+
+    favoritesGrid.appendChild(article);
+  });
 };
 
 

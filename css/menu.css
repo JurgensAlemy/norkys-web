@@ -32,13 +32,15 @@
   position: sticky;
   top: 0;
 
-  background-color: var(--bg-card);
+  background: rgba(255,255,255,0.92);
 
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 
   z-index: 100;
 
-  border-bottom: 2px solid var(--norkys-red);
+  border-bottom: 1px solid var(--border-color);
 }
 
 /* ======================================================
@@ -198,3 +200,67 @@
     font-size: 22px;
   }
 }
+
+/* ======================================================
+   LOGO NORKY'S
+====================================================== */
+
+.logo-link {
+  display: flex;
+  align-items: center;
+
+  text-decoration: none;
+}
+
+/* Logo del header */
+.logo-img {
+  height: 85px;
+
+  width: auto;
+
+  object-fit: contain;
+
+  transition: transform 0.3s ease;
+
+  cursor: pointer;
+}
+
+.logo-img:hover {
+  transform: scale(1.04);
+}
+
+/* Logo footer */
+.footer-logo {
+  margin-bottom: 15px;
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.footer-logo-img {
+  height: 110px;
+
+  width: auto;
+
+  object-fit: contain;
+
+  transition: transform 0.3s ease;
+}
+
+.footer-logo-img:hover {
+  transform: scale(1.04);
+}
+
+/* Header elegante */
+
+.main-header{
+  background-color: var(--bg-card);
+
+  border-bottom: 1px solid var(--border-color);
+
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
