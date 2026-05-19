@@ -1,0 +1,235 @@
+/* ==========================================================================
+   Estilos para la página Nosotros - Norky's
+   Mantiene la identidad de colores: Naranja (#D84B16), Verde (#00B652) y Crema (#FFF9F5)
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #FFF9F5; /* Fondo crema cálido característico */
+    color: #2D2D2D;
+    line-height: 1.6;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: #D84B16; /* Naranja corporativo */
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo .dot {
+    color: #00B652; /* Punto Verde */
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #555555;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: #D84B16;
+}
+
+.nav-menu .btn-menu {
+    background-color: #00B652; /* Botón de conversión principal en Verde */
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 50px; /* Bordes totalmente redondeados */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-menu .btn-menu:hover {
+    background-color: #009440;
+    color: #FFFFFF;
+    transform: translateY(-1px);
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    background-color: #D84B16; /* Fondo naranja potente */
+    background-image: linear-gradient(135deg, #D84B16 0%, #F15A24 100%);
+    color: #FFFFFF;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero-section h1 {
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.hero-section p {
+    font-size: 18px;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.main-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+/* --- QUIÉNES SOMOS --- */
+.about-section {
+    background-color: #FFFFFF;
+    padding: 40px;
+    border-radius: 24px; /* Bordes curvos amigables como los inputs y cards */
+    box-shadow: 0 4px 20px rgba(216, 75, 22, 0.04);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.about-text h2 {
+    color: #D84B16;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    font-size: 16px;
+    color: #555555;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* --- VALORES GRID --- */
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.value-card {
+    background-color: #FFFFFF;
+    padding: 35px 25px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(216, 75, 22, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+}
+
+.icon-box {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin: 0 auto 20px auto;
+}
+
+/* Círculos con colores pasteles de acento según la interfaz original */
+.icon-orange { background-color: #FFEFE8; color: #D84B16; }
+.icon-green { background-color: #E6F8EE; color: #00B652; }
+.icon-pink { background-color: #FFF0F2; color: #FF4D6D; }
+
+.value-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2D2D2D;
+    margin-bottom: 12px;
+}
+
+.value-card p {
+    font-size: 14.5px;
+    color: #666666;
+    line-height: 1.5;
+}
+
+/* --- COMPROMISO --- */
+.compromiso-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #FFEFE8; /* Fondo suave naranja para destacar */
+    border-radius: 24px;
+}
+
+.badge {
+    display: inline-block;
+    background-color: #D84B16;
+    color: #FFFFFF;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.compromiso-section h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #D84B16;
+    margin-bottom: 15px;
+}
+
+.compromiso-section p {
+    font-size: 16px;
+    color: #555555;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* --- FOOTER SIMPLE --- */
+.footer-simple {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #FFFFFF;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    color: #888888;
+    font-size: 13px;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 600px) {
+    .hero-section h1 { font-size: 30px; }
+    .about-section { padding: 25px; }
+    .navbar-container { padding: 15px; }
+}
