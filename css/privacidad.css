@@ -1,0 +1,204 @@
+/* ==========================================================================
+   Estilos para la página Políticas de Privacidad - Norky's
+   Mantiene la identidad de colores: Naranja (#D84B16), Verde (#00B652) y Crema (#FFF9F5)
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #FFF9F5; /* Fondo crema corporativo */
+    color: #2D2D2D;
+    line-height: 1.7;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: #D84B16;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo .dot {
+    color: #00B652;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #555555;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.nav-menu .btn-menu {
+    background-color: #00B652;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu .btn-menu:hover {
+    background-color: #009440;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    background-color: #D84B16;
+    background-image: linear-gradient(135deg, #D84B16 0%, #F15A24 100%);
+    color: #FFFFFF;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero-section h1 {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.hero-section p {
+    font-size: 16px;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.main-container {
+    max-width: 900px; /* Estrecho óptimo para lectura continua de textos legales */
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* --- ARTÍCULO DE PRIVACIDAD --- */
+.privacy-box {
+    background-color: #FFFFFF;
+    border-radius: 24px; /* Esquinas curvas consistentes con la UI de la app */
+    padding: 45px;
+    box-shadow: 0 4px 25px rgba(216, 75, 22, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.privacy-header h2 {
+    color: #2D2D2D;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.update-date {
+    font-size: 13.5px;
+    color: #666666;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.update-date i {
+    color: #00B652; /* Ícono de protección legal en Verde */
+}
+
+.separator {
+    border: 0;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.06);
+    margin: 25px 0;
+}
+
+/* CUERPO DEL DOCUMENTO */
+.privacy-body {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.privacy-section h3 {
+    color: #D84B16; /* Subtítulos en naranja corporativo */
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.privacy-section p {
+    font-size: 15px;
+    color: #555555;
+    text-align: justify;
+}
+
+/* CAJA DE SOPORTE Y SEGURO */
+.privacy-notice {
+    display: flex;
+    gap: 20px;
+    background-color: #E6F8EE; /* Fondo pastel verde para transmitir confianza y seguridad */
+    padding: 25px;
+    border-radius: 16px;
+    align-items: center;
+    border-left: 5px solid #00B652; /* Acento grueso verde en el borde lateral */
+}
+
+.notice-icon {
+    font-size: 32px;
+    color: #00B652;
+}
+
+.notice-text h4 {
+    color: #2D2D2D;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.notice-text p {
+    font-size: 14px;
+    color: #666666;
+}
+
+/* --- FOOTER SIMPLE --- */
+.footer-simple {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #FFFFFF;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    color: #888888;
+    font-size: 13px;
+    margin-top: 50px;
+}
+
+/* Adaptabilidad Móvil */
+@media (max-width: 600px) {
+    .privacy-box { padding: 25px; }
+    .privacy-header h2 { font-size: 22px; }
+    .privacy-notice { flex-direction: column; text-align: center; }
+}
