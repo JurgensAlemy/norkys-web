@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libro de Reclamaciones - Norky's</title>
+    <link rel="stylesheet" href="css/reclamaciones.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                Norky's<span class="dot">.</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+                <a href="menu.html" class="btn-menu"><i class="fa-solid fa-utensils"></i> Ver Menú</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Libro de Reclamaciones Virtual</h1>
+            <p>Conforme a lo establecido en el Código de Protección y Defensa del Consumidor de la República del Perú.</p>
+        </div>
+    </section>
+
+    <main class="main-container">
+        
+        <section class="form-section">
+            <div class="form-container">
+                <div class="form-header-legal">
+                    <div class="legal-text">
+                        <h2>Hoja de Reclamación</h2>
+                        <p>RUC: 20100456781 | NORKY'S S.A.C.</p>
+                    </div>
+                    <div class="legal-badge">
+                        <span>N° Hoja: 2026-00412</span>
+                    </div>
+                </div>
+
+                <form action="#" method="POST" class="reclamacion-form">
+                    
+                    <div class="form-section-title">
+                        <span class="step-number">1</span>
+                        <h3>Identificación del Consumidor Reclamante</h3>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombres</label>
+                            <input type="text" id="nombre" name="nombre" required placeholder="Ej. Stephano Mateo">
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido">Apellidos</label>
+                            <input type="text" id="apellido" name="apellido" required placeholder="Ej. Pereira Hacha">
+                        </div>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="tipo_doc">Tipo de Documento</label>
+                            <select id="tipo_doc" name="tipo_doc" required>
+                                <option value="dni">DNI</option>
+                                <option value="ce">Carnet de Extranjería</option>
+                                <option value="pasaporte">Pasaporte</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="num_doc">Número de Documento</label>
+                            <input type="text" id="num_doc" name="num_doc" required placeholder="Ej. 74589632">
+                        </div>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="telefono">Teléfono / Celular</label>
+                            <input type="tel" id="telefono" name="telefono" required placeholder="Ej. 987654321">
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">Correo Electrónico</label>
+                            <input type="email" id="correo" name="correo" required placeholder="correo@ejemplo.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Domicilio</label>
+                        <input type="text" id="direccion" name="direccion" required placeholder="Ej. Av. Lima Sur 415, Chosica">
+                    </div>
+
+
+                    <div class="form-section-title">
+                        <span class="step-number">2</span>
+                        <h3>Identificación del Bien Contratado</h3>
+                    </div>
+
+                    <div class="form-group-radio">
+                        <label class="radio-label">Tipo de Bien:</label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="tipo_bien" value="producto" checked> Producto <span>(Comida / Bebidas)</span></label>
+                            <label><input type="radio" name="tipo_bien" value="servicio"> Servicio <span>(Atención / Delivery)</span></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="monto">Monto Reclamado (S/)</label>
+                        <input type="number" step="0.10" id="monto" name="monto" placeholder="Ej. 89.90">
+                    </div>
+
+
+                    <div class="form-section-title">
+                        <span class="step-number">3</span>
+                        <h3>Detalle de la Reclamación</h3>
+                    </div>
+
+                    <div class="form-group-radio">
+                        <label class="radio-label">Tipo de Incidencia:</label>
+                        <div class="radio-options">
+                            <label><input type="radio" name="tipo_incidencia" value="reclamo" checked> Reclamo <span>(Disconformidad con el producto)</span></label>
+                            <label><input type="radio" name="tipo_incidencia" value="queja"> Queja <span>(Malestar con la atención)</span></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="detalle">Detalle del Reclamo o Queja</label>
+                        <textarea id="detalle" name="detalle" rows="5" required placeholder="Describe de forma detallada lo sucedido con tu pedido o la atención..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pedido_consumidor">Pedido o Solicitud del Consumidor</label>
+                        <textarea id="pedido_consumidor" name="pedido_consumidor" rows="3" required placeholder="¿Qué solución esperas por parte del establecimiento?"></textarea>
+                    </div>
+
+
+                    <div class="legal-checkbox">
+                        <label>
+                            <input type="checkbox" required> Declaro ser el titular del reclamo y autorizo el tratamiento de mis datos personales únicamente para la gestión de esta hoja de reclamación.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Enviar Hoja de Reclamación <i class="fa-solid fa-file-signature"></i></button>
+
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer-simple">
+        <p>© 2026 Norky's. Todos los derechos reservados. Hecho con pasión por el sabor peruano.</p>
+    </footer>
+
+</body>
+</html>
