@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rastrear Pedido - Norky's</title>
+    <link rel="stylesheet" href="css/rastreo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                Norky's<span class="dot">.</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+                <a href="menu.html" class="btn-menu"><i class="fa-solid fa-utensils"></i> Ver Menú</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Rastrea tu Pedido</h1>
+            <p>Sigue el estado de tu combo familiar, pollos o parrillas en tiempo real desde la cocina hasta tu mesa.</p>
+        </div>
+    </section>
+
+    <main class="main-container">
+        
+        <div class="tracker-search-box">
+            <h2>Consulta un pedido activo</h2>
+            <p>Ingresa el código único enviado a tu correo o SMS para conocer el estado exacto del delivery.</p>
+            <div class="search-input-wrapper">
+                <i class="fa-solid fa-receipt search-icon"></i>
+                <input type="text" placeholder="Ej. NK-2026-8954" id="orderCodeInput">
+                <button class="btn-track">Buscar Pedido</button>
+            </div>
+        </div>
+
+        <section class="tracking-panel">
+            <div class="panel-header">
+                <div class="order-id">
+                    <h3>Pedido: <span>NK-2026-8954</span></h3>
+                    <p class="store-assigned"><i class="fa-solid fa-shop"></i> Asignado a: Norky's Chosica</p>
+                </div>
+                <div class="order-eta">
+                    <p class="eta-label">Tiempo estimado de entrega</p>
+                    <p class="eta-time">20 - 30 min</p>
+                </div>
+            </div>
+
+            <div class="stepper-wrapper">
+                
+                <div class="step-item completed">
+                    <div class="step-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div class="step-content">
+                        <h4>Pedido Recibido</h4>
+                        <p>Tu orden ha sido confirmada y registrada en el sistema de caja.</p>
+                    </div>
+                </div>
+
+                <div class="step-item completed">
+                    <div class="step-icon">
+                        <i class="fa-solid fa-fire-burner"></i>
+                    </div>
+                    <div class="step-content">
+                        <h4>En Cocina</h4>
+                        <p>Nuestros maestros parrilleros están preparando tus platos al punto exacto.</p>
+                    </div>
+                </div>
+
+                <div class="step-item active">
+                    <div class="step-icon">
+                        <i class="fa-solid fa-motorcycle"></i>
+                    </div>
+                    <div class="step-content">
+                        <h4>En Camino</h4>
+                        <p>Tu pedido va calientito rumbo a tu dirección en manos de nuestro motorizado.</p>
+                    </div>
+                </div>
+
+                <div class="step-item pending">
+                    <div class="step-icon">
+                        <i class="fa-solid fa-house-chimney"></i>
+                    </div>
+                    <div class="step-content">
+                        <h4>Entregado</h4>
+                        <p>¡Listo! Disfruta del verdadero sabor peruano en la comodidad de tu hogar.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="delivery-profile">
+                <div class="avatar-box">
+                    <i class="fa-solid fa-user-ninja"></i>
+                </div>
+                <div class="profile-info">
+                    <h4>Tu repartidor asignado:</h4>
+                    <p class="driver-name">Carlos Mendoza</p>
+                    <p class="driver-status"><span class="badge-live">● EN VIVO</span> Conduciendo motocicleta</p>
+                </div>
+                <a href="tel:987654321" class="btn-call-driver"><i class="fa-solid fa-comment-dots"></i> Llamar</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer-simple">
+        <p>© 2026 Norky's. Todos los derechos reservados. Hecho con pasión por el sabor peruano.</p>
+    </footer>
+
+</body>
+</html>
