@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicio al Cliente - Norky's</title>
+    <link rel="stylesheet" href="css/servicio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                Norky's<span class="dot">.</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+                <a href="menu.html" class="btn-menu"><i class="fa-solid fa-utensils"></i> Ver Menú</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Servicio al Cliente</h1>
+            <p>¿Tienes dudas con tu pedido, un inconveniente o quieres dejarnos una sugerencia? Estamos aquí para ayudarte de inmediato.</p>
+        </div>
+    </section>
+
+    <main class="main-container">
+        
+        <section class="canales-grid">
+            <div class="canal-card">
+                <div class="canal-icon icon-orange">
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+                <h3>Central Telefónica</h3>
+                <p>Llámanos para consultas rápidas o soporte en vivo con tus pedidos de delivery.</p>
+                <a href="tel:016126000" class="canal-link">(01) 612-6000</a>
+            </div>
+
+            <div class="canal-card">
+                <div class="canal-icon icon-green">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <h3>Correo Electrónico</h3>
+                <p>Escríbenos para soporte técnico, consultas corporativas o comentarios detallados.</p>
+                <a href="mailto:atencion@norkys.pe" class="canal-link">atencion@norkys.pe</a>
+            </div>
+
+            <div class="canal-card">
+                <div class="canal-icon icon-pink">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+                <h3>Horario de Atención</h3>
+                <p>Nuestro equipo de soporte digital está activo para resolver tus dudas todos los días.</p>
+                <span class="canal-info-text">Lun - Dom: 11:00 AM - 11:00 PM</span>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <div class="form-container">
+                <h2>Formulario de Contacto Directo</h2>
+                <p>Déjanos un mensaje y un asesor del equipo de atención al cliente te responderá en un plazo máximo de 24 horas.</p>
+                
+                <form action="#" method="POST" class="servicio-form">
+                    
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" required placeholder="Ej. Juan Mateo">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono de Contacto</label>
+                            <input type="tel" id="telefono" name="telefono" required placeholder="Ej. 987654321">
+                        </div>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="correo">Correo Electrónico</label>
+                            <input type="email" id="correo" name="correo" required placeholder="correo@ejemplo.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo_consulta">Motivo del Mensaje</label>
+                            <select id="tipo_consulta" name="tipo_consulta" required>
+                                <option value="" disabled selected>Selecciona una opción</option>
+                                <option value="pedido">Inconveniente con mi Pedido Actual</option>
+                                <option value="facturacion">Duda sobre Comprobante / Facturación</option>
+                                <option value="cuenta">Problemas con mi Cuenta o Login</option>
+                                <option value="sugerencia">Felicitación o Sugerencia</option>
+                                <option value="otros">Otros Asuntos</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="codigo_pedido">Código de Pedido (Opcional)</label>
+                        <input type="text" id="codigo_pedido" name="codigo_pedido" placeholder="Ej. NK-2026-8954">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Escribe tu mensaje detallado</label>
+                        <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Cuéntanos con el mayor detalle posible cómo podemos ayudarte hoy..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Enviar Mensaje <i class="fa-solid fa-paper-plane"></i></button>
+
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer-simple">
+        <p>© 2026 Norky's. Todos los derechos reservados. Hecho con pasión por el sabor peruano.</p>
+    </footer>
+
+</body>
+</html>
