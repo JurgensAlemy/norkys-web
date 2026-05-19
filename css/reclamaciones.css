@@ -1,0 +1,334 @@
+/* ==========================================================================
+   Estilos para el Libro de Reclamaciones - Norky's
+   Mantiene la identidad de colores: Naranja (#D84B16), Verde (#00B652) y Crema (#FFF9F5)
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #FFF9F5; /* Fondo crema corporativo */
+    color: #2D2D2D;
+    line-height: 1.6;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: #D84B16;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo .dot {
+    color: #00B652;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #555555;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.nav-menu .btn-menu {
+    background-color: #00B652;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu .btn-menu:hover {
+    background-color: #009440;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    background-color: #D84B16;
+    background-image: linear-gradient(135deg, #D84B16 0%, #F15A24 100%);
+    color: #FFFFFF;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.hero-section h1 {
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.hero-section p {
+    font-size: 15px;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.main-container {
+    max-width: 900px; /* Tamaño controlado estilo ficha técnica */
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* --- FORMULARIO CONTAINER --- */
+.form-section {
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    box-shadow: 0 4px 25px rgba(216, 75, 22, 0.04);
+    border: 1px solid rgba(216, 75, 22, 0.05);
+    overflow: hidden;
+}
+
+.form-container {
+    padding: 40px;
+}
+
+/* CABECERA FORMULARIO LEGAL */
+.form-header-legal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #FFF9F5;
+    padding-bottom: 25px;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.legal-text h2 {
+    color: #D84B16;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.legal-text p {
+    font-size: 13px;
+    color: #777777;
+    margin-top: 2px;
+}
+
+.legal-badge {
+    background-color: #FFEFE8;
+    color: #D84B16;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    border: 1px solid rgba(216, 75, 22, 0.1);
+}
+
+/* TÍTULOS DE LAS SECCIONES INTERNAS */
+.form-section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    padding-bottom: 8px;
+}
+
+.step-number {
+    background-color: #D84B16;
+    color: #FFFFFF;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.form-section-title h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2D2D2D;
+}
+
+/* ELEMENTOS DEL FORMULARIO */
+.reclamacion-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.form-group label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #444444;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #FFF9F5; /* Tono crema del diseño original */
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    color: #2D2D2D;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    border-color: #D84B16;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(216, 75, 22, 0.06);
+}
+
+/* OPCIONES DE RADIO BUTTONS */
+.form-group-radio {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.radio-label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #444444;
+}
+
+.radio-options {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.radio-options label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2D2D2D;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.radio-options input[type="radio"] {
+    accent-color: #D84B16; /* Color naranja para la selección nativa */
+    width: 16px;
+    height: 16px;
+}
+
+.radio-options label span {
+    font-size: 12px;
+    color: #888888;
+    font-weight: 400;
+}
+
+/* CHECKBOX LEGAL */
+.legal-checkbox {
+    margin-top: 10px;
+    background-color: #FFF9F5;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(216, 75, 22, 0.05);
+}
+
+.legal-checkbox label {
+    font-size: 13px;
+    color: #555555;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+}
+
+.legal-checkbox input[type="checkbox"] {
+    accent-color: #D84B16;
+    margin-top: 3px;
+}
+
+/* BOTÓN ENVIAR HOJA */
+.btn-submit {
+    background-color: #00B652; /* Botón verde de conversión oficial */
+    color: #FFFFFF;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    align-self: center;
+    min-width: 260px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 15px;
+}
+
+.btn-submit:hover {
+    background-color: #009440;
+    transform: translateY(-1px);
+}
+
+/* --- FOOTER SIMPLE --- */
+.footer-simple {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #FFFFFF;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    color: #888888;
+    font-size: 13px;
+    margin-top: 50px;
+}
+
+/* Adaptabilidad Móvil */
+@media (max-width: 650px) {
+    .form-header-legal { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .form-group-row { flex-direction: column; gap: 20px; }
+    .radio-options { flex-direction: column; gap: 12px; }
+    .form-container { padding: 25px; }
+    .btn-submit { width: 100%; }
+}
