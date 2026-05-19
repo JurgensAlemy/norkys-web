@@ -1,0 +1,334 @@
+/* ==========================================================================
+   Estilos para la página Zonas de Reparto - Norky's
+   Mantiene la identidad de colores: Naranja (#D84B16), Verde (#00B652) y Crema (#FFF9F5)
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #FFF9F5; /* Fondo crema corporativo */
+    color: #2D2D2D;
+    line-height: 1.6;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: #D84B16;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo .dot {
+    color: #00B652;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #555555;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.nav-menu .btn-menu {
+    background-color: #00B652;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu .btn-menu:hover {
+    background-color: #009440;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    background-color: #D84B16;
+    background-image: linear-gradient(135deg, #D84B16 0%, #F15A24 100%);
+    color: #FFFFFF;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero-section h1 {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.hero-section p {
+    font-size: 16px;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.main-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* --- COBERTURA CHECKER (Caja Buscadora Potente) --- */
+.cobertura-checker {
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    padding: 35px;
+    text-align: center;
+    box-shadow: 0 4px 25px rgba(216, 75, 22, 0.04);
+    border: 1px solid rgba(216, 75, 22, 0.05);
+    margin-bottom: 45px;
+}
+
+.cobertura-checker h2 {
+    color: #D84B16;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.cobertura-checker p {
+    font-size: 14.5px;
+    color: #666666;
+    margin-bottom: 25px;
+}
+
+.cobertura-checker .search-input-wrapper {
+    position: relative;
+    max-width: 650px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+}
+
+.cobertura-checker .search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #D84B16;
+    font-size: 18px;
+}
+
+.cobertura-checker input {
+    width: 100%;
+    padding: 16px 16px 16px 50px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background-color: #FFF9F5;
+    border-radius: 50px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.cobertura-checker input:focus {
+    border-color: #D84B16;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(216, 75, 22, 0.08);
+}
+
+.btn-check {
+    background-color: #00B652;
+    color: #FFFFFF;
+    border: none;
+    padding: 0 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-check:hover {
+    background-color: #009440;
+}
+
+/* --- SECCIÓN DISTRITOS --- */
+.distritos-section {
+    margin-bottom: 45px;
+}
+
+.distritos-section h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #2D2D2D;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.distritos-section .subtitle {
+    text-align: center;
+    color: #777777;
+    font-size: 14.5px;
+    margin-bottom: 35px;
+}
+
+/* GRID DE ZONAS */
+.distritos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.zona-card {
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.zona-header {
+    padding: 18px 25px;
+    color: #FFFFFF;
+}
+
+.zona-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Cabeceras consistentes basadas en la paleta original */
+.h-orange { background: linear-gradient(135deg, #D84B16 0%, #F15A24 100%); }
+.h-green { background: linear-gradient(135deg, #00B652 0%, #00D15E 100%); }
+.h-pink { background: linear-gradient(135deg, #FF4D6D 0%, #FF758F 100%); }
+
+.distritos-list {
+    list-style: none;
+    padding: 25px;
+}
+
+.distritos-list li {
+    font-size: 14.5px;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    color: #333333;
+    font-weight: 600;
+    position: relative;
+    padding-left: 25px;
+}
+
+.distritos-list li:last-child {
+    border-bottom: none;
+}
+
+.distritos-list li i {
+    color: #00B652;
+    font-size: 15px;
+    position: absolute;
+    left: 0;
+    top: 14px;
+}
+
+.distritos-list li span {
+    font-size: 12px;
+    color: #888888;
+    font-weight: 400;
+    margin-top: 2px;
+}
+
+/* --- CONDICIONES BOX --- */
+.condiciones-box {
+    background-color: #FFEFE8;
+    border-radius: 24px;
+    padding: 30px;
+    border: 1px dashed rgba(216, 75, 22, 0.2);
+}
+
+.condiciones-box h3 {
+    color: #D84B16;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.condiciones-box ul {
+    list-style: none;
+}
+
+.condiciones-box ul li {
+    font-size: 14px;
+    color: #555555;
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.condiciones-box ul li::before {
+    content: "•";
+    color: #D84B16;
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    left: 0;
+    top: -3px;
+}
+
+.condiciones-box ul li:last-child {
+    margin-bottom: 0;
+}
+
+/* --- FOOTER SIMPLE --- */
+.footer-simple {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #FFFFFF;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    color: #888888;
+    font-size: 13px;
+    margin-top: 50px;
+}
+
+/* Adaptabilidad Móvil */
+@media (max-width: 650px) {
+    .cobertura-checker .search-input-wrapper {
+        flex-direction: column;
+    }
+    .cobertura-checker .search-icon {
+        top: 26px;
+    }
+    .btn-check {
+        padding: 15px;
+        width: 100%;
+    }
+    .distritos-section h2 { font-size: 22px; }
+}
