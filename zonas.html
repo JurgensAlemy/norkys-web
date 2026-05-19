@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zonas de Reparto - Norky's</title>
+    <link rel="stylesheet" href="css/zonas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                Norky's<span class="dot">.</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+                <a href="menu.html" class="btn-menu"><i class="fa-solid fa-utensils"></i> Ver Menú</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Zonas de Reparto</h1>
+            <p>Verifica si tu dirección se encuentra dentro de nuestra cobertura para llevarte el sabor de Norky's directo a tu mesa.</p>
+        </div>
+    </section>
+
+    <main class="main-container">
+        
+        <div class="cobertura-checker">
+            <h2>¿Llegamos a tu casa?</h2>
+            <p>Ingresa tu calle o avenida para comprobar si tenemos cobertura de delivery en tiempo real.</p>
+            <div class="search-input-wrapper">
+                <i class="fa-solid fa-location-dot search-icon"></i>
+                <input type="text" placeholder="Ej. Av. Larco 450, Miraflores..." id="addressInput">
+                <button class="btn-check">Verificar</button>
+            </div>
+        </div>
+
+        <section class="distritos-section">
+            <h2>Distritos con Cobertura Total o Parcial</h2>
+            <p class="subtitle">Selecciona una zona para ver el detalle de calles y restricciones de horario.</p>
+            
+            <div class="distritos-grid">
+                
+                <div class="zona-card">
+                    <div class="zona-header h-orange">
+                        <h3><i class="fa-solid fa-city"></i> Lima Centro</h3>
+                    </div>
+                    <ul class="distritos-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Cercado de Lima <span>(Hasta las 11:00 PM)</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> Breña <span>(Cobertura Total)</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> Jesús María <span>(Cobertura Total)</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> Lince <span>(Cobertura Total)</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> La Victoria <span>(Zonas seleccionadas)</span></li>
+                    </ul>
+                </div>
+
+                <div class="zona-card">
+                    <div class="zona-header h-green">
+                        <h3><i class="fa-solid fa-mountain-sun"></i> Lima Este</h3>
+                    </div>
+                    <ul class="distritos-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Ate <span>(Hasta el óvalo de Santa Anita)</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> Chosica <span>(Casco urbano central)</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> Santa Anita <span>(Cobertura Total)</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> El Agustino <span>(Zonas bajas)</span></li>
+                    </ul>
+                </div>
+
+                <div class="zona-card">
+                    <div class="zona-header h-pink">
+                        <h3><i class="fa-solid fa-umbrella-beach"></i> Lima Sur / Top</h3>
+                    </div>
+                    <ul class="distritos-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Miraflores <span>(Cobertura Total - 24h fines de semana)</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> San Borja <span>(Cobertura Total)</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> Santiago de Surco <span>(Cobertura Total)</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> Chorrillos <span>(Zona urbana y playas)</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> Barranco <span>(Cobertura Total)</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="condiciones-box">
+            <h3><i class="fa-solid fa-circle-info"></i> Términos de nuestro Delivery</h3>
+            <ul>
+                <li>El tiempo estimado de entrega regular varía entre <strong>30 a 45 minutos</strong> dependiendo del tráfico de la zona.</li>
+                <li>El costo de envío base es de <strong>S/ 5.00</strong>, pudiendo variar según distancias extremas o promociones exclusivas.</li>
+                <li>Por motivos de seguridad para nuestros repartidores, existen calles con restricciones de ingreso a partir de las <strong>9:00 PM</strong>.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="footer-simple">
+        <p>© 2026 Norky's. Todos los derechos reservados. Hecho con pasión por el sabor peruano.</p>
+    </footer>
+
+</body>
+</html>
