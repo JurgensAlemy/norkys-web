@@ -1,0 +1,416 @@
+/* ==========================================================================
+   Estilos para la página Rastrear Pedido - Norky's
+   Mantiene la identidad de colores: Naranja (#D84B16), Verde (#00B652) y Crema (#FFF9F5)
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #FFF9F5; /* Fondo crema de la app */
+    color: #2D2D2D;
+    line-height: 1.6;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: #D84B16;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo .dot {
+    color: #00B652;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #555555;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.nav-menu .btn-menu {
+    background-color: #00B652;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu .btn-menu:hover {
+    background-color: #009440;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    background-color: #D84B16;
+    background-image: linear-gradient(135deg, #D84B16 0%, #F15A24 100%);
+    color: #FFFFFF;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero-section h1 {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.hero-section p {
+    font-size: 16px;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.main-container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* --- CONSULTA BUSCADOR --- */
+.tracker-search-box {
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    padding: 35px;
+    text-align: center;
+    box-shadow: 0 4px 25px rgba(216, 75, 22, 0.04);
+    border: 1px solid rgba(216, 75, 22, 0.05);
+    margin-bottom: 40px;
+}
+
+.tracker-search-box h2 {
+    color: #D84B16;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.tracker-search-box p {
+    font-size: 14.5px;
+    color: #666666;
+    margin-bottom: 25px;
+}
+
+.tracker-search-box .search-input-wrapper {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+}
+
+.tracker-search-box .search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #D84B16;
+    font-size: 18px;
+}
+
+.tracker-search-box input {
+    width: 100%;
+    padding: 16px 16px 16px 50px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background-color: #FFF9F5;
+    border-radius: 50px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.tracker-search-box input:focus {
+    border-color: #D84B16;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(216, 75, 22, 0.06);
+}
+
+.btn-track {
+    background-color: #D84B16;
+    color: #FFFFFF;
+    border: none;
+    padding: 0 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-track:hover {
+    background-color: #BC3E10;
+}
+
+/* --- PANEL DE SEGUIMIENTO ACTIVO --- */
+.tracking-panel {
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #FFF9F5;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.order-id h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #2D2D2D;
+}
+
+.order-id h3 span {
+    color: #D84B16;
+}
+
+.store-assigned {
+    font-size: 13.5px;
+    color: #777777;
+    margin-top: 2px;
+}
+
+.store-assigned i {
+    color: #D84B16;
+    margin-right: 4px;
+}
+
+.order-eta {
+    text-align: right;
+}
+
+.eta-label {
+    font-size: 12px;
+    color: #888888;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.eta-time {
+    font-size: 24px;
+    font-weight: 800;
+    color: #00B652; /* Verde oficial */
+}
+
+/* LÍNEA DE TIEMPO INTERNA (STEPPER) */
+.stepper-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 35px;
+}
+
+.stepper-wrapper::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 15px;
+    bottom: 15px;
+    width: 3px;
+    background-color: rgba(0,0,0,0.06);
+    z-index: 1;
+}
+
+.step-item {
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.step-item:last-child {
+    padding-bottom: 0;
+}
+
+.step-icon {
+    position: absolute;
+    left: -40px;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #FFF9F5;
+    border: 2px solid rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    z-index: 2;
+    color: #888888;
+    transition: all 0.3s ease;
+}
+
+.step-content h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #666666;
+}
+
+.step-content p {
+    font-size: 13.5px;
+    color: #888888;
+    margin-top: 2px;
+}
+
+/* Variaciones del Stepper */
+.step-item.completed .step-icon {
+    background-color: #E6F8EE;
+    border-color: #00B652;
+    color: #00B652;
+}
+.step-item.completed .step-content h4 {
+    color: #2D2D2D;
+}
+
+.step-item.active .step-icon {
+    background-color: #FFEFE8;
+    border-color: #D84B16;
+    color: #D84B16;
+    animation: pulseIcon 2s infinite;
+}
+.step-item.active .step-content h4 {
+    color: #D84B16;
+    font-weight: 800;
+}
+.step-item.active .step-content p {
+    color: #444444;
+}
+
+@keyframes pulseIcon {
+    0% { box-shadow: 0 0 0 0 rgba(216, 75, 22, 0.4); }
+    70% { box-shadow: 0 0 0 8px rgba(216, 75, 22, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(216, 75, 22, 0); }
+}
+
+/* PERFIL DE REPARTIDOR */
+.delivery-profile {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    background-color: #FFF9F5;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(216, 75, 22, 0.05);
+}
+
+.avatar-box {
+    width: 50px;
+    height: 50px;
+    background-color: #FFEFE8;
+    color: #D84B16;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info h4 {
+    font-size: 13px;
+    color: #777777;
+    font-weight: 600;
+}
+
+.driver-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2D2D2D;
+}
+
+.driver-status {
+    font-size: 11px;
+    font-weight: 700;
+    color: #D84B16;
+    margin-top: 2px;
+    letter-spacing: 0.3px;
+}
+
+.badge-live {
+    animation: blinkLive 1.5s infinite;
+}
+
+@keyframes blinkLive {
+    0% { opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+.btn-call-driver {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(216, 75, 22, 0.2);
+    color: #D84B16;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 13.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-call-driver:hover {
+    background-color: #FFEFE8;
+}
+
+/* --- FOOTER SIMPLE --- */
+.footer-simple {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #FFFFFF;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    color: #888888;
+    font-size: 13px;
+    margin-top: 50px;
+}
+
+/* Adaptabilidad Móvil */
+@media (max-width: 650px) {
+    .panel-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .order-eta { text-align: left; }
+    .tracker-search-box .search-input-wrapper { flex-direction: column; }
+    .btn-track { padding: 15px; width: 100%; }
+    .delivery-profile { flex-direction: column; text-align: center; gap: 15px; }
+    .btn-call-driver { width: 100%; }
+}
