@@ -1,0 +1,68 @@
+<header class="header">
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <a href="#"><i class="fa-solid fa-location-dot"></i> Enviar a: <strong>Lima - Chosica</strong></a>
+            <a href="rastreo.html">Rastrear pedido</a>
+            <a href="locales.html">Locales</a>
+            <a href="servicio.html">Servicio al cliente</a>
+        </div>
+        <div class="top-bar-right">
+            <a href="zonas.html">Zonas de reparto</a>
+            <a href="#">Descarga la app</a>
+        </div>
+    </div>
+
+    <div class="main-header">
+        <div class="logo">
+            <a href="index.html" class="logo-link">
+                <img src="imgs/logoNorkys.png" alt="Norky's Logo" class="logo-img" />
+            </a>
+        </div>
+
+        <div class="search-container">
+            <select class="search-category">
+                <option>Todo el menú</option>
+                <option>Combos</option>
+                <option>Pollos</option>
+            </select>
+            <input type="text" class="search-input" placeholder="¿Qué te provoca pedir hoy?" />
+            <button class="search-button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="user-actions">
+            <a href="login.html" class="action-item" id="header-user-link">
+                <i class="fa-regular fa-user"></i>
+                <div class="action-text">
+                    <span>Hola, ingresa</span>
+                    <strong>Mi cuenta <i class="fa-solid fa-chevron-down" style="font-size:10px"></i></strong>
+                </div>
+            </a>
+            <a href="cart.html" class="cart-button">
+                <i class="fa-solid fa-basket-shopping"></i>
+                <strong id="header-cart-total">S/ 0.00</strong>
+                <span class="cart-badge" id="header-cart-badge" style="display:none;">0</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="nav-bar">
+        <button class="btn-categories" onclick="window.location.href='menu.html'">
+            <i class="fa-solid fa-bars"></i> Menú
+        </button>
+        <nav class="nav-links pill-nav">
+            <a href="menu.html#pollos"       class="category-pill"><i class="fa-solid fa-drumstick-bite"></i> Pollos a la Brasa</a>
+            <a href="menu.html#parrillas"    class="category-pill"><i class="fa-solid fa-fire-burner"></i> Parrillas</a>
+            <a href="menu.html#combos"       class="category-pill"><i class="fa-solid fa-user-group"></i> Combos Especiales</a>
+            <a href="menu.html#hamburguesas" class="category-pill"><i class="fa-solid fa-burger"></i> Hamburguesas</a>
+            <a href="menu.html#bebidas"      class="category-pill"><i class="fa-solid fa-glass-water"></i> Bebidas</a>
+            <a href="menu.html#postres"      class="category-pill"><i class="fa-solid fa-ice-cream"></i> Postres</a>
+            <a href="menu.html#porciones"    class="category-pill"><i class="fa-solid fa-utensils"></i> Porciones</a>
+        </nav>
+        <div class="flash-offers">
+            <i class="fa-solid fa-fire"></i>
+            HORA DEL ALMUERZO - termina en <strong id="header-countdown">02:30:00</strong>
+        </div>
+    </div>
+</header>

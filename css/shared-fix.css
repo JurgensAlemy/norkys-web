@@ -1,0 +1,24 @@
+/* ==========================================================================
+   shared-fix.css — Incluir en TODAS las páginas secundarias
+   SIEMPRE después del CSS propio de la página
+   ========================================================================== */
+
+/* Ocultar el navbar viejo que ya no se usa */
+.navbar {
+    display: none !important;
+}
+
+/* Ocultar footer-simple hardcodeado si quedó en algún HTML */
+.footer-simple {
+    display: none !important;
+}
+
+/* El hero-section de las páginas secundarias no necesita margin-top extra */
+.hero-section {
+    margin-top: 0 !important;
+}
+
+/* Espaciado inferior del contenido antes del footer */
+.main-container {
+    padding-bottom: 60px;
+}

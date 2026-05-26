@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestros Locales - Norky's</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/locales.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/shared-fix.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
 
-    <header class="navbar">
-        <div class="navbar-container">
-            <a href="index.html" class="logo">
-                Norky's<span class="dot">.</span>
-            </a>
-            <nav class="nav-menu">
-                <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
-                <a href="menu.html" class="btn-menu"><i class="fa-solid fa-utensils"></i> Ver Menú</a>
-            </nav>
-        </div>
-    </header>
+<body>
+    <div id="header-placeholder"></div>
 
     <section class="hero-section">
         <div class="hero-content">
@@ -29,7 +22,6 @@
     </section>
 
     <main class="main-container">
-        
         <div class="search-filter-box">
             <div class="search-input-wrapper">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
@@ -37,12 +29,11 @@
             </div>
             <button class="btn-filter"><i class="fa-solid fa-location-crosshairs"></i> Usar mi ubicación</button>
         </div>
-
         <section class="locales-grid">
-            
             <div class="local-card">
                 <div class="local-image">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Norky's Chosica">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80"
+                        alt="Norky's Chosica">
                     <span class="status-badge open">Abierto</span>
                 </div>
                 <div class="local-info">
@@ -53,15 +44,14 @@
                         <span><i class="fa-solid fa-motorcycle"></i> Delivery</span>
                         <span><i class="fa-solid fa-shop"></i> Salón</span>
                     </p>
-                    <a href="https://maps.google.com" target="_blank" class="btn-map">
-                        <i class="fa-solid fa-map-location-dot"></i> Cómo llegar
-                    </a>
+                    <a href="https://maps.google.com" target="_blank" class="btn-map"><i
+                            class="fa-solid fa-map-location-dot"></i> Cómo llegar</a>
                 </div>
             </div>
-
             <div class="local-card">
                 <div class="local-image">
-                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Norky's Miraflores">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80"
+                        alt="Norky's Miraflores">
                     <span class="status-badge open">Abierto</span>
                 </div>
                 <div class="local-info">
@@ -72,15 +62,14 @@
                         <span><i class="fa-solid fa-motorcycle"></i> Delivery</span>
                         <span><i class="fa-solid fa-shop"></i> Salón</span>
                     </p>
-                    <a href="https://maps.google.com" target="_blank" class="btn-map">
-                        <i class="fa-solid fa-map-location-dot"></i> Cómo llegar
-                    </a>
+                    <a href="https://maps.google.com" target="_blank" class="btn-map"><i
+                            class="fa-solid fa-map-location-dot"></i> Cómo llegar</a>
                 </div>
             </div>
-
             <div class="local-card">
                 <div class="local-image">
-                    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=600&q=80" alt="Norky's Centro de Lima">
+                    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=600&q=80"
+                        alt="Norky's Centro de Lima">
                     <span class="status-badge open">Abierto</span>
                 </div>
                 <div class="local-info">
@@ -91,19 +80,17 @@
                         <span><i class="fa-solid fa-motorcycle"></i> Delivery</span>
                         <span><i class="fa-solid fa-shop"></i> Salón</span>
                     </p>
-                    <a href="https://maps.google.com" target="_blank" class="btn-map">
-                        <i class="fa-solid fa-map-location-dot"></i> Cómo llegar
-                    </a>
+                    <a href="https://maps.google.com" target="_blank" class="btn-map"><i
+                            class="fa-solid fa-map-location-dot"></i> Cómo llegar</a>
                 </div>
             </div>
-
         </section>
-
     </main>
 
-    <footer class="footer-simple">
-        <p>&copy; 2026 Norky's. Todos los derechos reservados. Hecho con pasión por el sabor peruano.</p>
-    </footer>
+    <div id="footer-placeholder"></div>
 
+    <script src="js/db.js"></script>
+    <script src="js/components.js"></script>
 </body>
+
 </html>

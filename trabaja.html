@@ -1,63 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trabaja con Nosotros - Norky's</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/trabaja.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/shared-fix.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
 
-    <header class="navbar">
-        <div class="navbar-container">
-            <a href="index.html" class="logo">
-                Norky's<span class="dot">.</span>
-            </a>
-            <nav class="nav-menu">
-                <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
-                <a href="menu.html" class="btn-menu"><i class="fa-solid fa-utensils"></i> Ver Menú</a>
-            </nav>
-        </div>
-    </header>
+<body>
+    <div id="header-placeholder"></div>
 
     <section class="hero-section">
         <div class="hero-content">
             <h1>¡Únete a la Familia Norky's!</h1>
-            <p>Buscamos personas apasionadas, con ganas de crecer y compartir momentos felices alrededor del mejor sabor del Perú.</p>
+            <p>Buscamos personas apasionadas, con ganas de crecer y compartir momentos felices alrededor del mejor sabor
+                del Perú.</p>
         </div>
     </section>
 
     <main class="main-container">
-        
         <section class="beneficios-section">
             <h2>¿Por qué trabajar con nosotros?</h2>
             <div class="beneficios-grid">
                 <div class="beneficio-card">
                     <i class="fa-solid fa-briefcase icon-orange"></i>
                     <h3>Línea de Carrera</h3>
-                    <p>Te capacitamos constantemente para que puedas escalar posiciones dentro de nuestra gran red de restaurantes.</p>
+                    <p>Te capacitamos constantemente para que puedas escalar posiciones dentro de nuestra gran red de
+                        restaurantes.</p>
                 </div>
                 <div class="beneficio-card">
                     <i class="fa-solid fa-scale-balanced icon-green"></i>
                     <h3>Flexibilidad de Horarios</h3>
-                    <p>Contamos con turnos que se adaptan perfectamente a tus responsabilidades familiares o estudios universitarios.</p>
+                    <p>Contamos con turnos que se adaptan perfectamente a tus responsabilidades familiares o estudios
+                        universitarios.</p>
                 </div>
                 <div class="beneficio-card">
                     <i class="fa-solid fa-cake-candles icon-pink"></i>
                     <h3>Excelente Clima</h3>
-                    <p>Formarás parte de un equipo alegre, unido y comprometido, donde celebramos los logros de cada colaborador.</p>
+                    <p>Formarás parte de un equipo alegre, unido y comprometido, donde celebramos los logros de cada
+                        colaborador.</p>
                 </div>
             </div>
         </section>
-
         <section class="form-section">
             <div class="form-container">
                 <h2>Envíanos tu Currículum Vitae (CV)</h2>
-                <p>Completa tus datos personales y nuestro equipo de Recursos Humanos se pondrá en contacto contigo muy pronto.</p>
-                
+                <p>Completa tus datos personales y nuestro equipo de Recursos Humanos se pondrá en contacto contigo muy
+                    pronto.</p>
                 <form action="#" method="POST" enctype="multipart/form-data" class="postulacion-form">
-                    
                     <div class="form-group-row">
                         <div class="form-group">
                             <label for="nombre">Nombres Completos</label>
@@ -68,7 +62,6 @@
                             <input type="text" id="apellido" name="apellido" required placeholder="Ej. Pérez Hacha">
                         </div>
                     </div>
-
                     <div class="form-group-row">
                         <div class="form-group">
                             <label for="correo">Correo Electrónico</label>
@@ -79,7 +72,6 @@
                             <input type="tel" id="telefono" name="telefono" required placeholder="Ej. 987654321">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="puesto">Puesto al que postulas</label>
                         <select id="puesto" name="puesto" required>
@@ -91,7 +83,6 @@
                             <option value="administracion">Gestión / Administración de Local</option>
                         </select>
                     </div>
-
                     <div class="form-group">
                         <label for="cv">Adjuntar tu CV (Formatos PDF o Word)</label>
                         <div class="file-upload-wrapper">
@@ -100,23 +91,22 @@
                             <span class="file-custom-text">Arrastra o selecciona tu archivo aquí</span>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="mensaje">Cuéntanos un poco sobre ti (Opcional)</label>
-                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Háblanos de tu experiencia o tus motivaciones para unirte..."></textarea>
+                        <textarea id="mensaje" name="mensaje" rows="4"
+                            placeholder="Háblanos de tu experiencia o tus motivaciones para unirte..."></textarea>
                     </div>
-
-                    <button type="submit" class="btn-submit">Enviar Postulación <i class="fa-solid fa-paper-plane"></i></button>
-
+                    <button type="submit" class="btn-submit">Enviar Postulación <i
+                            class="fa-solid fa-paper-plane"></i></button>
                 </form>
             </div>
         </section>
-
     </main>
 
-    <footer class="footer-simple">
-        <p>© 2026 Norky's. Todos los derechos reservados. Hecho con pasión por el sabor peruano.</p>
-    </footer>
+    <div id="footer-placeholder"></div>
 
+    <script src="js/db.js"></script>
+    <script src="js/components.js"></script>
 </body>
+
 </html>

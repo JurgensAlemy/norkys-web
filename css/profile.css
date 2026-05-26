@@ -3,19 +3,28 @@
    Colores y configuración base
 ====================================================== */
 :root {
-  --norkys-red: #da291c;             /* Rojo corporativo */
-  --norkys-red-dark: #b52015;        /* Rojo oscuro */
+  --norkys-red: #da291c;
+  /* Rojo corporativo */
+  --norkys-red-dark: #b52015;
+  /* Rojo oscuro */
 
-  --norkys-yellow: #ffc72c;          /* Amarillo corporativo */
-  --norkys-green-bright: #00c853;    /* Verde acciones positivas */
+  --norkys-yellow: #ffc72c;
+  /* Amarillo corporativo */
+  --norkys-green-bright: #00c853;
+  /* Verde acciones positivas */
 
-  --bg-main: #f4f6f8;                /* Fondo general */
-  --bg-card: #ffffff;                /* Tarjetas */
+  --bg-main: #f4f6f8;
+  /* Fondo general */
+  --bg-card: #ffffff;
+  /* Tarjetas */
 
-  --border-color: #e2e8f0;           /* Bordes */
+  --border-color: #e2e8f0;
+  /* Bordes */
 
-  --text-main: #1e293b;              /* Texto principal */
-  --text-muted: #64748b;             /* Texto secundario */
+  --text-main: #1e293b;
+  /* Texto principal */
+  --text-muted: #64748b;
+  /* Texto secundario */
 }
 
 /* ======================================================
@@ -60,7 +69,7 @@ body.profile-page {
   position: sticky;
   top: 30px;
 
-  box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
 
   overflow: hidden;
 }
@@ -71,11 +80,9 @@ body.profile-page {
 .user-cover {
   height: 80px;
 
-  background: linear-gradient(
-    135deg,
-    var(--norkys-red) 0%,
-    var(--norkys-red-dark) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--norkys-red) 0%,
+      var(--norkys-red-dark) 100%);
 }
 
 /* Resumen usuario */
@@ -111,7 +118,7 @@ body.profile-page {
 
   border: 4px solid #ffffff;
 
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Nombre */
@@ -253,7 +260,7 @@ body.profile-page {
 
   border: 1px solid var(--border-color);
 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
 }
 
 /* Header de tarjeta */
@@ -549,4 +556,40 @@ body.profile-page {
     width: 100%;
     justify-content: center;
   }
+}
+
+/* ======================================================
+   BOTÓN AGREGAR DIRECCIÓN
+====================================================== */
+.btn-add-address {
+  background-color: transparent;
+  color: var(--norkys-red);
+
+  border: 2px dashed var(--norkys-red);
+  border-radius: 12px;
+
+  padding: 10px 20px;
+
+  font-weight: 800;
+  font-size: 14px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.btn-add-address:hover {
+  background-color: var(--norkys-red);
+  color: #ffffff;
+
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(218, 41, 28, 0.2);
+}
+
+.btn-add-address i {
+  font-size: 12px;
 }
