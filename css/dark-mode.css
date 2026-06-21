@@ -1,0 +1,195 @@
+/* ============================================================
+   dark-mode.css — Tema oscuro global del sitio público Norky's
+   Se activa con el atributo [data-theme="dark"] en <html>
+   Este archivo se inyecta automáticamente desde js/components.js
+   en TODAS las páginas que usan header-placeholder/footer-placeholder.
+   (No afecta a dashboard.html, que ya tiene su propio modo oscuro
+   independiente en css/dashboard.css)
+   ============================================================ */
+
+[data-theme="dark"] {
+  --dm-bg: #120800;
+  --dm-surface: #1e1008;
+  --dm-surface-2: #2a1a0a;
+  --dm-border: #3a2010;
+  --dm-text: #f5e6d8;
+  --dm-text-muted: #c09070;
+}
+
+/* Fondo general de body en todas las páginas */
+[data-theme="dark"] body {
+  background-color: var(--dm-bg) !important;
+  color: var(--dm-text) !important;
+}
+
+/* Headers / navbars / barras superiores */
+[data-theme="dark"] .navbar,
+[data-theme="dark"] .main-header,
+[data-theme="dark"] .nav-bar,
+[data-theme="dark"] .sticky-category-nav,
+[data-theme="dark"] .cart-header-custom {
+  background-color: var(--dm-surface) !important;
+  border-color: var(--dm-border) !important;
+}
+
+[data-theme="dark"] .top-bar { filter: brightness(0.8); }
+
+/* Buscador */
+[data-theme="dark"] .search-container,
+[data-theme="dark"] .search-input,
+[data-theme="dark"] .search-results-container,
+[data-theme="dark"] .search-category,
+[data-theme="dark"] .search-input-wrapper input,
+[data-theme="dark"] .cobertura-checker input,
+[data-theme="dark"] .tracker-search-box input {
+  background-color: var(--dm-surface-2) !important;
+  color: var(--dm-text) !important;
+  border-color: var(--dm-border) !important;
+}
+
+[data-theme="dark"] .search-result-item:hover { background-color: var(--dm-surface) !important; }
+
+/* Hero sections (mantienen su gradiente de marca, solo se oscurecen un poco) */
+[data-theme="dark"] .hero-section,
+[data-theme="dark"] .main-banner,
+[data-theme="dark"] .login-info,
+[data-theme="dark"] .auth-info {
+  filter: brightness(0.9);
+}
+
+/* Tarjetas / contenedores blancos genéricos en todo el sitio */
+[data-theme="dark"] .local-card,
+[data-theme="dark"] .value-card,
+[data-theme="dark"] .beneficio-card,
+[data-theme="dark"] .canal-card,
+[data-theme="dark"] .zona-card,
+[data-theme="dark"] .privacy-box,
+[data-theme="dark"] .terms-box,
+[data-theme="dark"] .form-section,
+[data-theme="dark"] .about-section,
+[data-theme="dark"] .tracking-panel,
+[data-theme="dark"] .tracker-search-box,
+[data-theme="dark"] .cobertura-checker,
+[data-theme="dark"] .cart-item,
+[data-theme="dark"] .summary-card,
+[data-theme="dark"] .product-card,
+[data-theme="dark"] .profile-card,
+[data-theme="dark"] .profile-sidebar,
+[data-theme="dark"] .login-card,
+[data-theme="dark"] .auth-card,
+[data-theme="dark"] .login-form-container,
+[data-theme="dark"] .auth-form-container,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .order-details,
+[data-theme="dark"] .address-box,
+[data-theme="dark"] .categories-container,
+[data-theme="dark"] .sellers-container,
+[data-theme="dark"] .file-upload-wrapper,
+[data-theme="dark"] .condiciones-box,
+[data-theme="dark"] .delivery-profile,
+[data-theme="dark"] .item-image,
+[data-theme="dark"] .card-image-wrapper,
+[data-theme="dark"] .step-card,
+[data-theme="dark"] .checkout-address-box,
+[data-theme="dark"] .payment-option,
+[data-theme="dark"] .payment-detail-box,
+[data-theme="dark"] .confirmation-box,
+[data-theme="dark"] .mini-item {
+  background-color: var(--dm-surface) !important;
+  border-color: var(--dm-border) !important;
+  color: var(--dm-text) !important;
+}
+
+[data-theme="dark"] .payment-option.active {
+  background-color: var(--dm-surface-2) !important;
+  border-color: var(--norkys-red) !important;
+}
+
+/* Textos secundarios / grises en todas las páginas */
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] li,
+[data-theme="dark"] label,
+[data-theme="dark"] .item-details p,
+[data-theme="dark"] .local-info p,
+[data-theme="dark"] .canal-card p,
+[data-theme="dark"] .value-card p,
+[data-theme="dark"] .beneficio-card p,
+[data-theme="dark"] .terms-section p,
+[data-theme="dark"] .privacy-section p,
+[data-theme="dark"] .summary-row,
+[data-theme="dark"] .footer-info p,
+[data-theme="dark"] .footer-column ul li a,
+[data-theme="dark"] .store-assigned,
+[data-theme="dark"] .step-content p {
+  color: var(--dm-text-muted) !important;
+}
+
+/* Títulos y textos fuertes */
+[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3, [data-theme="dark"] h4,
+[data-theme="dark"] strong {
+  color: var(--dm-text) !important;
+}
+
+/* Inputs, selects y textareas de formularios */
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background-color: var(--dm-surface-2) !important;
+  color: var(--dm-text) !important;
+  border-color: var(--dm-border) !important;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder { color: var(--dm-text-muted) !important; }
+
+/* Footer del sitio público */
+[data-theme="dark"] .main-footer,
+[data-theme="dark"] .footer-simple {
+  background-color: var(--dm-bg) !important;
+}
+[data-theme="dark"] .trust-bar,
+[data-theme="dark"] .pay-card,
+[data-theme="dark"] .cert-item {
+  background-color: var(--dm-surface) !important;
+  border-color: var(--dm-border) !important;
+  color: var(--dm-text) !important;
+}
+[data-theme="dark"] .footer-bottom,
+[data-theme="dark"] .footer-copy {
+  background-color: var(--dm-surface-2) !important;
+  border-color: var(--dm-border) !important;
+}
+
+/* Botones de borde que dependían de fondo claro */
+[data-theme="dark"] .btn-filter,
+[data-theme="dark"] .filter-menu {
+  background-color: var(--dm-surface-2) !important;
+  border-color: var(--dm-border) !important;
+  color: var(--dm-text-muted) !important;
+}
+
+/* Botón de modo oscuro en el header del sitio público */
+.dark-toggle-btn {
+  background: none;
+  border: 2px solid var(--border-color, #f1dccd);
+  color: var(--text-muted, #6b7280);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .2s;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.dark-toggle-btn:hover {
+  border-color: var(--norkys-red, #e25a12);
+  color: var(--norkys-red, #e25a12);
+}
+[data-theme="dark"] .dark-toggle-btn {
+  border-color: var(--dm-border);
+  color: var(--dm-text);
+}

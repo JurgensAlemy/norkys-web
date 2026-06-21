@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finalizar Pedido - Norky's</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/cart.css" />
+    <link rel="stylesheet" href="css/checkout.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="icon" type="image/png" href="imgs/logoNorkys.png" />
+</head>
+
+<body class="checkout-body">
+
+    <div id="header-placeholder"></div>
+
+    <main class="checkout-container">
+        <div class="checkout-header">
+            <h2><i class="fa-solid fa-lock"></i> Finalizar Pedido</h2>
+            <a href="cart.html" class="continue-shopping"><i class="fa-solid fa-arrow-left"></i> Volver al carrito</a>
+        </div>
+
+        <div class="checkout-layout">
+
+            <!-- ===== COLUMNA IZQUIERDA: dirección + pago ===== -->
+            <div>
+                <div class="step-card">
+                    <div class="step-card-title">
+                        <span class="step-number-badge">1</span> Dirección de entrega
+                    </div>
+                    <div class="checkout-address-box" id="checkout-address-box">
+                        <div>
+                            <strong>Cargando dirección...</strong>
+                            <p>Un momento...</p>
+                        </div>
+                        <a href="cart.html">Cambiar</a>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-card-title">
+                        <span class="step-number-badge">2</span> Método de pago
+                    </div>
+
+                    <div class="payment-method-grid">
+                        <div class="payment-option active" data-method="Efectivo">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                            <span>Efectivo</span>
+                        </div>
+                        <div class="payment-option" data-method="Yape">
+                            <i class="fa-solid fa-qrcode"></i>
+                            <span>Yape</span>
+                        </div>
+                        <div class="payment-option" data-method="Plin">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                            <span>Plin</span>
+                        </div>
+                        <div class="payment-option" data-method="Tarjeta">
+                            <i class="fa-solid fa-credit-card"></i>
+                            <span>Tarjeta</span>
+                        </div>
+                    </div>
+
+                    <!-- Detalle: Efectivo -->
+                    <div class="payment-detail-box" data-detail="Efectivo">
+                        <p style="font-size:13px; color:var(--text-muted); margin:0;">
+                            <i class="fa-solid fa-circle-info" style="color:var(--norkys-yellow); margin-right:6px;"></i>
+                            Pagarás en efectivo directamente al motorizado cuando llegue tu pedido. Procura tener el
+                            monto exacto o avísanos si necesitas vuelto.
+                        </p>
+                    </div>
+
+                    <!-- Detalle: Yape / Plin -->
+                    <div class="payment-detail-box hidden" data-detail="Yape">
+                        <div class="qr-placeholder">
+                            <div class="qr-box"></div>
+                            <p>Escanea el código QR con tu app de <strong>Yape</strong> y confirma el pago por el
+                                monto total de tu pedido. Tu motorizado verificará el pago al momento de la entrega.</p>
+                        </div>
+                    </div>
+                    <div class="payment-detail-box hidden" data-detail="Plin">
+                        <div class="qr-placeholder">
+                            <div class="qr-box"></div>
+                            <p>Escanea el código QR con tu app de <strong>Plin</strong> y confirma el pago por el
+                                monto total de tu pedido. Tu motorizado verificará el pago al momento de la entrega.</p>
+                        </div>
+                    </div>
+
+                    <!-- Detalle: Tarjeta -->
+                    <div class="payment-detail-box hidden" data-detail="Tarjeta">
+                        <div class="card-fields">
+                            <div class="full-width">
+                                <label>Número de tarjeta</label>
+                                <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" />
+                            </div>
+                            <div class="full-width">
+                                <label>Nombre del titular</label>
+                                <input type="text" id="cardName" placeholder="Como aparece en la tarjeta" />
+                            </div>
+                            <div>
+                                <label>Vencimiento</label>
+                                <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5" />
+                            </div>
+                            <div>
+                                <label>CVV</label>
+                                <input type="text" id="cardCvv" placeholder="123" maxlength="4" />
+                            </div>
+                        </div>
+                        <div class="payment-note">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>Esta es una simulación de pago para fines académicos: los datos de tarjeta no se
+                                envían a ninguna pasarela real ni se almacenan en el servidor.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== COLUMNA DERECHA: resumen ===== -->
+            <div class="checkout-summary-section">
+                <div class="summary-card">
+                    <h3><i class="fa-solid fa-receipt"></i> Resumen del Pedido</h3>
+
+                    <div class="checkout-items-mini" id="checkout-items-mini">
+                        <p style="color:var(--text-muted); font-size:13px;">Cargando productos...</p>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Subtotal de productos</span>
+                        <span id="checkout-subtotal">S/ 0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Costo de envío</span>
+                        <span id="checkout-shipping">S/ 5.00</span>
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-row total-row">
+                        <span>Total a pagar</span>
+                        <strong id="checkout-total">S/ 5.00</strong>
+                    </div>
+
+                    <button class="btn-confirm-order" id="btnConfirmOrder">
+                        Confirmar Pedido <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <div class="secure-payment">
+                        <i class="fa-solid fa-lock"></i> Pago 100% seguro garantizado
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/db.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+
+</html>

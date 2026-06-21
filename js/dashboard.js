@@ -14,6 +14,25 @@ const formatFecha = (s) => {
     return new Date(s).toLocaleString('es-PE', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 };
 
+// Texto relativo simple: "hace 5 min", "hace 2 h", "hace 3 d"
+const tiempoRelativo = (s) => {
+    if (!s) return '';
+    const diffMs = Date.now() - new Date(s).getTime();
+    const min = Math.floor(diffMs / 60000);
+    if (min < 1) return 'justo ahora';
+    if (min < 60) return `hace ${min} min`;
+    const hrs = Math.floor(min / 60);
+    if (hrs < 24) return `hace ${hrs} h`;
+    const dias = Math.floor(hrs / 24);
+    return `hace ${dias} d`;
+};
+
+// Caché de pedidos completos (con detalles) para el modal de detalle y la boleta
+window._pedidosCache = window._pedidosCache || {};
+function cachePedidos(lista) {
+    (lista || []).forEach(p => { window._pedidosCache[p.id] = p; });
+}
+
 window.logout = () => {
     localStorage.removeItem('norkys_currentUser');
     window.location.href = 'login.html';
@@ -240,6 +259,8 @@ async function renderDashboard() {
         fetch(`${API_URL}/productos`).then(r => r.json()).catch(() => []),
     ]);
 
+    cachePedidos(pedidos);
+
     const totalIngresos = pedidos.reduce((s, p) => s + (p.total || 0), 0);
     const pendientes = pedidos.filter(p => p.estado === 'Pendiente').length;
     const entregados = pedidos.filter(p => p.estado === 'Entregado' || p.estado === 'Completado').length;
@@ -336,7 +357,7 @@ async function renderDashboard() {
         </div>
         <div class="table-responsive">
             <table class="admin-table">
-                <thead><tr><th>Código</th><th>Cliente</th><th>Fecha</th><th>Total</th><th>Estado</th><th>Cambiar</th></tr></thead>
+                <thead><tr><th>Código</th><th>Cliente</th><th>Dirección</th><th>Fecha</th><th>Total</th><th>Estado</th><th>Cambiar</th><th>Acciones</th></tr></thead>
                 <tbody>${renderFilasPedidos(pedidos.slice(0, 8))}</tbody>
             </table>
         </div>
@@ -426,7 +447,7 @@ async function renderProductos() {
         </div>
         <div class="table-responsive">
             <table class="admin-table">
-                <thead><tr><th>ID</th><th>Imagen</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Estado</th><th>Acciones</th></tr></thead>
+                <thead><tr><th>ID</th><th>Imagen</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Estado</th><th>Acciones</th></tr></thead>
                 <tbody id="tbodyProductos">${renderFilasProductos(_productos)}</tbody>
             </table>
         </div>
@@ -435,8 +456,11 @@ async function renderProductos() {
 }
 
 function renderFilasProductos(lista) {
-    if (!lista.length) return '<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--text-3);">Sin resultados</td></tr>';
-    return lista.map(p => `
+    if (!lista.length) return '<tr><td colspan="8" style="text-align:center;padding:30px;color:var(--text-3);">Sin resultados</td></tr>';
+    return lista.map(p => {
+        const stock = p.stock ?? 0;
+        const stockColor = stock === 0 ? '#ef4444' : stock <= 5 ? '#c8ab00' : 'var(--green)';
+        return `
         <tr>
             <td style="color:var(--text-3);font-size:12px;">#${p.id}</td>
             <td><img src="${p.imgUrl || ''}" style="width:44px;height:44px;object-fit:cover;border-radius:8px;background:var(--surface-2);" onerror="this.style.display='none'"></td>
@@ -446,12 +470,14 @@ function renderFilasProductos(lista) {
             </td>
             <td><span class="status-pill status-cooking" style="text-transform:capitalize;">${p.categoria}</span></td>
             <td><strong>S/ ${p.precio.toFixed(2)}</strong></td>
+            <td><strong style="color:${stockColor};">${stock}</strong>${stock === 0 ? ' <span style="font-size:10px;color:#ef4444;font-weight:800;">AGOTADO</span>' : ''}</td>
             <td><span class="status-pill ${p.activo ? 'status-completed' : 'status-cancelled'}">${p.activo ? 'Activo' : 'Inactivo'}</span></td>
             <td><div style="display:flex;gap:6px;">
                 <button onclick="abrirModalProducto(${p.id})" style="background:var(--blue-bg);color:var(--blue);border:none;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:700;" title="Editar"><i class="fa-solid fa-pen"></i></button>
                 <button onclick="eliminarProducto(${p.id},'${p.nombre.replace(/'/g, "\\'")}')" style="background:#fee2e2;color:#b91c1c;border:none;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:700;" title="Desactivar"><i class="fa-solid fa-trash"></i></button>
             </div></td>
-        </tr>`).join('');
+        </tr>`;
+    }).join('');
 }
 
 window.filtrarProductos = () => {
@@ -474,6 +500,7 @@ let _pedidos = [];
 
 async function renderPedidos() {
     _pedidos = await fetch(`${API_URL}/pedidos`).then(r => r.json()).catch(() => []);
+    cachePedidos(_pedidos);
     $('#mainContent').innerHTML = `
     <div class="panel-card">
         <div class="panel-header">
@@ -499,7 +526,7 @@ async function renderPedidos() {
         </div>
         <div class="table-responsive">
             <table class="admin-table">
-                <thead><tr><th>Código</th><th>Cliente</th><th>Dirección</th><th>Fecha</th><th>Total</th><th>Estado</th><th>Cambiar Estado</th></tr></thead>
+                <thead><tr><th>Código</th><th>Cliente</th><th>Dirección</th><th>Fecha</th><th>Total</th><th>Estado</th><th>Cambiar Estado</th><th>Acciones</th></tr></thead>
                 <tbody id="tbodyPedidos">${renderFilasPedidos(_pedidos)}</tbody>
             </table>
         </div>
@@ -507,9 +534,9 @@ async function renderPedidos() {
 }
 
 function renderFilasPedidos(lista) {
-    if (!lista.length) return '<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--text-3);">No hay pedidos</td></tr>';
+    if (!lista.length) return '<tr><td colspan="8" style="text-align:center;padding:30px;color:var(--text-3);">No hay pedidos</td></tr>';
     return lista.map(o => `
-        <tr>
+        <tr data-pedido-row="${o.id}">
             <td><strong style="color:var(--brand);font-size:13px;">${o.codigo || '#' + o.id}</strong></td>
             <td><div class="user-cell">
                 <div style="width:28px;height:28px;border-radius:8px;background:var(--red-dim);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--brand);flex-shrink:0;">
@@ -530,6 +557,16 @@ function renderFilasPedidos(lista) {
                     <option value="Entregado">✅ Entregado</option>
                     <option value="Cancelado">❌ Cancelado</option>
                 </select>
+            </td>
+            <td>
+                <div style="display:flex;gap:6px;">
+                    <button class="btn-table-action" onclick="verDetallePedido(${o.id})" title="Ver detalle" style="background:var(--blue-bg);color:var(--blue);">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                    <button class="btn-table-action" onclick="descargarBoleta(${o.id})" title="Descargar boleta" style="background:var(--green-bg);color:var(--green);">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                    </button>
+                </div>
             </td>
         </tr>`).join('');
 }
@@ -568,6 +605,7 @@ window.cambiarEstado = async (id, estado) => {
         showAdminToast(`Estado → "${estado}"`, 'success');
         const idx = _pedidos.findIndex(p => p.id === id);
         if (idx !== -1) { _pedidos[idx].estado = estado; filtrarPedidos(); }
+        if (window._pedidosCache[id]) window._pedidosCache[id].estado = estado;
     } else showAdminToast('Error al cambiar estado', 'error');
 };
 
@@ -1020,8 +1058,9 @@ function modalProductoHTML() {
             <div style="display:flex;flex-direction:column;gap:13px;">
                 <div><label class="editor-label">NOMBRE *</label><input id="prodNombre" type="text" class="editor-input" placeholder="Ej. 1 Pollo a la Brasa"></div>
                 <div><label class="editor-label">DESCRIPCIÓN</label><textarea id="prodDesc" rows="2" class="editor-textarea" placeholder="Descripción del producto…"></textarea></div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
                     <div><label class="editor-label">PRECIO (S/) *</label><input id="prodPrecio" type="number" step="0.10" min="0.10" class="editor-input" placeholder="0.00"></div>
+                    <div><label class="editor-label">STOCK *</label><input id="prodStock" type="number" step="1" min="0" class="editor-input" placeholder="0"></div>
                     <div><label class="editor-label">CATEGORÍA *</label>
                         <select id="prodCategoria" class="editor-select">
                             <option value="pollos">🍗 Pollos a la Brasa</option>
@@ -1051,7 +1090,7 @@ function modalProductoHTML() {
 window.abrirModalProducto = async (id = null) => {
     if (!document.getElementById('modalProducto')) await renderProductos();
     document.getElementById('modalProducto').style.display = 'flex';
-    ['prodId', 'prodNombre', 'prodDesc', 'prodPrecio', 'prodImg'].forEach(i => document.getElementById(i).value = '');
+    ['prodId', 'prodNombre', 'prodDesc', 'prodPrecio', 'prodImg', 'prodStock'].forEach(i => document.getElementById(i).value = '');
     document.getElementById('prodActivo').checked = true;
     document.getElementById('modalProdTitulo').textContent = id ? 'Editar Producto' : 'Nuevo Producto';
     if (id) {
@@ -1060,11 +1099,13 @@ window.abrirModalProducto = async (id = null) => {
         document.getElementById('prodNombre').value = p.nombre;
         document.getElementById('prodDesc').value = p.descripcion || '';
         document.getElementById('prodPrecio').value = p.precio;
+        document.getElementById('prodStock').value = p.stock ?? 0;
         document.getElementById('prodCategoria').value = p.categoria;
         document.getElementById('prodImg').value = p.imgUrl || '';
         document.getElementById('prodActivo').checked = p.activo;
     }
 };
+
 window.cerrarModalProducto = () => { document.getElementById('modalProducto').style.display = 'none'; };
 
 window.guardarProducto = async () => {
@@ -1073,6 +1114,7 @@ window.guardarProducto = async () => {
         nombre: document.getElementById('prodNombre').value.trim(),
         descripcion: document.getElementById('prodDesc').value.trim(),
         precio: parseFloat(document.getElementById('prodPrecio').value),
+        stock: parseInt(document.getElementById('prodStock').value) || 0,
         categoria: document.getElementById('prodCategoria').value,
         imgUrl: document.getElementById('prodImg').value.trim(),
         activo: document.getElementById('prodActivo').checked,
@@ -1097,7 +1139,7 @@ window.eliminarProducto = async (id, nombre) => {
 // CSV
 window.exportCSV = async () => {
     const pedidos = _pedidos.length ? _pedidos : await fetch(`${API_URL}/pedidos`).then(r => r.json()).catch(() => []);
-    const rows = [['Código', 'Cliente', 'Correo', 'Fecha', 'Total', 'Estado', 'Dirección']];
+    const rows = [['Código', 'Cliente', 'Correo', 'Fecha', 'Total', 'Estado', 'Método de Pago', 'Dirección']];
     pedidos.forEach(p => rows.push([
         p.codigo || p.id,
         p.usuario ? `${p.usuario.nombres} ${p.usuario.apellidos}` : '—',
@@ -1105,6 +1147,7 @@ window.exportCSV = async () => {
         formatFecha(p.fechaCreacion),
         p.total?.toFixed(2),
         p.estado,
+        p.metodoPago || 'Efectivo',
         `"${p.direccionEntrega || ''}"`
     ]));
     const csv = rows.map(r => r.join(',')).join('\n');
@@ -1129,6 +1172,339 @@ function showAdminToast(msg, type = 'success') {
     document.body.appendChild(t);
     setTimeout(() => t.remove(), 3200);
 }
+
+// ══════════════════════════════════════════════════════════════
+// NOTIFICACIONES — campanita funcional
+// ══════════════════════════════════════════════════════════════
+
+// Abre/cierra el panel desplegable
+window.toggleNotifDropdown = async () => {
+    const dropdown = document.getElementById('notifDropdown');
+    if (!dropdown) return;
+    const abierto = dropdown.classList.contains('open');
+    if (abierto) {
+        dropdown.classList.remove('open');
+        return;
+    }
+    await renderNotifDropdown();
+    dropdown.classList.add('open');
+};
+
+// Pinta la lista de notificaciones (pedidos recientes) y marca como vistos los que eran nuevos
+async function renderNotifDropdown() {
+    const dropdown = document.getElementById('notifDropdown');
+    if (!dropdown) return;
+    dropdown.innerHTML = `<div style="padding:30px;text-align:center;color:var(--text-3);font-size:12px;"><i class="fa-solid fa-spinner fa-spin"></i> Cargando…</div>`;
+
+    const pedidos = await fetch(`${API_URL}/pedidos`).then(r => r.json()).catch(() => []);
+    cachePedidos(pedidos);
+
+    const lastCheckRaw = localStorage.getItem('norkys_last_notif_check');
+    const lastCheckDate = lastCheckRaw ? new Date(lastCheckRaw) : new Date(Date.now() - 24 * 60 * 60 * 1000);
+
+    const recientes = [...pedidos]
+        .sort((a, b) => new Date(b.fechaCreacion) - new Date(a.fechaCreacion))
+        .slice(0, 12)
+        .map(p => ({ ...p, _nuevo: new Date(p.fechaCreacion) > lastCheckDate }));
+
+    if (recientes.length === 0) {
+        dropdown.innerHTML = `<div style="padding:30px;text-align:center;color:var(--text-3);font-size:12px;">
+            <i class="fa-solid fa-bell-slash" style="font-size:22px;display:block;margin-bottom:8px;"></i>
+            Todavía no hay pedidos
+        </div>`;
+    } else {
+        dropdown.innerHTML = `
+            <div class="notif-header">Notificaciones <span style="font-weight:600;color:var(--text-3);">· Pedidos recientes</span></div>
+            <div class="notif-list">
+                ${recientes.map(p => `
+                    <div class="notif-item ${p._nuevo ? 'is-new' : ''}" onclick="irAPedidoDesdeNotificacion(${p.id})">
+                        <div class="notif-icon" style="background:${estadoIconBg(p.estado)};color:${estadoIconColor(p.estado)};">
+                            <i class="fa-solid ${p.estado === 'Cancelado' ? 'fa-circle-xmark' : 'fa-cart-flatbed'}"></i>
+                        </div>
+                        <div class="notif-body">
+                            <div class="notif-text">Pedido ${p.codigo || '#' + p.id} ${p._nuevo ? '<span class="notif-tag-new">NUEVO</span>' : ''}</div>
+                            <div class="notif-sub">${p.usuario ? p.usuario.nombres + ' ' + p.usuario.apellidos : 'Invitado'} · S/ ${(p.total || 0).toFixed(2)} · ${p.estado}</div>
+                            <div class="notif-time">${tiempoRelativo(p.fechaCreacion)}</div>
+                        </div>
+                    </div>`).join('')}
+            </div>`;
+    }
+
+    // A partir de ahora, estos pedidos ya fueron "vistos" — el badge se recalcula en 0 (o solo lo que llegue después)
+    localStorage.setItem('norkys_last_notif_check', new Date().toISOString());
+    actualizarBadgeNotif();
+}
+
+function estadoIconBg(estado) {
+    return ({ 'Cancelado': '#fee2e2', 'Entregado': 'var(--green-bg)', 'Completado': 'var(--green-bg)' })[estado] || 'var(--blue-bg)';
+}
+function estadoIconColor(estado) {
+    return ({ 'Cancelado': '#b91c1c', 'Entregado': 'var(--green)', 'Completado': 'var(--green)' })[estado] || 'var(--blue)';
+}
+
+// Recalcula el número en el badge de la campanita comparando contra el último check guardado
+async function actualizarBadgeNotif() {
+    try {
+        const pedidos = await fetch(`${API_URL}/pedidos`).then(r => r.json()).catch(() => []);
+        cachePedidos(pedidos);
+
+        const lastCheckRaw = localStorage.getItem('norkys_last_notif_check');
+        const lastCheckDate = lastCheckRaw ? new Date(lastCheckRaw) : new Date(Date.now() - 24 * 60 * 60 * 1000);
+        const nuevos = pedidos.filter(p => new Date(p.fechaCreacion) > lastCheckDate).length;
+
+        const badge = document.getElementById('notifBadge');
+        if (!badge) return;
+        if (nuevos > 0) {
+            badge.textContent = nuevos > 9 ? '9+' : nuevos;
+            badge.style.display = 'flex';
+        } else {
+            badge.style.display = 'none';
+        }
+    } catch { /* silencioso: no rompe el dashboard si falla */ }
+}
+
+// Click en una notificación → ir a Pedidos y resaltar esa fila
+window.irAPedidoDesdeNotificacion = (id) => {
+    document.getElementById('notifDropdown')?.classList.remove('open');
+    setActiveSection('pedidos');
+    setTimeout(() => resaltarFilaPedido(id), 350);
+};
+
+function resaltarFilaPedido(id) {
+    let row = document.querySelector(`[data-pedido-row="${id}"]`);
+    if (!row) {
+        // puede estar oculta por un filtro activo: limpiamos filtros y reintentamos
+        if (typeof limpiarFiltrosPedidos === 'function') limpiarFiltrosPedidos();
+        setTimeout(() => {
+            row = document.querySelector(`[data-pedido-row="${id}"]`);
+            if (row) destacar(row);
+        }, 200);
+        return;
+    }
+    destacar(row);
+
+    function destacar(el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('row-highlight');
+        setTimeout(() => el.classList.remove('row-highlight'), 2300);
+    }
+}
+
+// Cerrar el dropdown si se hace click fuera de él
+document.addEventListener('click', (e) => {
+    const wrapper = document.getElementById('notifWrapper');
+    const dropdown = document.getElementById('notifDropdown');
+    if (wrapper && dropdown && !wrapper.contains(e.target)) {
+        dropdown.classList.remove('open');
+    }
+});
+
+// ══════════════════════════════════════════════════════════════
+// DETALLE DE PEDIDO (modal) + BOLETA EN PDF
+// ══════════════════════════════════════════════════════════════
+function modalDetallePedidoHTML() {
+    return `<div id="modalDetallePedido" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1100;align-items:center;justify-content:center;backdrop-filter:blur(4px);">
+        <div style="background:var(--surface);border-radius:16px;padding:0;width:560px;max-width:92vw;max-height:88vh;overflow-y:auto;box-shadow:var(--shadow-lg);border:2px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:2px solid var(--border);position:sticky;top:0;background:var(--surface);z-index:2;">
+                <h2 style="font-family:Outfit,sans-serif;font-size:16px;font-weight:800;color:var(--text-1);"><i class="fa-solid fa-receipt" style="color:var(--brand);margin-right:8px;"></i>Detalle del Pedido</h2>
+                <button onclick="cerrarModalDetallePedido()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-3);">×</button>
+            </div>
+            <div id="detallePedidoBody" style="padding:24px;"></div>
+        </div>
+    </div>`;
+}
+
+window.cerrarModalDetallePedido = () => {
+    const m = document.getElementById('modalDetallePedido');
+    if (m) m.style.display = 'none';
+};
+
+// Asegura tener el pedido completo (con detalles) en caché antes de mostrarlo
+async function obtenerPedidoCompleto(id) {
+    if (window._pedidosCache[id] && window._pedidosCache[id].detalles) return window._pedidosCache[id];
+    const pedidos = await fetch(`${API_URL}/pedidos`).then(r => r.json()).catch(() => []);
+    cachePedidos(pedidos);
+    return window._pedidosCache[id];
+}
+
+window.verDetallePedido = async (id) => {
+    const o = await obtenerPedidoCompleto(id);
+    if (!o) return showAdminToast('No se encontró el pedido', 'error');
+
+    const itemsHtml = (o.detalles || []).map(d => `
+        <tr>
+            <td>${d.producto?.nombre || 'Producto eliminado'}</td>
+            <td style="text-align:center;">${d.cantidad}</td>
+            <td style="text-align:right;">S/ ${d.precioUnitario.toFixed(2)}</td>
+            <td style="text-align:right;font-weight:700;">S/ ${(d.precioUnitario * d.cantidad).toFixed(2)}</td>
+        </tr>`).join('') || '<tr><td colspan="4" style="text-align:center;color:var(--text-3);padding:14px;">Sin productos registrados</td></tr>';
+
+    const subtotal = (o.detalles || []).reduce((s, d) => s + d.precioUnitario * d.cantidad, 0);
+    const envio = Math.max((o.total || 0) - subtotal, 0);
+
+    document.getElementById('detallePedidoBody').innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
+            <div>
+                <div style="font-size:18px;font-weight:900;color:var(--brand);">${o.codigo || '#' + o.id}</div>
+                <div style="font-size:12px;color:var(--text-3);margin-top:2px;">${formatFecha(o.fechaCreacion)}</div>
+            </div>
+            <span class="status-pill ${estadoClass(o.estado)}" style="font-size:12px;">${o.estado}</span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">
+            <div style="background:var(--surface-2);border-radius:10px;padding:12px;border:2px solid var(--border);">
+                <div style="font-size:10px;font-weight:800;color:var(--text-3);text-transform:uppercase;margin-bottom:4px;">Cliente</div>
+                <div style="font-size:13px;font-weight:700;color:var(--text-1);">${o.usuario ? o.usuario.nombres + ' ' + o.usuario.apellidos : 'Invitado'}</div>
+                <div style="font-size:12px;color:var(--text-3);">${o.usuario?.correo || '—'}</div>
+            </div>
+            <div style="background:var(--surface-2);border-radius:10px;padding:12px;border:2px solid var(--border);">
+                <div style="font-size:10px;font-weight:800;color:var(--text-3);text-transform:uppercase;margin-bottom:4px;">Entrega</div>
+                <div style="font-size:13px;font-weight:700;color:var(--text-1);">${o.direccionEntrega || '—'}</div>
+                <div style="font-size:12px;color:var(--text-3);margin-top:3px;"><i class="fa-solid fa-wallet" style="margin-right:4px;"></i>${o.metodoPago || 'Efectivo'}</div>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="admin-table">
+                <thead><tr><th>Producto</th><th style="text-align:center;">Cant.</th><th style="text-align:right;">P. Unit.</th><th style="text-align:right;">Subtotal</th></tr></thead>
+                <tbody>${itemsHtml}</tbody>
+            </table>
+        </div>
+
+        <div style="margin-top:14px;display:flex;flex-direction:column;gap:6px;align-items:flex-end;">
+            <div style="font-size:12.5px;color:var(--text-3);">Subtotal: <strong style="color:var(--text-1);">S/ ${subtotal.toFixed(2)}</strong></div>
+            <div style="font-size:12.5px;color:var(--text-3);">Envío: <strong style="color:var(--text-1);">S/ ${envio.toFixed(2)}</strong></div>
+            <div style="font-size:16px;font-weight:900;color:var(--brand);">TOTAL: S/ ${(o.total || 0).toFixed(2)}</div>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:20px;">
+            <button onclick="descargarBoleta(${o.id})" class="btn-primary" style="flex:1;justify-content:center;"><i class="fa-solid fa-file-arrow-down"></i> Descargar Boleta</button>
+            <button onclick="cerrarModalDetallePedido()" style="padding:9px 18px;border:2px solid var(--border);border-radius:9px;background:var(--surface-2);cursor:pointer;font-weight:700;font-size:12.5px;color:var(--text-2);font-family:inherit;">Cerrar</button>
+        </div>`;
+
+    document.getElementById('modalDetallePedido').style.display = 'flex';
+};
+
+// Genera y descarga la boleta en PDF (usa jsPDF, cargado vía CDN en dashboard.html)
+window.descargarBoleta = async (id) => {
+    const o = await obtenerPedidoCompleto(id);
+    if (!o) return showAdminToast('No se encontró el pedido', 'error');
+    if (!window.jspdf) return showAdminToast('No se pudo cargar el generador de PDF (revisa tu conexión a internet)', 'error');
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const marginX = 15;
+    let y;
+
+    // Encabezado
+    doc.setFillColor(226, 90, 18);
+    doc.rect(0, 0, pageWidth, 28, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.text("NORKY'S", marginX, 17);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Boleta de Venta Electrónica', marginX, 23);
+
+    doc.setTextColor(30, 30, 30);
+    y = 38;
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'bold');
+    doc.text(`Pedido: ${o.codigo || '#' + o.id}`, marginX, y);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Fecha: ${formatFecha(o.fechaCreacion)}`, pageWidth - marginX, y, { align: 'right' });
+
+    y += 8;
+    doc.setDrawColor(225, 225, 225);
+    doc.line(marginX, y, pageWidth - marginX, y);
+
+    y += 8;
+    doc.setFont('helvetica', 'bold');
+    doc.text('Cliente:', marginX, y);
+    doc.setFont('helvetica', 'normal');
+    doc.text(o.usuario ? `${o.usuario.nombres} ${o.usuario.apellidos}` : 'Invitado', marginX + 24, y);
+
+    y += 6;
+    doc.setFont('helvetica', 'bold');
+    doc.text('Correo:', marginX, y);
+    doc.setFont('helvetica', 'normal');
+    doc.text(o.usuario?.correo || '—', marginX + 24, y);
+
+    y += 6;
+    doc.setFont('helvetica', 'bold');
+    doc.text('Dirección:', marginX, y);
+    doc.setFont('helvetica', 'normal');
+    doc.text(o.direccionEntrega || '—', marginX + 24, y);
+
+    y += 6;
+    doc.setFont('helvetica', 'bold');
+    doc.text('Método de pago:', marginX, y);
+    doc.setFont('helvetica', 'normal');
+    doc.text(o.metodoPago || 'Efectivo', marginX + 38, y);
+
+    y += 6;
+    doc.setFont('helvetica', 'bold');
+    doc.text('Estado:', marginX, y);
+    doc.setFont('helvetica', 'normal');
+    doc.text(o.estado || 'Pendiente', marginX + 24, y);
+
+    // Tabla de productos
+    y += 12;
+    doc.setFillColor(245, 245, 245);
+    doc.rect(marginX, y - 5, pageWidth - marginX * 2, 8, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.text('Producto', marginX + 2, y);
+    doc.text('Cant.', pageWidth - marginX - 70, y, { align: 'right' });
+    doc.text('P. Unit.', pageWidth - marginX - 35, y, { align: 'right' });
+    doc.text('Subtotal', pageWidth - marginX - 2, y, { align: 'right' });
+
+    y += 8;
+    doc.setFont('helvetica', 'normal');
+    (o.detalles || []).forEach(d => {
+        if (y > 270) { doc.addPage(); y = 20; }
+        const nombre = d.producto?.nombre || 'Producto eliminado';
+        doc.text(nombre.length > 45 ? nombre.slice(0, 45) + '…' : nombre, marginX + 2, y);
+        doc.text(String(d.cantidad), pageWidth - marginX - 70, y, { align: 'right' });
+        doc.text(`S/ ${d.precioUnitario.toFixed(2)}`, pageWidth - marginX - 35, y, { align: 'right' });
+        doc.text(`S/ ${(d.precioUnitario * d.cantidad).toFixed(2)}`, pageWidth - marginX - 2, y, { align: 'right' });
+        y += 7;
+    });
+
+    y += 3;
+    doc.setDrawColor(225, 225, 225);
+    doc.line(marginX, y, pageWidth - marginX, y);
+
+    const subtotal = (o.detalles || []).reduce((s, d) => s + d.precioUnitario * d.cantidad, 0);
+    const envio = Math.max((o.total || 0) - subtotal, 0);
+
+    y += 8;
+    doc.setFontSize(10.5);
+    doc.text('Subtotal:', pageWidth - marginX - 40, y);
+    doc.text(`S/ ${subtotal.toFixed(2)}`, pageWidth - marginX - 2, y, { align: 'right' });
+    y += 6;
+    doc.text('Envío:', pageWidth - marginX - 40, y);
+    doc.text(`S/ ${envio.toFixed(2)}`, pageWidth - marginX - 2, y, { align: 'right' });
+    y += 9;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(13);
+    doc.setTextColor(226, 90, 18);
+    doc.text('TOTAL:', pageWidth - marginX - 40, y);
+    doc.text(`S/ ${(o.total || 0).toFixed(2)}`, pageWidth - marginX - 2, y, { align: 'right' });
+
+    y += 22;
+    doc.setTextColor(120, 120, 120);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.text("Gracias por tu compra en Norky's — El verdadero sabor peruano.", marginX, y);
+    doc.text('Documento generado automáticamente, no es un comprobante fiscal válido.', marginX, y + 5);
+
+    const nombreArchivo = `boleta_${(o.codigo || o.id).toString().replace(/\s+/g, '_')}.pdf`;
+    doc.save(nombreArchivo);
+    showAdminToast('Boleta descargada', 'success');
+};
 
 // ══════════════════════════════════════════════════════════════
 // INIT
@@ -1171,6 +1547,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('sidebarToggle')?.addEventListener('click', () => {
         document.getElementById('sidebar').classList.toggle('open');
     });
+
+    // Inyectar el modal de detalle de pedido (disponible en cualquier sección)
+    document.body.insertAdjacentHTML('beforeend', modalDetallePedidoHTML());
+
+    // Notificaciones: badge inicial + recheck automático cada 60s
+    actualizarBadgeNotif();
+    setInterval(actualizarBadgeNotif, 60000);
 
     renderDashboard();
 });

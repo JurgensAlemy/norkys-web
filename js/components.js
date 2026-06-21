@@ -1,6 +1,7 @@
 /**
  * components.js
  * Carga header y footer, luego llama a updateHeaderAndCart de main.js
+ * También activa el modo oscuro global del sitio (ver css/dark-mode.css)
  *
  * ORDEN DE SCRIPTS obligatorio en cada HTML:
  *   <script src="js/db.js"></script>
@@ -8,6 +9,7 @@
  *   <script src="js/main.js"></script>      ← solo donde se use
  *   <script src="js/menu.js"></script>       ← solo menu.html
  *   <script src="js/cart.js"></script>       ← solo cart.html
+ *   <script src="js/checkout.js"></script>   ← solo checkout.html
  *   <script src="js/profile.js"></script>    ← solo profile.html
  */
 
@@ -47,8 +49,52 @@ function startCountdown() {
     setInterval(tick, 1000);
 }
 
+/* ── MODO OSCURO GLOBAL (sitio público) ─────────────────────────────────
+   Funciona igual que el de dashboard.html: guarda la preferencia en
+   localStorage bajo la misma llave 'norkys_theme' y usa el atributo
+   data-theme en <html>. El CSS de las reglas oscuras vive en
+   css/dark-mode.css, que se inyecta dinámicamente para no tener que
+   agregar el <link> a mano en cada página.                              */
+function injectDarkModeCSS() {
+    if (document.getElementById('dark-mode-css')) return;
+    const link = document.createElement('link');
+    link.id = 'dark-mode-css';
+    link.rel = 'stylesheet';
+    link.href = 'css/dark-mode.css';
+    document.head.appendChild(link);
+}
+
+function applySavedTheme() {
+    const saved = localStorage.getItem('norkys_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+    return saved;
+}
+
+function wireDarkModeToggle() {
+    const btn = document.getElementById('siteThemeToggle');
+    if (!btn) return;
+
+    const setIcon = (theme) => {
+        btn.innerHTML = `<i class="fa-solid ${theme === 'dark' ? 'fa-sun' : 'fa-moon'}"></i>`;
+    };
+    setIcon(document.documentElement.getAttribute('data-theme') || 'light');
+
+    btn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('norkys_theme', next);
+        setIcon(next);
+    });
+}
+
 /* ── INIT ─────────────────────────────────────────────────────────────── */
 async function initComponents() {
+    // 0. Aplicar el tema guardado y cargar su hoja de estilos lo antes
+    //    posible, para evitar parpadeos de claro→oscuro al cargar.
+    injectDarkModeCSS();
+    applySavedTheme();
+
     // 1. Inyectar header y footer en paralelo
     await Promise.all([
         loadComponent('header-placeholder', 'components/header.html'),
@@ -61,7 +107,10 @@ async function initComponents() {
         updateHeaderAndCart();
     }
 
-    // 3. Countdown del flash offer
+    // 3. Conectar el botón de modo oscuro recién insertado en el header
+    wireDarkModeToggle();
+
+    // 4. Countdown del flash offer
     startCountdown();
 }
 

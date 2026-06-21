@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel Admin — Norky's</title>
     <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/dashboard-extra.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <link rel="icon" type="image/png" href="imgs/logoNorkys.png" />
 </head>
 
 <body>
@@ -98,10 +100,13 @@
                 <button class="icon-btn theme-toggle" id="themeToggle" title="Cambiar tema">
                     <i class="fa-solid fa-moon" id="themeIcon"></i>
                 </button>
-                <button class="icon-btn" title="Notificaciones">
-                    <i class="fa-solid fa-bell"></i>
-                    <span class="badge-dot"></span>
-                </button>
+                <div class="notif-wrapper" id="notifWrapper">
+                    <button class="icon-btn" title="Notificaciones" onclick="toggleNotifDropdown()">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="badge-count" id="notifBadge"></span>
+                    </button>
+                    <div class="notif-dropdown" id="notifDropdown"></div>
+                </div>
                 <div class="header-avatar" id="headerAvatar">AD</div>
             </div>
         </header>
@@ -116,6 +121,7 @@
     </main>
 
     <script src="js/db.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="js/dashboard.js"></script>
     <script>
         // ── TEMA OSCURO/CLARO ──────────────────────────────────

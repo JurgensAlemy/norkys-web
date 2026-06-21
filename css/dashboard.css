@@ -1449,3 +1449,9 @@ canvas {
         padding: 0 16px;
     }
 }
+
+@media (max-width:480px) {
+    .search-box {
+        display: none;
+    }
+}

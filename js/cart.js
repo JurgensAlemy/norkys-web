@@ -11,7 +11,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const btnChangeAddress = document.getElementById('btnChangeAddress');
     const addressModal = document.getElementById('addressSelectionModal');
     const addressesList = document.getElementById('user-addresses-list');
-    let selectedAddress = null;  // { alias, detalle }
+    let selectedAddress = null;
+
+    // ===== NUEVO: estado de carga inicial =====
+    addressContainer.innerHTML = `
+        <div class="norkys-loading" style="padding:10px 0;flex-direction:row;gap:8px;">
+            <i class="fa-solid fa-spinner fa-spin" style="font-size:14px;"></i>
+            <span>Cargando dirección...</span>
+        </div>`;
 
     // Parsear "alias|detalle" que guarda el backend
     const parseDireccion = (str) => {
@@ -23,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const cargarDirecciones = async () => {
         if (!user) return [];
         try {
-            const res = await fetch(`${API_URL}/usuarios/${user.id}`);
+            const res = await fetchConManejo(`${API_URL}/usuarios/${user.id}`);
             const datos = await res.json();
             return (datos.direcciones || []).map(parseDireccion);
         } catch {
@@ -168,7 +175,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
-    // ── CHECKOUT → API ─────────────────────────────────────────
+    // ── IR AL CHECKOUT (antes creaba el pedido directo, ahora pasa por checkout.html) ──
     if (btnCheckout) {
         btnCheckout.addEventListener('click', async () => {
             if (!getCurrentUser()) {
@@ -176,22 +183,62 @@ document.addEventListener('DOMContentLoaded', async () => {
                 setTimeout(() => window.location.href = 'login.html', 1500);
                 return;
             }
-            if (getNorkysCart().length === 0) return showNorkysToast('El carrito está vacío', 'error');
+            const cart = getNorkysCart();
+            if (cart.length === 0) return showNorkysToast('El carrito está vacío', 'error');
             if (!selectedAddress) return showNorkysToast('Agrega una dirección en tu perfil', 'error');
 
+            // ===== NUEVO: validar stock antes de pasar al checkout =====
             btnCheckout.disabled = true;
-            btnCheckout.textContent = 'Procesando...';
+            const textoOriginal = btnCheckout.innerHTML;
+            btnCheckout.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Verificando stock...';
 
             try {
-                await crearPedido(selectedAddress.detalle);
-                showNorkysToast('¡Pedido enviado a la tienda!', 'success');
-                renderCart();
-                if (typeof updateHeaderAndCart === 'function') updateHeaderAndCart();
-                setTimeout(() => window.location.href = 'profile.html', 1500);
+                const productosActuales = await getNorkysProducts();
+                let hayProblema = false;
+                let cartActualizado = [...cart];
+
+                for (const item of cart) {
+                    const prod = productosActuales.find(p => p.id === item.id);
+
+                    if (!prod || !prod.activo) {
+                        showNorkysToast(`"${item.nombre}" ya no está disponible y fue quitado del carrito`, 'error');
+                        cartActualizado = cartActualizado.filter(i => i.id !== item.id);
+                        hayProblema = true;
+                        continue;
+                    }
+
+                    if ((prod.stock ?? 0) <= 0) {
+                        showNorkysToast(`"${item.nombre}" está agotado y fue quitado del carrito`, 'error');
+                        cartActualizado = cartActualizado.filter(i => i.id !== item.id);
+                        hayProblema = true;
+                        continue;
+                    }
+
+                    if (item.cantidad > prod.stock) {
+                        showNorkysToast(`Solo quedan ${prod.stock} de "${item.nombre}", se ajustó la cantidad`, 'error');
+                        const idx = cartActualizado.findIndex(i => i.id === item.id);
+                        if (idx !== -1) cartActualizado[idx].cantidad = prod.stock;
+                        hayProblema = true;
+                    }
+                }
+
+                if (hayProblema) {
+                    localStorage.setItem('norkys_cart', JSON.stringify(cartActualizado));
+                    renderCart();
+                    if (typeof updateHeaderAndCart === 'function') updateHeaderAndCart();
+                    btnCheckout.disabled = false;
+                    btnCheckout.innerHTML = textoOriginal;
+                    return; // no avanza al checkout, deja que revise el carrito actualizado
+                }
+
+                // Todo OK: avanza al checkout
+                sessionStorage.setItem('norkys_checkout_address', JSON.stringify(selectedAddress));
+                window.location.href = 'checkout.html';
+
             } catch (err) {
-                showNorkysToast(err.message || 'Error al procesar el pedido', 'error');
+                showNorkysToast('No se pudo verificar el stock, intenta de nuevo', 'error');
                 btnCheckout.disabled = false;
-                btnCheckout.innerHTML = 'Continuar al Pago <i class="fa-solid fa-chevron-right"></i>';
+                btnCheckout.innerHTML = textoOriginal;
             }
         });
     }
