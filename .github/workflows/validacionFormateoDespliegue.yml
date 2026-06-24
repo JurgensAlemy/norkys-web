@@ -9,6 +9,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   # ---- ETAPA 1: INTEGRACIÓN CONTINUA (CI) Y AUTO-COMMIT ----
   validar_y_formatear:
@@ -32,7 +36,7 @@ jobs:
       - name: Guardar cambios ordenados (Auto-commit)
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🤖 Bot: Código formato automático por GitHub Actions"
+          commit_message: "Bot: Código formato automático por GitHub Actions"
           branch: ${{ github.ref_name }}
 
       - name: Validar sintaxis final
@@ -51,15 +55,18 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     
-    # Le asignamos el entorno oficial de GitHub Pages
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
       
     steps:
-      - name: Clonar el repositorio
+      # CORRECCIÓN: Volvemos a descargar el repositorio para asegurar que traiga lo que el bot guardó
+      - name: Clonar el repositorio actualizado
         uses: actions/checkout@v4
+        with:
+          ref: main
 
+      # Forzar la limpieza de cualquier artefacto previo duplicado en el entorno local de la máquina
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v4
 
