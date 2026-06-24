@@ -32,7 +32,9 @@
   border-color: var(--dm-border) !important;
 }
 
-[data-theme="dark"] .top-bar { filter: brightness(0.8); }
+[data-theme="dark"] .top-bar {
+  filter: brightness(0.8);
+}
 
 /* Buscador */
 [data-theme="dark"] .search-container,
@@ -47,7 +49,9 @@
   border-color: var(--dm-border) !important;
 }
 
-[data-theme="dark"] .search-result-item:hover { background-color: var(--dm-surface) !important; }
+[data-theme="dark"] .search-result-item:hover {
+  background-color: var(--dm-surface) !important;
+}
 
 /* Hero sections (mantienen su gradiente de marca, solo se oscurecen un poco) */
 [data-theme="dark"] .hero-section,
@@ -126,7 +130,10 @@
 }
 
 /* Títulos y textos fuertes */
-[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3, [data-theme="dark"] h4,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
 [data-theme="dark"] strong {
   color: var(--dm-text) !important;
 }
@@ -141,7 +148,9 @@
 }
 
 [data-theme="dark"] input::placeholder,
-[data-theme="dark"] textarea::placeholder { color: var(--dm-text-muted) !important; }
+[data-theme="dark"] textarea::placeholder {
+  color: var(--dm-text-muted) !important;
+}
 
 /* Footer del sitio público */
 [data-theme="dark"] .main-footer,
@@ -181,7 +190,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all .2s;
+  transition: all 0.2s;
   font-size: 14px;
   flex-shrink: 0;
 }

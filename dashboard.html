@@ -1,155 +1,178 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" data-theme="light">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel Admin — Norky's</title>
     <link rel="stylesheet" href="css/dashboard.css" />
     <link rel="stylesheet" href="css/dashboard-extra.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="icon" type="image/png" href="imgs/logoNorkys.png" />
-</head>
+  </head>
 
-<body>
-
+  <body>
     <!-- ═══ SIDEBAR ═══ -->
     <aside class="sidebar" id="sidebar">
-
-        <div class="sidebar-logo">
-            <div class="logo-icon">🍗</div>
-            <div>
-                <div class="sidebar-logo-text">NORKY'S</div>
-                <div class="sidebar-logo-sub">Admin Panel</div>
-            </div>
+      <div class="sidebar-logo">
+        <div class="logo-icon">🍗</div>
+        <div>
+          <div class="sidebar-logo-text">NORKY'S</div>
+          <div class="sidebar-logo-sub">Admin Panel</div>
         </div>
+      </div>
 
-        <nav class="sidebar-menu">
-            <div class="sidebar-section-label">Principal</div>
-            <a href="#" class="menu-item active" data-section="dashboard">
-                <i class="fa-solid fa-gauge-high"></i><span>Dashboard</span>
-            </a>
-            <a href="#" class="menu-item" data-section="productos">
-                <i class="fa-solid fa-box-open"></i><span>Productos</span>
-            </a>
-            <a href="#" class="menu-item" data-section="pedidos">
-                <i class="fa-solid fa-cart-flatbed"></i><span>Pedidos</span>
-                <span class="menu-badge" id="badgePedidos">0</span>
-            </a>
-            <a href="#" class="menu-item" data-section="clientes">
-                <i class="fa-solid fa-users"></i><span>Clientes</span>
-            </a>
+      <nav class="sidebar-menu">
+        <div class="sidebar-section-label">Principal</div>
+        <a href="#" class="menu-item active" data-section="dashboard">
+          <i class="fa-solid fa-gauge-high"></i><span>Dashboard</span>
+        </a>
+        <a href="#" class="menu-item" data-section="productos">
+          <i class="fa-solid fa-box-open"></i><span>Productos</span>
+        </a>
+        <a href="#" class="menu-item" data-section="pedidos">
+          <i class="fa-solid fa-cart-flatbed"></i><span>Pedidos</span>
+          <span class="menu-badge" id="badgePedidos">0</span>
+        </a>
+        <a href="#" class="menu-item" data-section="clientes">
+          <i class="fa-solid fa-users"></i><span>Clientes</span>
+        </a>
 
-            <div class="sidebar-section-label" style="margin-top:8px;">Análisis</div>
-            <a href="#" class="menu-item" data-section="reportes">
-                <i class="fa-solid fa-chart-bar"></i><span>Reportes</span>
-            </a>
-
-            <div class="sidebar-section-label" style="margin-top:8px;">Sitio Web</div>
-            <a href="#" class="menu-item" data-section="editor">
-                <i class="fa-solid fa-pen-ruler"></i><span>Editor de Inicio</span>
-                <span class="menu-badge-new">NUEVO</span>
-            </a>
-
-            <div class="sidebar-section-label" style="margin-top:8px;">Sistema</div>
-            <a href="#" class="menu-item" data-section="ajustes">
-                <i class="fa-solid fa-gear"></i><span>Ajustes</span>
-            </a>
-        </nav>
-
-        <div class="sidebar-footer">
-            <div class="admin-profile">
-                <div class="admin-avatar" id="adminAvatar">AD</div>
-                <div class="admin-info">
-                    <span id="adminNombre">Administrador</span>
-                    <small id="adminCorreo">admin@norkys.pe</small>
-                </div>
-            </div>
-            <div class="footer-actions">
-                <a href="index.html" class="btn-site" target="_blank" title="Ver sitio">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-                <button class="btn-logout" onclick="logout()">
-                    <i class="fa-solid fa-right-from-bracket"></i> Salir
-                </button>
-            </div>
+        <div class="sidebar-section-label" style="margin-top: 8px">
+          Análisis
         </div>
+        <a href="#" class="menu-item" data-section="reportes">
+          <i class="fa-solid fa-chart-bar"></i><span>Reportes</span>
+        </a>
+
+        <div class="sidebar-section-label" style="margin-top: 8px">
+          Sitio Web
+        </div>
+        <a href="#" class="menu-item" data-section="editor">
+          <i class="fa-solid fa-pen-ruler"></i><span>Editor de Inicio</span>
+          <span class="menu-badge-new">NUEVO</span>
+        </a>
+
+        <div class="sidebar-section-label" style="margin-top: 8px">Sistema</div>
+        <a href="#" class="menu-item" data-section="ajustes">
+          <i class="fa-solid fa-gear"></i><span>Ajustes</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="admin-profile">
+          <div class="admin-avatar" id="adminAvatar">AD</div>
+          <div class="admin-info">
+            <span id="adminNombre">Administrador</span>
+            <small id="adminCorreo">admin@norkys.pe</small>
+          </div>
+        </div>
+        <div class="footer-actions">
+          <a
+            href="index.html"
+            class="btn-site"
+            target="_blank"
+            title="Ver sitio"
+          >
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          <button class="btn-logout" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Salir
+          </button>
+        </div>
+      </div>
     </aside>
 
     <!-- ═══ MAIN ═══ -->
     <main class="main-content">
-
-        <header class="top-header">
-            <div class="header-left">
-                <button class="sidebar-toggle" id="sidebarToggle" title="Menú">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <div class="greeting">
-                    <h1 id="greetingTitle">Dashboard</h1>
-                    <p id="greetingDate"></p>
-                </div>
-            </div>
-            <div class="header-actions">
-                <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Buscar..." id="globalSearch" />
-                </div>
-                <button class="icon-btn theme-toggle" id="themeToggle" title="Cambiar tema">
-                    <i class="fa-solid fa-moon" id="themeIcon"></i>
-                </button>
-                <div class="notif-wrapper" id="notifWrapper">
-                    <button class="icon-btn" title="Notificaciones" onclick="toggleNotifDropdown()">
-                        <i class="fa-solid fa-bell"></i>
-                        <span class="badge-count" id="notifBadge"></span>
-                    </button>
-                    <div class="notif-dropdown" id="notifDropdown"></div>
-                </div>
-                <div class="header-avatar" id="headerAvatar">AD</div>
-            </div>
-        </header>
-
-        <div class="dashboard-container" id="mainContent">
-            <div class="loading-state">
-                <i class="fa-solid fa-spinner fa-spin"></i>
-                <span>Cargando…</span>
-            </div>
+      <header class="top-header">
+        <div class="header-left">
+          <button class="sidebar-toggle" id="sidebarToggle" title="Menú">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="greeting">
+            <h1 id="greetingTitle">Dashboard</h1>
+            <p id="greetingDate"></p>
+          </div>
         </div>
+        <div class="header-actions">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Buscar..." id="globalSearch" />
+          </div>
+          <button
+            class="icon-btn theme-toggle"
+            id="themeToggle"
+            title="Cambiar tema"
+          >
+            <i class="fa-solid fa-moon" id="themeIcon"></i>
+          </button>
+          <div class="notif-wrapper" id="notifWrapper">
+            <button
+              class="icon-btn"
+              title="Notificaciones"
+              onclick="toggleNotifDropdown()"
+            >
+              <i class="fa-solid fa-bell"></i>
+              <span class="badge-count" id="notifBadge"></span>
+            </button>
+            <div class="notif-dropdown" id="notifDropdown"></div>
+          </div>
+          <div class="header-avatar" id="headerAvatar">AD</div>
+        </div>
+      </header>
 
+      <div class="dashboard-container" id="mainContent">
+        <div class="loading-state">
+          <i class="fa-solid fa-spinner fa-spin"></i>
+          <span>Cargando…</span>
+        </div>
+      </div>
     </main>
 
     <script src="js/db.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="js/dashboard.js"></script>
     <script>
-        // ── TEMA OSCURO/CLARO ──────────────────────────────────
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const html = document.documentElement;
+      // ── TEMA OSCURO/CLARO ──────────────────────────────────
+      const themeToggle = document.getElementById("themeToggle");
+      const themeIcon = document.getElementById("themeIcon");
+      const html = document.documentElement;
 
-        const savedTheme = localStorage.getItem('norkys_theme') || 'light';
-        html.setAttribute('data-theme', savedTheme);
-        themeIcon.className = savedTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      const savedTheme = localStorage.getItem("norkys_theme") || "light";
+      html.setAttribute("data-theme", savedTheme);
+      themeIcon.className =
+        savedTheme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
 
-        themeToggle.addEventListener('click', () => {
-            const current = html.getAttribute('data-theme');
-            const next = current === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', next);
-            localStorage.setItem('norkys_theme', next);
-            themeIcon.className = next === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      themeToggle.addEventListener("click", () => {
+        const current = html.getAttribute("data-theme");
+        const next = current === "dark" ? "light" : "dark";
+        html.setAttribute("data-theme", next);
+        localStorage.setItem("norkys_theme", next);
+        themeIcon.className =
+          next === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+      });
+
+      // ── SIDEBAR TOGGLE (móvil) ─────────────────────────────
+      document.getElementById("sidebarToggle").addEventListener("click", () => {
+        document.getElementById("sidebar").classList.toggle("open");
+      });
+
+      // ── FECHA ──────────────────────────────────────────────
+      document.getElementById("greetingDate").textContent =
+        new Date().toLocaleDateString("es-PE", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
         });
-
-        // ── SIDEBAR TOGGLE (móvil) ─────────────────────────────
-        document.getElementById('sidebarToggle').addEventListener('click', () => {
-            document.getElementById('sidebar').classList.toggle('open');
-        });
-
-        // ── FECHA ──────────────────────────────────────────────
-        document.getElementById('greetingDate').textContent =
-            new Date().toLocaleDateString('es-PE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
     </script>
-</body>
-
+  </body>
 </html>

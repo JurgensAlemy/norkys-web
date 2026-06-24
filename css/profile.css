@@ -80,9 +80,11 @@ body.profile-page {
 .user-cover {
   height: 80px;
 
-  background: linear-gradient(135deg,
-      var(--norkys-red) 0%,
-      var(--norkys-red-dark) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--norkys-red) 0%,
+    var(--norkys-red-dark) 100%
+  );
 }
 
 /* Resumen usuario */
@@ -525,7 +527,6 @@ body.profile-page {
    RESPONSIVE
 ====================================================== */
 @media (max-width: 900px) {
-
   /* Una sola columna */
   .profile-container {
     grid-template-columns: 1fr;
