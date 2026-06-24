@@ -2,76 +2,44 @@ name: CI/CD - Validación, Formateo y Despliegue
 
 on:
   push:
-    branches: [ "main" ] # Enfocamos solo en main para asegurar un despliegue limpio de Pages
+    branches: [ "main" ]
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
-# AQUÍ ESTÁ EL TRUCO: Si se encolan dos despliegues, cancela el anterior en progreso
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
-  # ---- ETAPA 1: INTEGRACIÓN CONTINUA (CI) Y AUTO-COMMIT ----
+  # ---- ETAPA 1: INTEGRACIÓN CONTINUA (CI) ----
   validar_y_formatear:
     runs-on: ubuntu-latest
     steps:
       - name: Clonar el repositorio
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Mostrar información del Commit
-        run: |
-          echo "El commit fue realizado por: ${{ github.actor }}"
-          echo "Mensaje original: ${{ github.event.head_commit.message }}"
-
-      - name: Instalar y ejecutar Prettier
+      - name: Instalar Node.js y Prettier
         run: |
           npm install -g prettier
-          prettier --write "**/*.{html,css,js}"
 
-      - name: Guardar cambios ordenados (Auto-commit)
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Bot: Código formato automático por GitHub Actions"
-          branch: ${{ github.ref_name }}
-          # Evita disparar un nuevo pipeline infinito al hacer el auto-commit
-          skip_fetch: true
-          skip_checkout: true
-
-      - name: Validar sintaxis final
-        uses: super-linter/super-linter@v5
-        env:
-          VALIDATE_ALL_CODEBASE: true
-          DEFAULT_BRANCH: main
-          VALIDATE_HTML: true
-          VALIDATE_CSS: true
-          VALIDATE_JAVASCRIPT_ES: true
-          DISABLE_ERRORS: true
+      # Solo revisa si el código cumple con el formato estándar. Si no, avisa.
+      - name: Verificar formato del código
+        run: |
+          prettier --check "**/*.{html,css,js}"
 
   # ---- ETAPA 2: DESPLIEGUE CONTINUO (CD) ----
   desplegar:
     needs: validar_y_formatear
     runs-on: ubuntu-latest
-    
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-      
     steps:
-      - name: Clonar el repositorio actualizado
+      - name: Clonar el repositorio
         uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
-
-      # Espera unos segundos estratégicos para que cualquier bloqueo de API previo se limpie
-      - name: Pausa de sincronización
-        run: sleep 5
 
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v4
