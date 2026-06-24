@@ -24,20 +24,17 @@ jobs:
           echo "El commit fue realizado por: ${{ github.actor }}"
           echo "Mensaje original: ${{ github.event.head_commit.message }}"
 
-      # Instala Prettier directamente usando Node.js (Herramienta estándar de la industria)
       - name: Instalar y ejecutar Prettier
         run: |
           npm install -g prettier
           prettier --write "**/*.{html,css,js}"
 
-      # El Auto-Commit mágico si Prettier ordenó algo
       - name: Guardar cambios ordenados (Auto-commit)
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🤖 Bot: Código formateado automáticamente por GitHub Actions"
+          commit_message: "🤖 Bot: Código formato automático por GitHub Actions"
           branch: ${{ github.ref_name }}
 
-      # Validación final de sintaxis
       - name: Validar sintaxis final
         uses: super-linter/super-linter@v5
         env:
@@ -53,6 +50,12 @@ jobs:
     needs: validar_y_formatear
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    
+    # Le asignamos el entorno oficial de GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      
     steps:
       - name: Clonar el repositorio
         uses: actions/checkout@v4
@@ -66,4 +69,5 @@ jobs:
           path: '.' 
 
       - name: Desplegar en vivo
+        id: deployment
         uses: actions/deploy-pages@v4
