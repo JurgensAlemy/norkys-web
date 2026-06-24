@@ -21,11 +21,19 @@ jobs:
       - name: Clonar el repositorio
         uses: actions/checkout@v4
 
+      # 🌟 AQUÍ REGRESA TU AUTOMATIZACIÓN INFORMATIVA
+      - name: Mostrar información del Commit ejecutado
+        run: |
+          echo "======================================================="
+          echo "Autor del cambio: ${{ github.actor }}"
+          echo "Mensaje del Commit: ${{ github.event.head_commit.message }}"
+          echo "SHA del Commit: ${{ github.sha }}"
+          echo "======================================================="
+
       - name: Instalar Node.js y Prettier
         run: |
           npm install -g prettier
 
-      # Solo revisa si el código cumple con el formato estándar. Si no, avisa.
       - name: Verificar formato del código
         run: |
           prettier --check "**/*.{html,css,js}"
