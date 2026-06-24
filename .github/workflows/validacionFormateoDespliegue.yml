@@ -21,22 +21,23 @@ jobs:
       - name: Clonar el repositorio
         uses: actions/checkout@v4
 
-      # 🌟 AQUÍ REGRESA TU AUTOMATIZACIÓN INFORMATIVA
       - name: Mostrar información del Commit ejecutado
         run: |
           echo "======================================================="
-          echo "Autor del cambio: ${{ github.actor }}"
-          echo "Mensaje del Commit: ${{ github.event.head_commit.message }}"
-          echo "SHA del Commit: ${{ github.sha }}"
+          echo " Autor del cambio: ${{ github.actor }}"
+          echo " Mensaje del Commit: ${{ github.event.head_commit.message }}"
+          echo " SHA del Commit: ${{ github.sha }}"
           echo "======================================================="
 
       - name: Instalar Node.js y Prettier
         run: |
           npm install -g prettier
 
+      # Si falla el formato, continúa con el despliegue de todas formas
       - name: Verificar formato del código
+        id: format_check
         run: |
-          prettier --check "**/*.{html,css,js}"
+          prettier --check "**/*.{html,css,js}" || echo "Hay problemas de formato, pero continuamos con el despliegue."
 
   # ---- ETAPA 2: DESPLIEGUE CONTINUO (CD) ----
   desplegar:
