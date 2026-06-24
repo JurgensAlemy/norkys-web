@@ -1,0 +1,74 @@
+name: CI/CD - Validación, Formateo y Despliegue
+
+on:
+  push:
+    # Se ejecuta en cualquier rama para formatear, pero el despliegue final se cuida solo
+    branches: [ "**" ]
+
+permissions:
+  # IMPORTANTE: Necesitamos permiso de escritura (write) para que el bot pueda hacer commits
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  # ---- ETAPA 1: INTEGRACIÓN CONTINUA (CI) Y AUTO-COMMIT ----
+  validar_y_formatear:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
+        with:
+          # Permite que la acción use las credenciales correctas para subir los cambios
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Mostrar información del Commit
+        run: |
+          echo "El commit fue realizado por: ${{ github.actor }}"
+          echo "Mensaje original: ${{ github.event.head_commit.message }}"
+
+      # Paso A: Formatear automáticamente el HTML, CSS y JS usando Prettier
+      - name: Formatear código con Prettier
+        uses: crey08/prettier-action@v4.3
+        with:
+          # Esto le dice a Prettier que arregle los archivos directamente en la máquina virtual
+          prettier_options: --write **/*.{html,css,js}
+
+      # Paso B: El Auto-Commit mágico. Si Prettier acomodó algo, aquí se crea el commit solo
+      - name: Guardar cambios ordenados (Auto-commit)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Bot: Código formateado automáticamente por GitHub Actions"
+          branch: ${{ github.ref_name }}
+
+      # Paso C: Una validación final por si acaso quedaron errores graves de lógica
+      - name: Validar sintaxis final
+        uses: super-linter/super-linter@v5
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          DEFAULT_BRANCH: main
+          VALIDATE_HTML: true
+          VALIDATE_CSS: true
+          VALIDATE_JAVASCRIPT_ES: true
+          DISABLE_ERRORS: true
+
+  # ---- ETAPA 2: DESPLIEGUE CONTINUO (CD) ----
+  desplegar:
+    needs: validar_y_formatear
+    # Solo desplegamos en internet si los cambios finales se consolidaron en la rama main
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Subir archivos a GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.' 
+
+      - name: Desplegar en vivo
+        uses: actions/deploy-pages@v4
