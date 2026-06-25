@@ -1,7 +1,7 @@
 // ================= DB.JS — Norky's API Client =================
 // Todos los datos ahora vienen del backend Spring Boot
 // URL base del backend
-const API_URL = 'http://localhost:8080/api';
+const API_URL = 'https://norkys-web-backend-production.up.railway.app/api';
 
 // ============================================================
 // MANEJO DE ERRORES DE CONEXIÓN
