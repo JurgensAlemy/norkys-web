@@ -3,6 +3,8 @@ name: CI/CD - Validación, Formateo y Despliegue
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ] # Nueva regla: Escucha cuando alguien abre un PR hacia main
 
 permissions:
   contents: read
@@ -24,24 +26,25 @@ jobs:
       - name: Mostrar información del Commit ejecutado
         run: |
           echo "======================================================="
-          echo " Autor del cambio: ${{ github.actor }}"
-          echo " Mensaje del Commit: ${{ github.event.head_commit.message }}"
-          echo " SHA del Commit: ${{ github.sha }}"
+          echo "Autor del cambio: ${{ github.actor }}"
+          echo "Mensaje del Commit: ${{ github.event.head_commit.message }}"
+          echo "SHA del Commit: ${{ github.sha }}"
           echo "======================================================="
 
       - name: Instalar Node.js y Prettier
         run: |
           npm install -g prettier
 
-      # Si falla el formato, continúa con el despliegue de todas formas
       - name: Verificar formato del código
         id: format_check
         run: |
-          prettier --check "**/*.{html,css,js}" || echo "Hay problemas de formato, pero continuamos con el despliegue."
+          prettier --check "**/*.{html,css,js}" || echo "⚠️ Advertencia de estilo detectada, pero el pipeline continúa."
 
   # ---- ETAPA 2: DESPLIEGUE CONTINUO (CD) ----
   desplegar:
     needs: validar_y_formatear
+    # Regla de seguridad: SOLO despliega en vivo si el cambio viene de la rama main
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
