@@ -3,7 +3,6 @@
    Paleta oficial Norky's
 ====================================================== */
 :root {
-
   /* Colores corporativos */
   --norkys-red: #e25a12;
   --norkys-red-dark: #c94d0c;
@@ -32,7 +31,7 @@
   position: sticky;
   top: 0;
 
-  background: rgba(255,255,255,0.92);
+  background: rgba(255, 255, 255, 0.92);
 
   backdrop-filter: blur(12px);
 
@@ -133,7 +132,6 @@
    SECCIONES DEL MENÚ
 ====================================================== */
 .menu-section {
-
   scroll-margin-top: 80px;
 
   margin-top: 40px;
@@ -187,7 +185,6 @@
    RESPONSIVE
 ====================================================== */
 @media (max-width: 768px) {
-
   .sticky-container {
     padding: 10px 20px;
   }
@@ -253,14 +250,13 @@
 
 /* Header elegante */
 
-.main-header{
+.main-header {
   background-color: var(--bg-card);
 
   border-bottom: 1px solid var(--border-color);
 
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 
   padding-top: 10px;
   padding-bottom: 10px;
 }
-

@@ -1,0 +1,63 @@
+name: CI/CD - Validación, Formateo y Despliegue
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # ---- ETAPA 1: INTEGRACIÓN CONTINUA (CI) ----
+  validar_y_formatear:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Mostrar información del Commit ejecutado
+        run: |
+          echo "======================================================="
+          echo " Autor del cambio: ${{ github.actor }}"
+          echo " Mensaje del Commit: ${{ github.event.head_commit.message }}"
+          echo " SHA del Commit: ${{ github.sha }}"
+          echo "======================================================="
+
+      - name: Instalar Node.js y Prettier
+        run: |
+          npm install -g prettier
+
+      # Si falla el formato, continúa con el despliegue de todas formas
+      - name: Verificar formato del código
+        id: format_check
+        run: |
+          prettier --check "**/*.{html,css,js}" || echo "Hay problemas de formato, pero continuamos con el despliegue."
+
+  # ---- ETAPA 2: DESPLIEGUE CONTINUO (CD) ----
+  desplegar:
+    needs: validar_y_formatear
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Subir archivos a GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.' 
+
+      - name: Desplegar en vivo
+        id: deployment
+        uses: actions/deploy-pages@v4

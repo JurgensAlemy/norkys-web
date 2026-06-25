@@ -13,7 +13,9 @@ const fetchConManejo = async (url, options = {}) => {
   } catch (err) {
     // Esto se dispara cuando el backend está apagado o no hay red
     mostrarErrorConexion();
-    throw new Error('No se pudo conectar con el servidor. Verifica que el sistema esté disponible.');
+    throw new Error(
+      "No se pudo conectar con el servidor. Verifica que el sistema esté disponible.",
+    );
   }
 };
 
@@ -22,8 +24,8 @@ const mostrarErrorConexion = () => {
   if (_errorConexionMostrado) return; // evita espamear el mismo aviso varias veces
   _errorConexionMostrado = true;
 
-  const banner = document.createElement('div');
-  banner.id = 'bannerErrorConexion';
+  const banner = document.createElement("div");
+  banner.id = "bannerErrorConexion";
   banner.style.cssText = `
     position:fixed;top:0;left:0;right:0;z-index:99999;
     background:#b91c1c;color:#fff;text-align:center;
@@ -51,8 +53,8 @@ const mostrarErrorConexion = () => {
 // Solo inicializa el carrito si no existe
 // ============================================================
 const initNorkysDB = () => {
-  if (!localStorage.getItem('norkys_cart')) {
-    localStorage.setItem('norkys_cart', JSON.stringify([]));
+  if (!localStorage.getItem("norkys_cart")) {
+    localStorage.setItem("norkys_cart", JSON.stringify([]));
   }
 };
 
@@ -67,12 +69,12 @@ const getNorkysProducts = async (categoria = null) => {
       ? `${API_URL}/productos?categoria=${categoria}`
       : `${API_URL}/productos`;
     const res = await fetchConManejo(url);
-    if (!res.ok) throw new Error('Error al obtener productos');
+    if (!res.ok) throw new Error("Error al obtener productos");
     const data = await res.json();
     // Mapear imgUrl → img para compatibilidad con el frontend existente
-    return data.map(p => ({ ...p, img: p.imgUrl }));
+    return data.map((p) => ({ ...p, img: p.imgUrl }));
   } catch (err) {
-    console.error('[db.js] getNorkysProducts:', err);
+    console.error("[db.js] getNorkysProducts:", err);
     return [];
   }
 };
@@ -80,11 +82,13 @@ const getNorkysProducts = async (categoria = null) => {
 // Buscar productos por nombre
 const buscarProductos = async (query) => {
   try {
-    const res = await fetchConManejo(`${API_URL}/productos/buscar?q=${encodeURIComponent(query)}`);
+    const res = await fetchConManejo(
+      `${API_URL}/productos/buscar?q=${encodeURIComponent(query)}`,
+    );
     const data = await res.json();
-    return data.map(p => ({ ...p, img: p.imgUrl }));
+    return data.map((p) => ({ ...p, img: p.imgUrl }));
   } catch (err) {
-    console.error('[db.js] buscarProductos:', err);
+    console.error("[db.js] buscarProductos:", err);
     return [];
   }
 };
@@ -92,7 +96,8 @@ const buscarProductos = async (query) => {
 // ============================================================
 // CARRITO — sigue en localStorage (sin cambios)
 // ============================================================
-const getNorkysCart = () => JSON.parse(localStorage.getItem('norkys_cart')) || [];
+const getNorkysCart = () =>
+  JSON.parse(localStorage.getItem("norkys_cart")) || [];
 
 // ============================================================
 // AUTENTICACIÓN — desde la API
@@ -101,9 +106,9 @@ const getNorkysCart = () => JSON.parse(localStorage.getItem('norkys_cart')) || [
 // Login contra el backend
 const loginNorkys = async (correo, password) => {
   const res = await fetchConManejo(`${API_URL}/auth/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ correo, password })
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ correo, password }),
   });
   if (!res.ok) {
     const msg = await res.text();
@@ -111,16 +116,16 @@ const loginNorkys = async (correo, password) => {
   }
   const user = await res.json();
   // Guardar en localStorage para que el resto del frontend lo lea igual que antes
-  localStorage.setItem('norkys_currentUser', JSON.stringify(user));
+  localStorage.setItem("norkys_currentUser", JSON.stringify(user));
   return user;
 };
 
 // Registro contra el backend
 const registrarNorkys = async (datos) => {
   const res = await fetchConManejo(`${API_URL}/auth/registro`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(datos)
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(datos),
   });
   if (!res.ok) {
     const msg = await res.text();
@@ -132,33 +137,44 @@ const registrarNorkys = async (datos) => {
 // ===== NUEVO: recuperación de contraseña =====
 const solicitarRecuperacionPassword = async (correo) => {
   const res = await fetchConManejo(`${API_URL}/auth/recuperar`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ correo })
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ correo }),
   });
   const data = await res.json();
-  if (!res.ok) throw new Error(typeof data === 'string' ? data : (data.message || 'No se pudo procesar la solicitud'));
+  if (!res.ok)
+    throw new Error(
+      typeof data === "string"
+        ? data
+        : data.message || "No se pudo procesar la solicitud",
+    );
   return data; // { mensaje, codigoDemo }
 };
 
 const restablecerPassword = async (correo, codigo, nuevaPassword) => {
   const res = await fetchConManejo(`${API_URL}/auth/restablecer`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ correo, codigo, nuevaPassword })
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ correo, codigo, nuevaPassword }),
   });
   const data = await res.json();
-  if (!res.ok) throw new Error(typeof data === 'string' ? data : (data.message || 'No se pudo restablecer la contraseña'));
+  if (!res.ok)
+    throw new Error(
+      typeof data === "string"
+        ? data
+        : data.message || "No se pudo restablecer la contraseña",
+    );
   return data;
 };
 
 // Obtener usuario logueado (sigue desde localStorage — igual que antes)
-const getCurrentUser = () => JSON.parse(localStorage.getItem('norkys_currentUser'));
+const getCurrentUser = () =>
+  JSON.parse(localStorage.getItem("norkys_currentUser"));
 
 // Cerrar sesión
 const logNorkysOut = () => {
-  localStorage.removeItem('norkys_currentUser');
-  window.location.href = 'index.html';
+  localStorage.removeItem("norkys_currentUser");
+  window.location.href = "index.html";
 };
 
 // ============================================================
@@ -167,24 +183,25 @@ const logNorkysOut = () => {
 
 // Crear pedido en el backend
 // metodoPago: "Efectivo" (por defecto) | "Yape" | "Plin" | "Tarjeta"
-const crearPedido = async (direccion, metodoPago = 'Efectivo') => {
+const crearPedido = async (direccion, metodoPago = "Efectivo") => {
   const user = getCurrentUser();
   const cart = getNorkysCart();
 
-  if (!user || cart.length === 0) throw new Error('Sin usuario o carrito vacío');
+  if (!user || cart.length === 0)
+    throw new Error("Sin usuario o carrito vacío");
 
   const res = await fetchConManejo(`${API_URL}/pedidos`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       usuarioId: user.id,
       direccionEntrega: direccion,
       metodoPago: metodoPago,
-      items: cart.map(item => ({
+      items: cart.map((item) => ({
         productoId: item.id,
-        cantidad: item.cantidad
-      }))
-    })
+        cantidad: item.cantidad,
+      })),
+    }),
   });
 
   if (!res.ok) {
@@ -193,7 +210,7 @@ const crearPedido = async (direccion, metodoPago = 'Efectivo') => {
   }
 
   // Limpiar carrito tras pedido exitoso
-  localStorage.setItem('norkys_cart', JSON.stringify([]));
+  localStorage.setItem("norkys_cart", JSON.stringify([]));
   return await res.json();
 };
 
@@ -205,7 +222,7 @@ const getPedidosUsuario = async () => {
     const res = await fetchConManejo(`${API_URL}/pedidos/usuario/${user.id}`);
     return await res.json();
   } catch (err) {
-    console.error('[db.js] getPedidosUsuario:', err);
+    console.error("[db.js] getPedidosUsuario:", err);
     return [];
   }
 };

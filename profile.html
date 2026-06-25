@@ -1,139 +1,263 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi Perfil - Norky's</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/profile.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <link rel="icon" type="image/png" href="imgs/logoNorkys.png" />
-</head>
+  </head>
 
-<body class="profile-page">
-
+  <body class="profile-page">
     <div id="header-placeholder"></div>
 
     <main class="profile-container">
-        <aside class="profile-sidebar">
-            <div class="user-cover"></div>
-            <div class="user-summary">
-                <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                <h3>Usuario</h3>
-                <p><i class="fa-solid fa-star" style="color: var(--norkys-yellow);"></i> Cliente Frecuente</p>
+      <aside class="profile-sidebar">
+        <div class="user-cover"></div>
+        <div class="user-summary">
+          <div class="avatar"><i class="fa-solid fa-user"></i></div>
+          <h3>Usuario</h3>
+          <p>
+            <i class="fa-solid fa-star" style="color: var(--norkys-yellow)"></i>
+            Cliente Frecuente
+          </p>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="#" class="active"
+            ><i class="fa-regular fa-id-badge"></i> Mis Datos</a
+          >
+          <a href="#"
+            ><i class="fa-solid fa-clock-rotate-left"></i> Historial de
+            Pedidos</a
+          >
+          <a href="#"
+            ><i class="fa-solid fa-location-dot"></i> Mis Direcciones</a
+          >
+          <a href="#" class="logout-link"
+            ><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar
+            Sesión</a
+          >
+        </nav>
+      </aside>
+
+      <section class="profile-content">
+        <div class="content-header">
+          <h2>Panel de Control</h2>
+          <p>Gestiona tu información y revisa tu actividad reciente.</p>
+        </div>
+
+        <div class="profile-cards-grid">
+          <div class="profile-card recent-order-card">
+            <div class="card-header-flex">
+              <h3>
+                <i
+                  class="fa-solid fa-motorcycle"
+                  style="color: var(--norkys-red)"
+                ></i>
+                Tu último pedido
+              </h3>
             </div>
-            <nav class="sidebar-nav">
-                <a href="#" class="active"><i class="fa-regular fa-id-badge"></i> Mis Datos</a>
-                <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> Historial de Pedidos</a>
-                <a href="#"><i class="fa-solid fa-location-dot"></i> Mis Direcciones</a>
-                <a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</a>
-            </nav>
-        </aside>
-
-        <section class="profile-content">
-            <div class="content-header">
-                <h2>Panel de Control</h2>
-                <p>Gestiona tu información y revisa tu actividad reciente.</p>
+            <div class="order-details">
+              <div class="order-info"></div>
+              <button
+                class="btn-reorder"
+                onclick="window.location.href = 'menu.html'"
+              >
+                <i class="fa-solid fa-rotate-right"></i> Volver a pedir
+              </button>
             </div>
+          </div>
 
-            <div class="profile-cards-grid">
-                <div class="profile-card recent-order-card">
-                    <div class="card-header-flex">
-                        <h3><i class="fa-solid fa-motorcycle" style="color: var(--norkys-red);"></i> Tu último pedido
-                        </h3>
-                    </div>
-                    <div class="order-details">
-                        <div class="order-info"></div>
-                        <button class="btn-reorder" onclick="window.location.href='menu.html'"><i
-                                class="fa-solid fa-rotate-right"></i> Volver a pedir</button>
-                    </div>
+          <div class="profile-card data-card">
+            <h3>
+              <i
+                class="fa-regular fa-address-book"
+                style="color: var(--norkys-red)"
+              ></i>
+              Mis Datos Personales
+            </h3>
+            <form class="profile-form">
+              <div class="form-row">
+                <div class="input-group">
+                  <label>Nombres</label>
+                  <div class="input-wrapper">
+                    <i class="fa-regular fa-user"></i
+                    ><input type="text" id="profNombres" readonly />
+                  </div>
                 </div>
+                <div class="input-group">
+                  <label>Apellidos</label>
+                  <div class="input-wrapper">
+                    <i class="fa-regular fa-address-card"></i
+                    ><input type="text" id="profApellidos" readonly />
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="input-group">
+                  <label>Correo Electrónico</label>
+                  <div class="input-wrapper">
+                    <i class="fa-regular fa-envelope"></i
+                    ><input type="email" id="profCorreo" readonly />
+                  </div>
+                </div>
+                <div class="input-group">
+                  <label>Celular</label>
+                  <div class="input-wrapper">
+                    <i class="fa-solid fa-mobile-screen"></i
+                    ><input type="tel" id="profCelular" readonly />
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="button" class="btn-edit">
+                  <i class="fa-solid fa-pen"></i> Editar Datos
+                </button>
+              </div>
+            </form>
+          </div>
 
-                <div class="profile-card data-card">
-                    <h3><i class="fa-regular fa-address-book" style="color: var(--norkys-red);"></i> Mis Datos
-                        Personales</h3>
-                    <form class="profile-form">
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Nombres</label>
-                                <div class="input-wrapper"><i class="fa-regular fa-user"></i><input type="text"
-                                        id="profNombres" readonly /></div>
-                            </div>
-                            <div class="input-group">
-                                <label>Apellidos</label>
-                                <div class="input-wrapper"><i class="fa-regular fa-address-card"></i><input type="text"
-                                        id="profApellidos" readonly /></div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Correo Electrónico</label>
-                                <div class="input-wrapper"><i class="fa-regular fa-envelope"></i><input type="email"
-                                        id="profCorreo" readonly /></div>
-                            </div>
-                            <div class="input-group">
-                                <label>Celular</label>
-                                <div class="input-wrapper"><i class="fa-solid fa-mobile-screen"></i><input type="tel"
-                                        id="profCelular" readonly /></div>
-                            </div>
-                        </div>
-                        <div class="form-actions">
-                            <button type="button" class="btn-edit"><i class="fa-solid fa-pen"></i> Editar Datos</button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="profile-card address-card">
-                    <div class="card-header-flex">
-                        <h3><i class="fa-solid fa-map-location-dot" style="color: var(--norkys-red);"></i> Mis
-                            Direcciones</h3>
-                        <button class="btn-add-address" id="btnOpenAddressModal">
-                            <i class="fas fa-plus"></i> Agregar nueva
-                        </button>
-                    </div>
-                    <div class="address-list"></div>
-                </div>
+          <div class="profile-card address-card">
+            <div class="card-header-flex">
+              <h3>
+                <i
+                  class="fa-solid fa-map-location-dot"
+                  style="color: var(--norkys-red)"
+                ></i>
+                Mis Direcciones
+              </h3>
+              <button class="btn-add-address" id="btnOpenAddressModal">
+                <i class="fas fa-plus"></i> Agregar nueva
+              </button>
             </div>
-        </section>
+            <div class="address-list"></div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <div id="addressModal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 450px; padding: 40px;">
-            <button class="close-modal" id="closeAddressModal"><i class="fa-solid fa-xmark"></i></button>
-            <h2
-                style="font-size: 24px; font-weight: 800; color: var(--text-main); margin-bottom: 25px; letter-spacing: -0.5px;">
-                Nueva Dirección</h2>
+      <div class="modal-content" style="max-width: 450px; padding: 40px">
+        <button class="close-modal" id="closeAddressModal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h2
+          style="
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+          "
+        >
+          Nueva Dirección
+        </h2>
 
-            <div class="input-group" style="margin-bottom: 20px;">
-                <label
-                    style="display:block; font-size:13px; font-weight:700; color:var(--text-muted); margin-bottom:8px;">Alias
-                    (Ej. Casa, Trabajo)</label>
-                <div class="input-wrapper" style="position: relative;">
-                    <i class="fa-solid fa-tag"
-                        style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 14px;"></i>
-                    <input type="text" id="newAddressAlias" placeholder="Mi Casa"
-                        style="width:100%; padding:12px 15px 12px 42px; border-radius:10px; border:1px solid var(--border-color); outline:none; font-weight: 600;" />
-                </div>
-            </div>
-
-            <div class="input-group" style="margin-bottom: 30px;">
-                <label
-                    style="display:block; font-size:13px; font-weight:700; color:var(--text-muted); margin-bottom:8px;">Dirección
-                    Completa</label>
-                <div class="input-wrapper" style="position: relative;">
-                    <i class="fa-solid fa-location-dot"
-                        style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 14px;"></i>
-                    <input type="text" id="newAddressDetail" placeholder="Av. Lima Sur 123..."
-                        style="width:100%; padding:12px 15px 12px 42px; border-radius:10px; border:1px solid var(--border-color); outline:none; font-weight: 600;" />
-                </div>
-            </div>
-
-            <button id="btnSaveAddress"
-                style="width:100%; background-color: var(--norkys-red); color: white; border: none; padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; transition: all 0.3s; display: flex; justify-content: center; gap: 10px; align-items: center;">
-                Guardar Dirección <i class="fa-solid fa-floppy-disk"></i>
-            </button>
+        <div class="input-group" style="margin-bottom: 20px">
+          <label
+            style="
+              display: block;
+              font-size: 13px;
+              font-weight: 700;
+              color: var(--text-muted);
+              margin-bottom: 8px;
+            "
+            >Alias (Ej. Casa, Trabajo)</label
+          >
+          <div class="input-wrapper" style="position: relative">
+            <i
+              class="fa-solid fa-tag"
+              style="
+                position: absolute;
+                left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #94a3b8;
+                font-size: 14px;
+              "
+            ></i>
+            <input
+              type="text"
+              id="newAddressAlias"
+              placeholder="Mi Casa"
+              style="
+                width: 100%;
+                padding: 12px 15px 12px 42px;
+                border-radius: 10px;
+                border: 1px solid var(--border-color);
+                outline: none;
+                font-weight: 600;
+              "
+            />
+          </div>
         </div>
+
+        <div class="input-group" style="margin-bottom: 30px">
+          <label
+            style="
+              display: block;
+              font-size: 13px;
+              font-weight: 700;
+              color: var(--text-muted);
+              margin-bottom: 8px;
+            "
+            >Dirección Completa</label
+          >
+          <div class="input-wrapper" style="position: relative">
+            <i
+              class="fa-solid fa-location-dot"
+              style="
+                position: absolute;
+                left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #94a3b8;
+                font-size: 14px;
+              "
+            ></i>
+            <input
+              type="text"
+              id="newAddressDetail"
+              placeholder="Av. Lima Sur 123..."
+              style="
+                width: 100%;
+                padding: 12px 15px 12px 42px;
+                border-radius: 10px;
+                border: 1px solid var(--border-color);
+                outline: none;
+                font-weight: 600;
+              "
+            />
+          </div>
+        </div>
+
+        <button
+          id="btnSaveAddress"
+          style="
+            width: 100%;
+            background-color: var(--norkys-red);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+          "
+        >
+          Guardar Dirección <i class="fa-solid fa-floppy-disk"></i>
+        </button>
+      </div>
     </div>
 
     <div id="footer-placeholder"></div>
@@ -142,6 +266,5 @@
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
     <script src="js/profile.js"></script>
-</body>
-
+  </body>
 </html>

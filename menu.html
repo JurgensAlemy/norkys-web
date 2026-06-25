@@ -1,138 +1,212 @@
 <!doctype html>
 <html lang="es">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>La Carta - Norky's</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/menu.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <link rel="icon" type="image/png" href="imgs/logoNorkys.png" />
-</head>
+  </head>
 
-<body>
-    
+  <body>
     <div id="header-placeholder"></div>
 
     <nav class="sticky-category-nav">
-        <div class="sticky-container">
-            <a href="#pollos" class="category-pill active" onclick="changeNorkysCategory('pollos', this)"><i
-                    class="fa-solid fa-drumstick-bite"></i> Pollos a la Brasa</a>
-            <a href="#parrillas" class="category-pill" onclick="changeNorkysCategory('parrillas', this)"><i
-                    class="fa-solid fa-fire-burner"></i> Parrillas</a>
-            <a href="#combos" class="category-pill" onclick="changeNorkysCategory('combos', this)"><i
-                    class="fa-solid fa-user-group"></i> Combos Especiales</a>
-            <a href="#hamburguesas" class="category-pill" onclick="changeNorkysCategory('hamburguesas', this)"><i
-                    class="fa-solid fa-burger"></i> Hamburguesas</a>
-            <a href="#bebidas" class="category-pill" onclick="changeNorkysCategory('bebidas', this)"><i
-                    class="fa-solid fa-glass-water"></i> Bebidas</a>
-            <a href="#postres" class="category-pill" onclick="changeNorkysCategory('postres', this)"><i
-                    class="fa-solid fa-ice-cream"></i> Postres</a>
-            <a href="#porciones" class="category-pill" onclick="changeNorkysCategory('porciones', this)"><i
-                    class="fa-solid fa-utensils"></i> Porciones Extra</a>
-        </div>
+      <div class="sticky-container">
+        <a
+          href="#pollos"
+          class="category-pill active"
+          onclick="changeNorkysCategory('pollos', this)"
+          ><i class="fa-solid fa-drumstick-bite"></i> Pollos a la Brasa</a
+        >
+        <a
+          href="#parrillas"
+          class="category-pill"
+          onclick="changeNorkysCategory('parrillas', this)"
+          ><i class="fa-solid fa-fire-burner"></i> Parrillas</a
+        >
+        <a
+          href="#combos"
+          class="category-pill"
+          onclick="changeNorkysCategory('combos', this)"
+          ><i class="fa-solid fa-user-group"></i> Combos Especiales</a
+        >
+        <a
+          href="#hamburguesas"
+          class="category-pill"
+          onclick="changeNorkysCategory('hamburguesas', this)"
+          ><i class="fa-solid fa-burger"></i> Hamburguesas</a
+        >
+        <a
+          href="#bebidas"
+          class="category-pill"
+          onclick="changeNorkysCategory('bebidas', this)"
+          ><i class="fa-solid fa-glass-water"></i> Bebidas</a
+        >
+        <a
+          href="#postres"
+          class="category-pill"
+          onclick="changeNorkysCategory('postres', this)"
+          ><i class="fa-solid fa-ice-cream"></i> Postres</a
+        >
+        <a
+          href="#porciones"
+          class="category-pill"
+          onclick="changeNorkysCategory('porciones', this)"
+          ><i class="fa-solid fa-utensils"></i> Porciones Extra</a
+        >
+      </div>
     </nav>
 
     <main class="full-menu-container">
+      <section id="pollos" class="menu-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fa-solid fa-drumstick-bite"></i> Pollos a la Brasa
+          </h2>
+          <p class="section-subtitle">
+            Nuestro sabor tradicional, doradito por fuera y jugoso por dentro.
+          </p>
+        </div>
+        <div class="top-sellers-grid"></div>
+      </section>
 
-        <section id="pollos" class="menu-section">
-            <div class="section-header">
-                <h2 class="section-title"><i class="fa-solid fa-drumstick-bite"></i> Pollos a la Brasa</h2>
-                <p class="section-subtitle">Nuestro sabor tradicional, doradito por fuera y jugoso por dentro.</p>
-            </div>
-            <div class="top-sellers-grid"></div>
-        </section>
+      <section id="parrillas" class="menu-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fa-solid fa-fire-burner"></i> Parrillas
+          </h2>
+          <p class="section-subtitle">
+            Carnes en su punto exacto, hechas al momento.
+          </p>
+        </div>
+        <div class="top-sellers-grid"></div>
+      </section>
 
-        <section id="parrillas" class="menu-section">
-            <div class="section-header">
-                <h2 class="section-title"><i class="fa-solid fa-fire-burner"></i> Parrillas</h2>
-                <p class="section-subtitle">Carnes en su punto exacto, hechas al momento.</p>
-            </div>
-            <div class="top-sellers-grid"></div>
-        </section>
+      <section id="combos" class="menu-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fa-solid fa-user-group"></i> Combos Especiales
+          </h2>
+          <p class="section-subtitle">
+            Ahorra con nuestros combos armados para calmar cualquier hambre.
+          </p>
+        </div>
+        <div class="top-sellers-grid"></div>
+      </section>
 
-        <section id="combos" class="menu-section">
-            <div class="section-header">
-                <h2 class="section-title"><i class="fa-solid fa-user-group"></i> Combos Especiales</h2>
-                <p class="section-subtitle">Ahorra con nuestros combos armados para calmar cualquier hambre.</p>
-            </div>
-            <div class="top-sellers-grid"></div>
-        </section>
+      <section id="hamburguesas" class="menu-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fa-solid fa-burger"></i> Hamburguesas
+          </h2>
+          <p class="section-subtitle">
+            Hechas con carne seleccionada y acompañadas de papas fritas.
+          </p>
+        </div>
+        <div class="top-sellers-grid"></div>
+      </section>
 
-        <section id="hamburguesas" class="menu-section">
-            <div class="section-header">
-                <h2 class="section-title"><i class="fa-solid fa-burger"></i> Hamburguesas</h2>
-                <p class="section-subtitle">Hechas con carne seleccionada y acompañadas de papas fritas.</p>
-            </div>
-            <div class="top-sellers-grid"></div>
-        </section>
+      <section id="bebidas" class="menu-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fa-solid fa-glass-water"></i> Bebidas
+          </h2>
+          <p class="section-subtitle">Para brindar y refrescar el paladar.</p>
+        </div>
+        <div class="top-sellers-grid"></div>
+      </section>
 
-        <section id="bebidas" class="menu-section">
-            <div class="section-header">
-                <h2 class="section-title"><i class="fa-solid fa-glass-water"></i> Bebidas</h2>
-                <p class="section-subtitle">Para brindar y refrescar el paladar.</p>
-            </div>
-            <div class="top-sellers-grid"></div>
-        </section>
+      <section id="postres" class="menu-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fa-solid fa-ice-cream"></i> Postres Dulces
+          </h2>
+          <p class="section-subtitle">
+            El toque final perfecto para tu comida.
+          </p>
+        </div>
+        <div class="top-sellers-grid"></div>
+      </section>
 
-        <section id="postres" class="menu-section">
-            <div class="section-header">
-                <h2 class="section-title"><i class="fa-solid fa-ice-cream"></i> Postres Dulces</h2>
-                <p class="section-subtitle">El toque final perfecto para tu comida.</p>
-            </div>
-            <div class="top-sellers-grid"></div>
-        </section>
+      <section id="porciones" class="menu-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fa-solid fa-french-fries"></i> Porciones y Extras
+          </h2>
+          <p class="section-subtitle">
+            ¿Te quedaste con hambre? Agrega más papas o ensalada.
+          </p>
+        </div>
+        <div class="top-sellers-grid"></div>
+      </section>
 
-        <section id="porciones" class="menu-section">
-            <div class="section-header">
-                <h2 class="section-title"><i class="fa-solid fa-french-fries"></i> Porciones y Extras</h2>
-                <p class="section-subtitle">¿Te quedaste con hambre? Agrega más papas o ensalada.</p>
-            </div>
-            <div class="top-sellers-grid"></div>
-        </section>
-
-        <div id="footer-placeholder"></div>
-
+      <div id="footer-placeholder"></div>
     </main>
 
     <div id="productModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
-            <div class="modal-body">
-                <div class="modal-image-container">
-                    <i id="modalIconFallback" class="fa-solid fa-image fallback-icon"></i>
-                    <img id="modalImg" src="" alt="Producto"
-                        style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" />
-                </div>
-                <div class="modal-details">
-                    <h2 id="modalTitle">Nombre del Producto</h2>
-                    <p id="modalDesc">Descripción detallada del producto aquí.</p>
-                    <div class="modal-price-box">
-                        <span>Precio total:</span>
-                        <strong id="modalPrice">S/ 0.00</strong>
-                    </div>
-
-                    <div class="modal-actions">
-                        <div class="quantity-control">
-                            <button type="button" class="qty-btn" id="btnMinus"><i
-                                    class="fa-solid fa-minus"></i></button>
-                            <input type="number" id="qtyInput" value="1" min="1" readonly="readonly" />
-                            <button type="button" class="qty-btn" id="btnPlus"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                        <button class="btn-add-cart">
-                            <i class="fa-solid fa-basket-shopping"></i> Agregar al pedido
-                        </button>
-                    </div>
-                </div>
+      <div class="modal-content">
+        <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-body">
+          <div class="modal-image-container">
+            <i
+              id="modalIconFallback"
+              class="fa-solid fa-image fallback-icon"
+            ></i>
+            <img
+              id="modalImg"
+              src=""
+              alt="Producto"
+              style="
+                display: none;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 12px;
+              "
+            />
+          </div>
+          <div class="modal-details">
+            <h2 id="modalTitle">Nombre del Producto</h2>
+            <p id="modalDesc">Descripción detallada del producto aquí.</p>
+            <div class="modal-price-box">
+              <span>Precio total:</span>
+              <strong id="modalPrice">S/ 0.00</strong>
             </div>
+
+            <div class="modal-actions">
+              <div class="quantity-control">
+                <button type="button" class="qty-btn" id="btnMinus">
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+                <input
+                  type="number"
+                  id="qtyInput"
+                  value="1"
+                  min="1"
+                  readonly="readonly"
+                />
+                <button type="button" class="qty-btn" id="btnPlus">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+              <button class="btn-add-cart">
+                <i class="fa-solid fa-basket-shopping"></i> Agregar al pedido
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <script src="js/db.js"></script>
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
     <script src="js/menu.js"></script>
-</body>
-
+  </body>
 </html>

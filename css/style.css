@@ -215,7 +215,9 @@ a {
   border-radius: 25px;
   position: relative;
   font-weight: 800;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .cart-button:hover {
@@ -259,7 +261,9 @@ a {
   display: flex;
   gap: 10px;
   align-items: center;
-  transition: background 0.2s, transform 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
   white-space: nowrap;
 }
 
@@ -544,7 +548,9 @@ a {
   border-radius: 22px;
   padding: 0;
   overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
@@ -1569,13 +1575,12 @@ a {
 }
 
 @keyframes skeletonPulse {
-
   0%,
   100% {
     opacity: 1;
   }
 
   50% {
-    opacity: .6;
+    opacity: 0.6;
   }
 }
